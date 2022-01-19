@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Imagen1">
+    <file>SQLVSNOSQL.png</file>
+  </qresource>
+</RCC>
