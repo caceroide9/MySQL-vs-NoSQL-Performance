@@ -2,4 +2,7 @@
   <qresource prefix="Imagen1">
     <file>SQLVSNOSQL.png</file>
   </qresource>
+  <qresource prefix="newPrefix">
+    <file>cerrar.png</file>
+  </qresource>
 </RCC>
