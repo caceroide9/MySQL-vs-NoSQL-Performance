@@ -33,37 +33,21 @@ for i in range(50):
 print("Primer TEST busqueda de datos por indice numerico")
 # MySQL INT Type TEST
 start = time.process_time()
-start1 = time.time()
 
 with MySQL_db.cursor() as cursor:
   sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
   for num in random:
     cursor.execute(sql, (num,))
     result = cursor.fetchall()
-    info = {
-            'Resultado' : num,
-            'Hora' : time.process_time() - start
-            }
+    print(result,time.process_time() - start)
     
-    print(result)
-    
-print("Tiempo tomado MySQL: ", time.process_time() - start)
-fieldnames = ['Iteracion','Hora']
-with open('Data/ping_data.csv', 'a', newline = '') as csv_file:
-  csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-  csv_writer.writerow(info)
-
-
-
-
 
 #MongoDB int TEST
-start = time.process_time()
-start1 = time.time()
+start1 = time.process_time()
 for num in random:
 	result = list(mongoDB_collection.find({'id_pais': num}))
-	print(result)
-print("Tiempo tomado MongoDB :", time.process_time() - start) 
+	print(result,time.process_time() - start1)
+
 
 
 print("Segundo Test busqueda de indice texto")
