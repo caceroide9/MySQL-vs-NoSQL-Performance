@@ -41,26 +41,73 @@ random = []
 
 def rand(entry_box):
     global random
-    f = open('random.txt', 'r')
-    for i in range(int(entry_box.get())):
-        random.append(int(f.readline()))
+    random=int(entry_box.get())
+      
+
+def rand1(entry_box2):
+    global topic_str
+    topic_str=entry_box2.get()
+
 
 def Test1(logbox):
     global RUNNING
     RUNNING= True
     logbox.insert(tk.END, ' Iniciando...')
     t1= threading.Thread(name = 'ping', target = TESTT1, daemon=False, args=(logbox,))
-    
-    ##t2= threading.Thread(name = 'ping', target = Mongo, daemon=False, args=(logbox,))
-
     t1.start()
    
+
+def Test2(log_box2):
+    global RUNNING
+    RUNNING= True
+    log_box2.insert(tk.END, ' Iniciando...')
+    t2= threading.Thread(name = 'ping', target = TESTT2, daemon=False, args=(log_box2,))
+    t2.start()
+   
+def TESTT2(log_box2):
+    global start3
+    start3 = time.process_time()
+    log_box2.insert(tk.END, ' TEST 2 MongoDB...')
+    result = list(mongoDB_collection.find({'Nombre': topic_str}))
+    a=result
+    b= time.process_time() - start3
+    info1 = {
+        'Iteracion': a,
+        'Hora' : b,
+        }
+    with open('Data/MongoTest2.csv', 'a', newline = '') as csv_file:
+        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+        csv_writer.writerow(info1)
+        log_box2.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
+        log_box2.see("end") 
+        cut_duration = 0
+        time.sleep(scan_interval)
+
+    global start4
+    log_box2.insert(tk.END, ' \nTEST 2 MySQL...')
+    start4 = time.process_time()
+    with MySQL_db.cursor() as cursor:
+        sql = "SELECT Nombre FROM pais WHERE Nombre=%s;"
+        cursor.execute(sql, (topic_str,))
+        result = cursor.fetchall()
+    a=result
+    b=time.process_time() - start4
+    info = {
+        'Iteracion': a,
+        'Hora' : b,}
+    with open('Data/MySQLTEST2.csv', 'a', newline = '') as csv_file:
+        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+        csv_writer.writerow(info)
+        log_box2.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
+        log_box2.see("end") 
+        cut_duration = 0
+        time.sleep(scan_interval)
     
 def TESTT1(log_box):
     global start
-    log_box.insert(tk.END, ' TEST 1 MySQL...')
+    log_box.insert(tk.END, ' TEST 1 MongoDB...')
     start = time.process_time()
-    for num in random:
+    for num in range(random):
         if(not RUNNING):
                 break
         result = list(mongoDB_collection.find({'id_pais': num}))
@@ -79,11 +126,11 @@ def TESTT1(log_box):
             time.sleep(scan_interval)
      
     global start1
-    log_box.insert(tk.END, ' \nTEST 1 MongoDB...')
+    log_box.insert(tk.END, ' \nTEST 1 MySQL...')
     start1 = time.process_time()
     with MySQL_db.cursor() as cursor:
         sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
-        for num in random:    
+        for num in range (random):    
             if(not RUNNING):
                 break 
             cursor.execute(sql, (num,))
@@ -94,7 +141,7 @@ def TESTT1(log_box):
                 'Iteracion': a,
                  'Hora' : b,
             }
-            with open('Data/ping_data.csv', 'a', newline = '') as csv_file:
+            with open('Data/MySQLTes1.csv', 'a', newline = '') as csv_file:
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
                 csv_writer.writerow(info)
                 log_box.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
@@ -103,12 +150,6 @@ def TESTT1(log_box):
                 time.sleep(scan_interval)
         
 
-    
-
-
-   
-
-   
     
 def monitor(log_box):
     global elapsed_time
@@ -139,7 +180,7 @@ class GRAPH_LABEL():
 
 def SHOW_GRAPH():
 
-    data = pd.read_csv('Data/ping_data.csv', index_col = None)
+    data = pd.read_csv('Data/MySQLTes1.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     plt.figure(figsize = (50, 15))
@@ -233,6 +274,9 @@ def GUI():
     
     level2L_1 = ttk.Frame(left_frame)
     level2L_1.pack(side = 'top')
+
+    level2L_12 = ttk.Frame(left_frame)
+    level2L_12.pack(side = 'top')
     
     level2L_2 = ttk.Frame(left_frame)
     level2L_2.pack(side = 'top')
@@ -250,11 +294,17 @@ def GUI():
     
     ################## Frame 1 ##########################
 
-    packet_loss_label_2 = ttk.Label( level2L_1,text = '\nIngrese cantidad\nde paquetes.', font=("Calibri"), justify = 'center')
+    packet_loss_label_2 = ttk.Label( level2L_1,text = '\nIngrese datos a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_2.pack(side = 'left')
 
     duration_entrybox = ttk.Entry(level2L_1)
     duration_entrybox.pack(side = 'left')
+
+    packet_loss_label_22 = ttk.Label( level2L_12,text = '\nIngrese cantidad\nde paquetesss.', font=("Calibri"), justify = 'center')
+    packet_loss_label_22.pack(side = 'left')
+
+    duration_entrybox1 = ttk.Entry(level2L_12)
+    duration_entrybox1.pack(side = 'left')
     
     label_1 = ttk.Label(level2L_1)
     label_1.pack(side = 'left')
@@ -262,16 +312,22 @@ def GUI():
     begin_button = ttk.Button(level2L_1, text= 'Iniciar', command=lambda:(rand(duration_entrybox),Test1(log_box)))
     begin_button.pack(side = 'left')
 
-    ##begin_button = ttk.Button(level2L_1, text= 'Iniciar1', command=lambda:Mongo_start(log_box))
-    ##begin_button.pack(side = 'left')
+    begin_button1 = ttk.Button(level2L_12, text= 'Iniciar1', command=lambda:(rand1(duration_entrybox1),Test2(log_box2)))
+    begin_button1.pack(side = 'left')
 
     
     label_2 = ttk.Label(level2L_1)
     label_2.pack(side = 'left')
 
-
     
     stop_button = ttk.Button(level2L_1, text= 'Detener', command=lambda:THREAD_STOP(log_box))
+    stop_button.pack(side = 'left')
+
+    label_22 = ttk.Label(level2L_12)
+    label_22.pack(side = 'left')
+
+    
+    stop_button = ttk.Button(level2L_12, text= 'Detener', command=lambda:THREAD_STOP(log_box))
     stop_button.pack(side = 'left')
 
     
@@ -284,6 +340,12 @@ def GUI():
     
     label_4 = ttk.Label(level2L_1)
     label_4.pack(side = 'left')
+
+    graph_button1 = ttk.Button(level2L_12, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH())
+    graph_button1.pack(side = 'left')
+    
+    label_44 = ttk.Label(level2L_12)
+    label_44.pack(side = 'left')
     
     #live_graph_button = ttk.Button(level2L_1, text= 'Mostrar Grafico en Vivo', command=lambda:GRAPH_THREAD())
     #live_graph_button.pack(side = 'left')
@@ -296,6 +358,12 @@ def GUI():
     
     label_6 = ttk.Label(level2L_1)
     label_6.pack(side = 'left')
+
+    exit_button1 = ttk.Button(level2L_12, text= 'Salir', command=lambda:EXIT_APP(root))
+    exit_button1.pack(side = 'left')
+    
+    label_66 = ttk.Label(level2L_12)
+    label_66.pack(side = 'left')
     
     ################## Frame 2 ##################
     
@@ -304,8 +372,11 @@ def GUI():
     
     ################## Frame 3 ##################
     
-    log_box = scrolledtext.ScrolledText(level2L_3, wrap="word", height = 1920, width = 1080)
-    log_box.pack(side = 'top')
+    log_box = scrolledtext.ScrolledText(level2L_3, wrap="word", height = 1082, width = int(1920/45))
+    log_box.pack(side = 'left')
+
+    log_box2 = scrolledtext.ScrolledText(level2L_3, wrap="word", height = 1082, width = int(1920/45))
+    log_box2.pack(side = 'left')
     
     root.mainloop()
     
