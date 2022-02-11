@@ -1,4 +1,3 @@
-
 import os
 import csv
 import string
@@ -26,24 +25,18 @@ from PIL import ImageTk, Image
 fieldnames = ['Iteracion','Hora']
 fieldnames1 = ['Iteracion','Hora']
 
-#MySQL 로그인 정보
-###################################
+
 DB_IP = 'localhost'
 DB_ID = "root"
 DB_PW = "LS9lm10N11"
-###################################
 MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
 
 mongoDB_client = MongoClient()
-#mongoDB 접속
 mongoDB_client = MongoClient('localhost', 27017)
-#mongoDB db객체 할당받기
 mongoDB_db = mongoDB_client["dbpaises"]
-#mongoDB collection객체 할당받기
 mongoDB_collection = mongoDB_db["pais"]
 
 random = []
-
 
 
 def rand(entry_box):
@@ -52,25 +45,22 @@ def rand(entry_box):
     for i in range(int(entry_box.get())):
         random.append(int(f.readline()))
 
-def Mysql_start(logbox):
+def Test1(logbox):
     global RUNNING
     RUNNING= True
     logbox.insert(tk.END, ' Iniciando...')
-    t1= threading.Thread(name = 'ping', target = Mysql, daemon=False, args=(logbox,))
-    t1.start()
-  
-def Mongo_start(logbox):
-    global RUNNING
-    RUNNING= True
-    logbox.insert(tk.END, ' Iniciando...')
-    t2= threading.Thread(name = 'ping', target = Mongo, daemon=False, args=(logbox,))
-    t2.start()
+    t1= threading.Thread(name = 'ping', target = TESTT1, daemon=False, args=(logbox,))
+    
+    ##t2= threading.Thread(name = 'ping', target = Mongo, daemon=False, args=(logbox,))
 
-def Mongo(log_box):
+    t1.start()
+   
+    
+def TESTT1(log_box):
+    global start
+    log_box.insert(tk.END, ' TEST 1 MySQL...')
     start = time.process_time()
     for num in random:
-        
-        
         if(not RUNNING):
                 break
         result = list(mongoDB_collection.find({'id_pais': num}))
@@ -87,19 +77,13 @@ def Mongo(log_box):
             log_box.see("end") 
             cut_duration = 0
             time.sleep(scan_interval)
-    
-
-def Mysql(log_box):
-    print("Primer TEST busqueda de datos por indice numerico")
-        # MySQL INT Type TEST
-    
-    ###
-    print("Primer TEST busqueda de datos por indice numerico")
+     
+    global start1
+    log_box.insert(tk.END, ' \nTEST 1 MongoDB...')
     start1 = time.process_time()
     with MySQL_db.cursor() as cursor:
         sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
-        for num in random:
-            
+        for num in random:    
             if(not RUNNING):
                 break 
             cursor.execute(sql, (num,))
@@ -117,8 +101,13 @@ def Mysql(log_box):
                 log_box.see("end") 
                 cut_duration = 0
                 time.sleep(scan_interval)
+        
 
-    ##
+    
+
+
+   
+
    
     
 def monitor(log_box):
@@ -270,7 +259,7 @@ def GUI():
     label_1 = ttk.Label(level2L_1)
     label_1.pack(side = 'left')
     
-    begin_button = ttk.Button(level2L_1, text= 'Iniciar', command=lambda:(rand(duration_entrybox),Mysql(log_box),Mongo(log_box)))
+    begin_button = ttk.Button(level2L_1, text= 'Iniciar', command=lambda:(rand(duration_entrybox),Test1(log_box)))
     begin_button.pack(side = 'left')
 
     ##begin_button = ttk.Button(level2L_1, text= 'Iniciar1', command=lambda:Mongo_start(log_box))
