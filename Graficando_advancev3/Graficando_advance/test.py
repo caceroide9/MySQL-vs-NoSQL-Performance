@@ -169,15 +169,13 @@ def TESTT2(log_box2):
 def TESTT1(log_box):
     global start
     log_box.insert(tk.END, ' TEST 1 MongoDB...')
-    start=0
+    start = time.process_time()
     for num in range(random):
         if(not RUNNING):
                 break
         result = list(mongoDB_collection.find({'id_pais': num}))
-        
-        start = start+time.process_time()
         a=int(num)
-        b= start
+        b= time.process_time() - start
         info1 = {
                 'Iteracion': a,
                  'Hora' : b,
@@ -192,7 +190,7 @@ def TESTT1(log_box):
      
     global start1
     log_box.insert(tk.END, ' \nTEST 1 MySQL...')
-    start1=0
+    start1 = time.process_time()
     with MySQL_db.cursor() as cursor:
         sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
         for num in range (random):    
@@ -200,9 +198,8 @@ def TESTT1(log_box):
                 break 
             cursor.execute(sql, (num,))
             result = cursor.fetchall()
-            start1 = start1+time.process_time()
             a=int(num)
-            b=start1
+            b=time.process_time()- start1
             info = {
                 'Iteracion': a,
                  'Hora' : b,
@@ -236,7 +233,7 @@ def monitor(log_box):
 class GRAPH_LABEL():  
     def __init__(self):    
         self.frame = Toplevel()
-        self.icon = Image.open('Graphs/Test1.png')
+        self.icon = Image.open('Graphs/ping_graph.png')
         self.icon = self.icon.resize((1920 - 50, 1080 - 100))
         self.img = ImageTk.PhotoImage(self.icon)
         self.graph_label = ttk.Label(self.frame, image = self.img)
@@ -247,28 +244,67 @@ class GRAPH_LABEL():
 def SHOW_GRAPH():
 
     data = pd.read_csv('Data/MySQLTes1.csv', index_col = None)
-    data1 = pd.read_csv('Data/MongoTest1.csv', index_col = None)
-    x = data.index
+    x = data['Iteracion']
     y = data['Hora']
-    y1= data1['Hora']
     plt.figure(figsize = (50, 15))
     plt.margins(0)
-    plt.plot(x, y, y1, linewidth = 0.5)
+    plt.plot(x, y, linewidth = 0.5)
     plt.xticks(np.arange(0, max(x) + 1, 10.0))
     plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
-    plt.xlabel('Iteración')
-    plt.ylabel('Tiempo transcurrido (ms)')
-    plt.title("Test 1 Indexación numerica")
+    plt.xlabel('Tiempo Transcurrido (s)')
+    plt.ylabel('Ping (ms)')
+    plt.title("Ping (www.google.com)")
     #plt.legend()
-    plt.savefig('Graphs/Test1.png', bbox_inches='tight', dpi = 300)
+    plt.savefig('Graphs/ping_graph.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL()
 
+
+def SHOW_LIVE_GRAPH(ax, right_frame, fig):
+        
+    data = pd.read_csv('Data/ping_data.csv', index_col = None)
+    
+    x = data['Iteracion']
+    y = data['Ping_(ms)']
+    
+    ax.clear()
+    ax.plot(x, y, linewidth = 0.5)
+    
+    plt.xticks(np.arange(0, max(x) + 1, 10.0))
+    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
+    
+    plot = FigureCanvasTkAgg(fig, right_frame) 
+    plot.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
+    
+    plt.xlabel('Tiempo Transcurrido (s)')
+    plt.ylabel('Ping (ms)')
+    plt.title("Ping (www.google.com)")
+    plt.tight_layout()
+    
+
+def INITIALIZE_LIVE_GRAPH():
+    
+    global ani
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    
+    ani = FuncAnimation(fig, SHOW_LIVE_GRAPH, fargs=(ax),interval=1000)
+    
+    fig.show()
 
 def THREAD_STOP(log_box):
     global RUNNING
     RUNNING=False
 
-     
+    
+def GRAPH_THREAD():
+    
+    if RUNNING:
+    
+        t2 = threading.Thread(name = 'pinggraph', target = INITIALIZE_LIVE_GRAPH, daemon=False)
+        
+        t2.start()
+    
 def EXIT_APP(root):
     
     global RUNNING
@@ -387,7 +423,7 @@ def GUI():
     label_3 = ttk.Label(level2L_1)
     label_3.pack(side = 'left')
     
-    graph_button = ttk.Button(level2L_1, text= 'Mostrar Grafico1', command=lambda:SHOW_GRAPH())
+    graph_button = ttk.Button(level2L_1, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH())
     graph_button.pack(side = 'left')
     
     label_4 = ttk.Label(level2L_2)
@@ -452,26 +488,17 @@ if __name__ == '__main__':
     #plt.rcParams['animation.html'] = 'jshtml'
     
     #fieldnames = ['Fecha', 'Tiempo_Transcurrido', 'Ping', 'Tiempo_de_Fallo_Acumulado']  # agregar tiempo de corte
-    fieldnames = ['Iteracion','Hora']
-    fieldnames1 = ['Iteracion','Hora']
-    fieldnames2 = ['Iteracion','Hora']
+    fieldnames = ['Iteracion', 'Hora']
+    fieldnames1 = ['Iteracion', 'Hora']
+    fieldnames2 = ['Iteracion', 'Hora']
 
-
-    if not os.path.exists('Data/MongoTest1.csv'):
     
-        with open('Data/MongoTest1.csv', 'w+', newline = '') as csv_file:
+    if not os.path.exists('Data/ping_data.csv'):
+    
+        with open('Data/ping_data.csv', 'w+', newline = '') as csv_file:
             
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
             csv_writer.writeheader()
-    
-    if not os.path.exists('Data/MySQLTes1.csv'):
-    
-        with open('Data/MySQLTes1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writeheader()
-
-    
     
     #monitor() 
     GUI()
