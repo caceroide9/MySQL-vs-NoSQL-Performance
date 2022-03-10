@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -97,7 +97,7 @@ border-radius:0px;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>Imagenes/bars-solid.svg</normaloff>Imagenes/bars-solid.svg</iconset>
+          <normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/bars-solid.svg</normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/bars-solid.svg</iconset>
         </property>
        </widget>
       </item>
@@ -131,7 +131,7 @@ background-color:#a8dadc;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>Imagenes/window-minimize-solid.svg</normaloff>Imagenes/window-minimize-solid.svg</iconset>
+          <normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/window-minimize-solid.svg</normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/window-minimize-solid.svg</iconset>
         </property>
        </widget>
       </item>
@@ -151,7 +151,7 @@ background-color:#a8dadc;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>Imagenes/window-restore-regular.svg</normaloff>Imagenes/window-restore-regular.svg</iconset>
+          <normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/window-restore-regular.svg</normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/window-restore-regular.svg</iconset>
         </property>
        </widget>
       </item>
@@ -171,7 +171,7 @@ background-color:#a8dadc;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>Imagenes/window-maximize-solid.svg</normaloff>Imagenes/window-maximize-solid.svg</iconset>
+          <normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/window-maximize-solid.svg</normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/window-maximize-solid.svg</iconset>
         </property>
        </widget>
       </item>
@@ -197,7 +197,7 @@ background-color:#a8dadc;
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>Imagenes/times-circle-solid.svg</normaloff>Imagenes/times-circle-solid.svg</iconset>
+          <normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/times-circle-solid.svg</normaloff>../Intefaz_Grafica/MySQLvsNoSQL Performance/Imagenes/times-circle-solid.svg</iconset>
         </property>
        </widget>
       </item>
@@ -303,7 +303,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>Imagenes/history-solid.svg</normaloff>Imagenes/history-solid.svg</iconset>
+             <normaloff>../Intefaz_Grafica/Imagenes_Interfaz/history-solid.svg</normaloff>../Intefaz_Grafica/Imagenes_Interfaz/history-solid.svg</iconset>
            </property>
           </widget>
          </item>
@@ -344,7 +344,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>Imagenes/chalkboard-teacher-solid.svg</normaloff>Imagenes/chalkboard-teacher-solid.svg</iconset>
+             <normaloff>../Intefaz_Grafica/Imagenes_Interfaz/chalkboard-teacher-solid.svg</normaloff>../Intefaz_Grafica/Imagenes_Interfaz/chalkboard-teacher-solid.svg</iconset>
            </property>
           </widget>
          </item>
@@ -385,7 +385,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>Imagenes/pencil-ruler-solid.svg</normaloff>Imagenes/pencil-ruler-solid.svg</iconset>
+             <normaloff>../Intefaz_Grafica/Imagenes_Interfaz/comments-dollar-solid.svg</normaloff>../Intefaz_Grafica/Imagenes_Interfaz/comments-dollar-solid.svg</iconset>
            </property>
           </widget>
          </item>
@@ -426,7 +426,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>Imagenes/database-solid.svg</normaloff>Imagenes/database-solid.svg</iconset>
+             <normaloff>../Intefaz_Grafica/Imagenes_Interfaz/database-solid.svg</normaloff>../Intefaz_Grafica/Imagenes_Interfaz/database-solid.svg</iconset>
            </property>
           </widget>
          </item>
@@ -467,7 +467,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>Imagenes/hourglass-half-solid.svg</normaloff>Imagenes/hourglass-half-solid.svg</iconset>
+             <normaloff>../Intefaz_Grafica/Imagenes_Interfaz/hourglass-half-solid.svg</normaloff>../Intefaz_Grafica/Imagenes_Interfaz/hourglass-half-solid.svg</iconset>
            </property>
           </widget>
          </item>
@@ -532,8 +532,6 @@ font: 75 12pt&quot;Arial Narrow&quot;;
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Imagenes/Imagenes.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
