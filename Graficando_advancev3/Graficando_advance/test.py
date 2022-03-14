@@ -98,6 +98,8 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection):
     x1 = range(len(result))
     aux=start7/len(result)
     for n1 in x1:
+        if(not RUNNING):
+                break
         a=n1
         b=aux
         aux=aux+start7/len(result)
@@ -131,6 +133,8 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection):
         x2 = range(result.get("cont"))
         aux1=start4/result.get("cont")
         for n2 in x2:
+            if(not RUNNING):
+                break
             a=n2
             b=aux1
             aux1=aux1+start4/result.get("cont")
@@ -189,6 +193,8 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection):
     x1 = range(len(result))
     aux=star3/len(result)
     for n1 in x1:
+        if(not RUNNING):
+                break
         a1=n1
         b1=aux
         aux=aux+star3/len(result)
@@ -220,6 +226,8 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection):
         x = range(len(result))
         aux1=start4/len(result)
         for n in x:
+            if(not RUNNING):
+                break
             a1=n
             #print(a)
             b1=aux1
@@ -440,8 +448,18 @@ def THREAD_STOP(log_box):
     global RUNNING
     RUNNING=False
 
+def THREAD_STOP2(log_box2):
+    global RUNNING
+    RUNNING=False
+
+def THREAD_STOP3(log_box3):
+    global RUNNING
+    RUNNING=False
+
 def CHECK_RESOURCES(label):
-    
+    global RESOURCES
+    RESOURCES = True
+
     while RESOURCES:
     
         # % de utilizacion de cpu
@@ -484,6 +502,7 @@ def CHECK_RESOURCES(label):
 def EXIT_APP(root):
     global RESOURCES
     global RUNNING
+    RUNNING = True
     
     if RUNNING:
         
@@ -680,11 +699,11 @@ def GUI(MySQL_db,mongoDB_collection):
     #label_221.pack(side = 'left')
 
     
-    stop_button1 = ttk.Button(div_2_top_div_c2, text= 'Detener', command=lambda:THREAD_STOP(log_box2))
+    stop_button1 = ttk.Button(div_2_top_div_c2, text= 'Detener', command=lambda:THREAD_STOP2(log_box2))
     stop_button1.pack(side = 'left')
 
     
-    stop_button2 = ttk.Button(div_2_top_div_c3, text= 'Detener', command=lambda:THREAD_STOP(log_box3))
+    stop_button2 = ttk.Button(div_2_top_div_c3, text= 'Detener', command=lambda:THREAD_STOP3(log_box3))
     stop_button2.pack(side = 'left')
     
     
@@ -748,6 +767,13 @@ def GUI(MySQL_db,mongoDB_collection):
 
     label_recursos = ttk.Label(general_frame_4, text = 'Recursos')
     label_recursos.pack(side = 'top', pady = 10)
+
+    resources_thread = threading.Thread(name = 'Resources', target = CHECK_RESOURCES, daemon=True, args=(label_recursos, ))
+    resources_thread.start()
+    
+    root.focus_force()
+    root.protocol("WM_DELETE_WINDOW", False)  
+    root.mainloop()
     
     root.mainloop()
     
