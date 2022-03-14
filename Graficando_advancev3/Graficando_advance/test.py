@@ -19,6 +19,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter.ttk import *
 from tkinter import scrolledtext
+import psutil
 #from win32api import GetSystemMetrics
 from PIL import ImageTk, Image
 
@@ -62,120 +63,225 @@ def Test2(log_box2,MySQL_db,mongoDB_collection):
     t2.start()
 
 def TESTT3(log_box3,MySQL_db,mongoDB_collection):
+    fieldnames1 = ['Iteracion', 'Hora']
+    fieldnames = ['Iteracion', 'Hora']
+    if not os.path.exists('Data/MySQL_Test_3.csv'):
     
-    global start3
-    start3 = time.process_time()
-    log_box3.insert(tk.END, ' TEST 2 MongoDB...')
+        with open('Data/MySQL_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/MySQL_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
 
-    start = time.time()
+
+    if not os.path.exists('Data/Mongo_Test_3.csv'):
     
-    for topic_one in topic:
-        result = mongoDB_collection.find({"Nombre": {'$regex': topic}})
-    a=result
-    b= time.process_time() - start3
-    info1 = {
+        with open('Data/Mongo_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/Mongo_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    
+    global start7
+    start7 = time.process_time()
+    log_box3.insert(tk.END, ' TEST 3 MongoDB...')
+    result =list( mongoDB_collection.find({'Nombre': {'$regex': topic}}))
+    
+    x1 = range(len(result))
+    aux=start7/len(result)
+    for n1 in x1:
+        a=n1
+        b=aux
+        aux=aux+start7/len(result)
+        info1 = {
         'Iteracion': a,
         'Hora' : b,
         }
-    with open('Data/MongoTest3.csv', 'a', newline = '') as csv_file:
-        fieldnames2 = ['Iteracion', 'Hora']
-        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
-        csv_writer.writerow(info1)
-        log_box3.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
-        log_box3.see("end") 
-        cut_duration = 0
-        scan_interval = 1
-        time.sleep(scan_interval)
+        with open('Data/Mongo_Test_3.csv', 'a', newline = '') as csv_file:
+            fieldnames2 = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
+            csv_writer.writerow(info1)
+            log_box3.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
+            log_box3.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
+
+    
 
     global start4
-    log_box3.insert(tk.END, ' \nTEST 2 MySQL...')
+    log_box3.insert(tk.END, ' \nTEST 3 MySQL...')
     start4 = time.process_time()
+    print(topic)
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT count(*) AS cnt FROM pais WHERE Nombre LIKE %s"
-        for topic_one in topic:
-            temp_topic = '%' + topic_one + '%'
-            cursor.execute(sql, (temp_topic,))
-            result = cursor.fetchone()
-    a=topic_one
-    b=time.process_time() - start4
-    info = {
-        'Iteracion': a,
-        'Hora' : b,}
-    with open('Data/MySQLTEST3.csv', 'a', newline = '') as csv_file:
-        fieldnames2 = ['Iteracion', 'Hora']
-        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
-        csv_writer.writerow(info)
-        log_box3.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
-        log_box3.see("end") 
-        cut_duration = 0
-        scan_interval = 1
-        time.sleep(scan_interval)
+        sql = "SELECT count(*) as cont FROM pais WHERE Nombre LIKE %s"
+        temp_topic = '%' + topic + '%'
+        cursor.execute(sql, (temp_topic,))
+        result = cursor.fetchone()
+        
+
+        x2 = range(result.get("cont"))
+        aux1=start4/result.get("cont")
+        for n2 in x2:
+            a=n2
+            b=aux1
+            aux1=aux1+start4/result.get("cont")
+            info = {
+            'Iteracion': a,
+            'Hora' : b,
+            }
+            with open('Data/MySQL_Test_3.csv', 'a', newline = '') as csv_file:
+                fieldnames2 = ['Iteracion', 'Hora']
+                csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
+                csv_writer.writerow(info)
+                log_box3.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
+                log_box3.see("end") 
+                cut_duration = 0
+                scan_interval = 1
+                time.sleep(scan_interval)
 
 
 
 	
 		
 def TESTT2(log_box2,MySQL_db,mongoDB_collection):
+    fieldnames1 = ['Iteracion', 'Hora']
+    fieldnames = ['Iteracion', 'Hora']
+    if not os.path.exists('Data/MySQLTest_2.csv'):
+    
+        with open('Data/MySQLTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/MySQLTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+
+
+    if not os.path.exists('Data/MongoTest_2.csv'):
+    
+        with open('Data/MongoTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/MongoTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
     global start3
-    cont =1
-    cont1 =1
-    start3 = time.process_time()
+    start3 = 0
     log_box2.insert(tk.END, ' TEST 2 MongoDB...')
-    result = list(mongoDB_collection.find({'Nombre': topic_str}))
-    a=cont
-    b= time.process_time() - start3
-    info1 = {
-        'Iteracion': a,
-        'Hora' : b,
+    result=list(mongoDB_collection.find({'Nombre': topic_str}))
+    star3=time.process_time() + start3
+    
+    x1 = range(len(result))
+    aux=star3/len(result)
+    for n1 in x1:
+        a1=n1
+        b1=aux
+        aux=aux+star3/len(result)
+        infox = {
+        'Iteracion': a1,
+        'Hora' : b1,
         }
-    with open('Data/MongoTest2.csv', 'a', newline = '') as csv_file:
-        fieldnames1 = ['Iteracion', 'Hora']
-        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-        csv_writer.writerow(info1)
-        log_box2.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
-        log_box2.see("end") 
-        cut_duration = 0
-        scan_interval = 1
-        time.sleep(scan_interval)
+        with open('Data/MongoTest_2.csv', 'a', newline = '') as csv_file:
+            fieldnames1 = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writerow(infox)
+            log_box2.insert(tk.END, f"\n\n Iteracion: {a1}, Hora: {b1}")
+            log_box2.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
+
+    
 
     global start4
     log_box2.insert(tk.END, ' \nTEST 2 MySQL...')
-    start4 = time.process_time()
+    start4 = 0
+    aux1=0
     with MySQL_db.cursor() as cursor:
         sql = "SELECT Nombre FROM pais WHERE Nombre=%s;"
         cursor.execute(sql, (topic_str,))
         result = cursor.fetchall()
-    a=cont1
-    b=time.process_time() - start4
-    info = {
-        'Iteracion': a,
-        'Hora' : b,}
-    with open('Data/MySQLTEST2.csv', 'a', newline = '') as csv_file:
-        fieldnames1 = ['Iteracion', 'Hora']
-        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-        csv_writer.writerow(info)
-        log_box2.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
-        log_box2.see("end") 
-        cut_duration = 0
-        scan_interval = 1
-        time.sleep(scan_interval)
+        start4=time.process_time() + start4
+        x = range(len(result))
+        aux1=start4/len(result)
+        for n in x:
+            a1=n
+            #print(a)
+            b1=aux1
+            aux1=aux1+start4/len(result)
+            #print(b)
+            infoy = {
+                'Iteracion': a1,
+                'Hora' : b1,}
+            with open('Data/MySQLTest_2.csv', 'a', newline = '') as csv_file:
+                fieldnames1 = ['Iteracion', 'Hora']
+                csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+                csv_writer.writerow(infoy)
+                log_box2.insert(tk.END, f"\n\n Iteracion: {a1}, Hora: {b1}")
+                log_box2.see("end") 
+                cut_duration = 0
+                scan_interval = 1
+                time.sleep(scan_interval)
     
 def TESTT1(log_box,MySQL_db,mongoDB_collection):
+    fieldnames1 = ['Iteracion', 'Hora']
+    fieldnames = ['Iteracion', 'Hora']
+    if not os.path.exists('Data/MySQLTest_1.csv'):
+    
+        with open('Data/MySQLTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/MySQLTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+
+
+    if not os.path.exists('Data/MongoTest_1.csv'):
+    
+        with open('Data/MongoTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/MongoTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
     global start
     log_box.insert(tk.END, ' TEST 1 MongoDB...')
-    start = time.process_time()
+    start = 0
     for num in range(random):
         if(not RUNNING):
                 break
         result = list(mongoDB_collection.find({'id_pais': num}))
+        start = start+time.process_time()
         a=int(num)
-        b= time.process_time() - start
+        b= start
         info1 = {
                 'Iteracion': a,
                  'Hora' : b,
             }
-        with open('Data/MongoTest1.csv', 'a', newline = '') as csv_file:
-            fieldnames1 = ['Iteracion', 'Hora']
+        with open('Data/MongoTest_1.csv', 'a', newline = '') as csv_file:
+            
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writerow(info1)
             log_box.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
@@ -186,7 +292,7 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection):
      
     global start1
     log_box.insert(tk.END, ' \nTEST 1 MySQL...')
-    start1 = time.process_time()
+    start1 = 0
     with MySQL_db.cursor() as cursor:
         sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
         for num in range (random):    
@@ -194,13 +300,14 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection):
                 break 
             cursor.execute(sql, (num,))
             result = cursor.fetchall()
+            start1 = start1+time.process_time()
             a=int(num)
-            b=time.process_time()- start1
+            b=start1
             info = {
                 'Iteracion': a,
                  'Hora' : b,
             }
-            with open('Data/MySQLTes1.csv', 'a', newline = '') as csv_file:
+            with open('Data/MySQLTest_1.csv', 'a', newline = '') as csv_file:
                 fieldnames = ['Iteracion', 'Hora']
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
                 csv_writer.writerow(info)
@@ -231,82 +338,151 @@ def monitor(log_box):
 class GRAPH_LABEL():  
     def __init__(self):    
         self.frame = Toplevel()
-        self.icon = Image.open('Graphs/MySQLTes1.png')
+        self.icon = Image.open('Graphs/Test1.png')
+        self.icon = self.icon.resize((1920 - 50, 1080 - 100))
+        self.img = ImageTk.PhotoImage(self.icon)
+        self.graph_label = ttk.Label(self.frame, image = self.img)
+        self.graph_label.image = self.img
+        self.graph_label.pack()
+
+class GRAPH_LABEL2():  
+    def __init__(self):    
+        self.frame = Toplevel()
+        self.icon = Image.open('Graphs/Test2.png')
         self.icon = self.icon.resize((1920 - 50, 1080 - 100))
         self.img = ImageTk.PhotoImage(self.icon)
         self.graph_label = ttk.Label(self.frame, image = self.img)
         self.graph_label.image = self.img
         self.graph_label.pack()
     
+class GRAPH_LABEL3():  
+    def __init__(self):    
+        self.frame = Toplevel()
+        self.icon = Image.open('Graphs/Test3.png')
+        self.icon = self.icon.resize((1920 - 50, 1080 - 100))
+        self.img = ImageTk.PhotoImage(self.icon)
+        self.graph_label = ttk.Label(self.frame, image = self.img)
+        self.graph_label.image = self.img
+        self.graph_label.pack()
+
 
 def SHOW_GRAPH():
 
-    data = pd.read_csv('Data/MySQLTes1.csv', index_col = None)
-    dataq = pd.read_csv('Data/MongoTest1.csv', index_col = None)
+    data = pd.read_csv('Data/MySQLTest_1.csv', index_col = None)
+    dataq = pd.read_csv('Data/MongoTest_1.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
     plt.figure(figsize = (20, 15))
     plt.margins(0)
     plt.plot(x, y,y1, linewidth = 0.5)
-    plt.xticks(np.arange(0, max(x) + 1, 5.0))
-    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 0.10))
-    plt.xlabel('Tiempo Transcurrido (s)')
-    plt.ylabel('Ping (ms)')
-    plt.title("Ping (www.google.com)")
+
+    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
+    x_ticks = 10.0
+    if len(x) < 30:x_ticks = 1.0
+
+    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
+    plt.xlabel('N° Iteracion')
+    plt.ylabel('Tiempo Acumulado Transcurrido (s)')
+    plt.title("Cantidad de datos respecto a su respuesta")
     #plt.legend()
-    plt.savefig('Graphs/MySQLTes1.png', bbox_inches='tight', dpi = 300)
+    plt.savefig('Graphs/Test1.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL()
 
+def SHOW_GRAPH2():
 
-def SHOW_LIVE_GRAPH(ax, right_frame, fig):
-        
-    data = pd.read_csv('Data/ping_data.csv', index_col = None)
-    
+    data = pd.read_csv('Data/MySQLTest_2.csv', index_col = None)
+    dataq = pd.read_csv('Data/MongoTest_2.csv', index_col = None)
     x = data['Iteracion']
-    y = data['Ping_(ms)']
-    
-    ax.clear()
-    ax.plot(x, y, linewidth = 0.5)
-    
-    plt.xticks(np.arange(0, max(x) + 1, 10.0))
-    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
-    
-    plot = FigureCanvasTkAgg(fig, right_frame) 
-    plot.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-    
-    plt.xlabel('Tiempo Transcurrido (s)')
-    plt.ylabel('Ping (ms)')
-    plt.title("Ping (www.google.com)")
-    plt.tight_layout()
-    
+    y = data['Hora']
+    y1 = dataq['Hora']
+    plt.figure(figsize = (20, 15))
+    plt.margins(0)
+    plt.plot(x, y,y1, linewidth = 0.5)
 
-def INITIALIZE_LIVE_GRAPH():
-    
-    global ani
-    
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-    
-    ani = FuncAnimation(fig, SHOW_LIVE_GRAPH, fargs=(ax),interval=1000)
-    
-    fig.show()
+    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
+    x_ticks = 10.0
+    if len(x) < 30:x_ticks = 1.0
+
+    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
+    plt.xlabel('N° Iteracion')
+    plt.ylabel('Tiempo Acumulado Transcurrido (s)')
+    plt.title("Busqueda especifica respecto a su respuesta")
+    #plt.legend()
+    plt.savefig('Graphs/Test2.png', bbox_inches='tight', dpi = 300)
+    GRAPH_LABEL2()
+
+def SHOW_GRAPH3():
+
+    data = pd.read_csv('Data/MySQL_Test_3.csv', index_col = None)
+    dataq = pd.read_csv('Data/Mongo_Test_3.csv', index_col = None)
+    x = data['Iteracion']
+    y = data['Hora']
+    y1 = dataq['Hora']
+    plt.figure(figsize = (20, 15))
+    plt.margins(0)
+    plt.plot(x, y,y1, linewidth = 0.5)
+
+    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
+    x_ticks = 10.0
+    if len(x) < 30:x_ticks = 1.0
+
+    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
+    plt.xlabel('N° Iteracion')
+    plt.ylabel('Tiempo Acumulado Transcurrido (s)')
+    plt.title("Busqueda parcial respecto a su respuesta")
+    #plt.legend()
+    plt.savefig('Graphs/Test3.png', bbox_inches='tight', dpi = 300)
+    GRAPH_LABEL3()
+
 
 def THREAD_STOP(log_box):
     global RUNNING
     RUNNING=False
 
+def CHECK_RESOURCES(label):
     
-def GRAPH_THREAD():
+    while RESOURCES:
     
-    if RUNNING:
-    
-        t2 = threading.Thread(name = 'pinggraph', target = INITIALIZE_LIVE_GRAPH, daemon=False)
+        # % de utilizacion de cpu
         
-        t2.start()
+        cpu = psutil.cpu_percent(1) # tasa de uso de CPU en un segundo, unidad
+        cpu_per = '% .2f %%'% cpu # se convierte en un porcentaje, mantenga dos decimales
+        
+        # Utilizacion de memoria
+        
+        mem = psutil.virtual_memory()
+        mem_per = '%.2f%%' % mem[2]
+        mem_total = str(int(mem[0] / 1024 / 1024)) + 'MB'
+        mem_used = str(int(mem[3] / 1024 / 1024)) + 'MB'
+        
+        # Utilizacion del disco principal
+        
+        c_info = psutil.disk_usage("C:")
+        c_per = '%.2f%%' % c_info[3]
+        
+        ##################################
+        # evita que el programa intente insertar texto en label cuando el objeto se destruya
+        try:
+
+            #label.configure(text = '\nPorcentaje de\nuso de CPU: ' + cpu_per + '\n\nPorcentaje de memoria\nutilizada: ' +  mem_per + '\n\nMemoria total: ' +  mem_total + '\n\nMemoria en uso: ' + mem_used + '\n\nEspacio usado en\nDisco: ' + c_per)
+            #label.configure(text = 'CPU: ' + cpu_per + '  |  RAM: ' +  mem_used + '/' + mem_total + ' (' + mem_per + ')' + '  |  ALM: ' + c_per)
+            label.configure(text = 'CPU: ' + cpu_per + '  |  RAM: ' +  mem_used + '/' + mem_total + ' (' + mem_per + ')')
+
+        except: pass
+
+        if not RESOURCES:
+
+            return
+
+        #time.sleep(0.3)
+        
+        #frame.after(1000, CHECK_RESOURCES, frame, label)
+    
+
     
 def EXIT_APP(root):
-    
+    global RESOURCES
     global RUNNING
     
     if RUNNING:
@@ -378,6 +554,10 @@ def GUI(MySQL_db,mongoDB_collection):
     column_3_div_2 = ttk.Frame(gf_1_column_3)
     column_3_div_2.pack(side = 'top')
 
+    
+    column_2_div_3 = ttk.Frame(gf_1_column_3)
+    column_2_div_3.pack(side = 'top')
+
     ##############################################################
 
     ##################### column_1_div_2 DIVITION FOR BUTTONS #######################
@@ -397,7 +577,11 @@ def GUI(MySQL_db,mongoDB_collection):
     div_2_bottom_c2.pack(side = 'top')
 
     ###############################################################################################################################################
+    div_2_top_div_c3 = ttk.Frame(column_2_div_3)
+    div_2_top_div_c3.pack(side = 'top')
 
+    div_2_bottom_c3 = ttk.Frame(column_2_div_3)
+    div_2_bottom_c3.pack(side = 'top')
     ###############################################################################################################################################
 
     '''##### Level 1 #####
@@ -438,18 +622,32 @@ def GUI(MySQL_db,mongoDB_collection):
     level2R_2.pack(side = 'top')'''
     
     ################## Frame 1 ##########################
+    value_list = ['5', '50', '500', '5000']
+    value_list2 = ['Chile', 'Argentina', 'Alemania']
 
     packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nIngrese datos a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_2.pack(side = 'top')
 
-    duration_entrybox = ttk.Entry(column_1_div_1)
-    duration_entrybox.pack(side = 'top')
+    #duration_entrybox = ttk.Entry(column_1_div_1)
+    #duration_entrybox.pack(side = 'top')
+
+    values_shared_combobox = ttk.Combobox(column_1_div_1)
+    values_shared_combobox.pack(side = 'top')
+
+    values_shared_combobox['values'] = value_list
+    values_shared_combobox.set(value_list[0])
 
     packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nIngrese cantidad\nde paquetesss.', font=("Calibri"), justify = 'center')
     packet_loss_label_22.pack(side = 'top')
 
-    duration_entrybox1 = ttk.Entry(column_2_div_1)
-    duration_entrybox1.pack(side = 'top')
+    ##duration_entrybox1 = ttk.Entry(column_2_div_1)
+    ##duration_entrybox1.pack(side = 'top')
+
+    values_shared1_combobox = ttk.Combobox(column_2_div_1)
+    values_shared1_combobox.pack(side = 'top')
+
+    values_shared1_combobox['values'] = value_list2
+    values_shared1_combobox.set(value_list2[0])
 
     packet_loss_label_23 = ttk.Label( column_3_div_1,text = '\nIngrese cantidad\nde paquetesss.', font=("Calibri"), justify = 'center')
     packet_loss_label_23.pack(side = 'top')
@@ -459,13 +657,13 @@ def GUI(MySQL_db,mongoDB_collection):
 
 
     
-    begin_button = ttk.Button(div_2_top_div_c1, text= 'Iniciar', command=lambda:(rand(duration_entrybox),Test1(log_box,MySQL_db,mongoDB_collection)))
+    begin_button = ttk.Button(div_2_top_div_c1, text= 'Iniciar', command=lambda:(rand(values_shared_combobox),Test1(log_box,MySQL_db,mongoDB_collection)))
     begin_button.pack(side = 'left')
 
-    begin_button1 = ttk.Button(div_2_top_div_c2, text= 'Iniciar1', command=lambda:(rand1(duration_entrybox1),Test2(log_box2,MySQL_db,mongoDB_collection)))
+    begin_button1 = ttk.Button(div_2_top_div_c2, text= 'Iniciar1', command=lambda:(rand1(values_shared1_combobox),Test2(log_box2,MySQL_db,mongoDB_collection)))
     begin_button1.pack(side = 'left')
 
-    begin_button2 = ttk.Button(column_3_div_1, text= 'Iniciar2', command=lambda:(rand2(duration_entrybox2),Test3(log_box3,MySQL_db,mongoDB_collection)))
+    begin_button2 = ttk.Button(div_2_top_div_c3, text= 'Iniciar2', command=lambda:(rand2(duration_entrybox2),Test3(log_box3,MySQL_db,mongoDB_collection)))
     begin_button2.pack(side = 'top')
 
     
@@ -486,7 +684,8 @@ def GUI(MySQL_db,mongoDB_collection):
     stop_button1.pack(side = 'left')
 
     
-
+    stop_button2 = ttk.Button(div_2_top_div_c3, text= 'Detener', command=lambda:THREAD_STOP(log_box3))
+    stop_button2.pack(side = 'left')
     
     
     #label_3 = ttk.Label(level2L_1)
@@ -498,11 +697,17 @@ def GUI(MySQL_db,mongoDB_collection):
     label_4 = ttk.Label(div_2_bottom_c1)
     label_4.pack(side = 'left')
 
-    graph_button1 = ttk.Button(div_2_bottom_c2, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH())
+    graph_button1 = ttk.Button(div_2_bottom_c2, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH2())
     graph_button1.pack(side = 'left')
     
     label_44 = ttk.Label(div_2_bottom_c2)
     label_44.pack(side = 'left')
+
+    graph_button2 = ttk.Button(div_2_bottom_c3, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH3())
+    graph_button2.pack(side = 'left')
+    
+    label_45 = ttk.Label(div_2_bottom_c3)
+    label_45.pack(side = 'left')
     
     #live_graph_button = ttk.Button(level2L_1, text= 'Mostrar Grafico en Vivo', command=lambda:GRAPH_THREAD())
     #live_graph_button.pack(side = 'left')
@@ -518,6 +723,9 @@ def GUI(MySQL_db,mongoDB_collection):
 
     exit_button1 = ttk.Button(div_2_bottom_c2, text= 'Salir', command=lambda:EXIT_APP(root))
     exit_button1.pack(side = 'left')
+
+    exit_button2 = ttk.Button(div_2_bottom_c3, text= 'Salir', command=lambda:EXIT_APP(root))
+    exit_button2.pack(side = 'left')
     
     #label_66 = ttk.Label(div_2_bottom_c2)
     #label_66.pack(side = 'left')
@@ -564,20 +772,7 @@ if __name__ == '__main__':
     fieldnames1 = ['Iteracion', 'Hora']
     fieldnames2 = ['Iteracion', 'Hora']
 
-    
-    if not os.path.exists('Data/MySQLTes1.csv'):
-    
-        with open('Data/MySQLTes1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-            csv_writer.writeheader()
 
-    if not os.path.exists('Data/MongoTest1.csv'):
-    
-        with open('Data/MongoTest1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writeheader()
-    
+
     #monitor() 
     

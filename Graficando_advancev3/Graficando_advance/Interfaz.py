@@ -27,7 +27,6 @@ class interfaz(QMainWindow):
         fieldnames = ['Iteracion','Hora']
         fieldnames1 = ['Iteracion','Hora']
         fieldnames2 = ['Iteracion','Hora']
-
         DB_IP = 'localhost'
         DB_ID = "root"
         DB_PW = "LS9lm10N11"
@@ -37,6 +36,7 @@ class interfaz(QMainWindow):
         mongoDB_client = MongoClient('localhost', 27017)
         mongoDB_db = mongoDB_client["dbpaises"]
         mongoDB_collection = mongoDB_db["pais"]
+        
 
         random = []
         pt.GUI(MySQL_db,mongoDB_collection)
