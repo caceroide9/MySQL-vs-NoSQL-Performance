@@ -516,7 +516,8 @@ def GUI(MySQL_db,mongoDB_collection):
     root = Tk()
     root.title("Connection monitor")
     
-    #root.geometry('300x300')
+    root.geometry('1500x850')
+    root.tk.call('wm', 'iconphoto', root._w, tk.PhotoImage(file='database-setting.png'))
     
     ########## Frame levels ##############
 
@@ -643,8 +644,9 @@ def GUI(MySQL_db,mongoDB_collection):
     ################## Frame 1 ##########################
     value_list = ['5', '50', '500', '5000']
     value_list2 = ['Chile', 'Argentina', 'Alemania']
+    value_list3 = ['nia', 'tan', 'lia']
 
-    packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nIngrese datos a buscar.', font=("Calibri"), justify = 'center')
+    packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nSeleccione el N° de paises a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_2.pack(side = 'top')
 
     #duration_entrybox = ttk.Entry(column_1_div_1)
@@ -656,7 +658,7 @@ def GUI(MySQL_db,mongoDB_collection):
     values_shared_combobox['values'] = value_list
     values_shared_combobox.set(value_list[0])
 
-    packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nIngrese cantidad\nde paquetesss.', font=("Calibri"), justify = 'center')
+    packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nSeleccione el país a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_22.pack(side = 'top')
 
     ##duration_entrybox1 = ttk.Entry(column_2_div_1)
@@ -668,22 +670,28 @@ def GUI(MySQL_db,mongoDB_collection):
     values_shared1_combobox['values'] = value_list2
     values_shared1_combobox.set(value_list2[0])
 
-    packet_loss_label_23 = ttk.Label( column_3_div_1,text = '\nIngrese cantidad\nde paquetesss.', font=("Calibri"), justify = 'center')
+    packet_loss_label_23 = ttk.Label( column_3_div_1,text = '\nSeleccione la palabra conteniada a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_23.pack(side = 'top')
 
-    duration_entrybox2 = ttk.Entry(column_3_div_1)
-    duration_entrybox2.pack(side = 'top')
+    #duration_entrybox2 = ttk.Entry(column_3_div_1)
+    #duration_entrybox2.pack(side = 'top')
+
+    values_shared2_combobox = ttk.Combobox(column_3_div_1)
+    values_shared2_combobox.pack(side = 'top')
+
+    values_shared2_combobox['values'] = value_list3
+    values_shared2_combobox.set(value_list3[0])
 
 
     
     begin_button = ttk.Button(div_2_top_div_c1, text= 'Iniciar', command=lambda:(rand(values_shared_combobox),Test1(log_box,MySQL_db,mongoDB_collection)))
     begin_button.pack(side = 'left')
 
-    begin_button1 = ttk.Button(div_2_top_div_c2, text= 'Iniciar1', command=lambda:(rand1(values_shared1_combobox),Test2(log_box2,MySQL_db,mongoDB_collection)))
+    begin_button1 = ttk.Button(div_2_top_div_c2, text= 'Iniciar', command=lambda:(rand1(values_shared1_combobox),Test2(log_box2,MySQL_db,mongoDB_collection)))
     begin_button1.pack(side = 'left')
 
-    begin_button2 = ttk.Button(div_2_top_div_c3, text= 'Iniciar2', command=lambda:(rand2(duration_entrybox2),Test3(log_box3,MySQL_db,mongoDB_collection)))
-    begin_button2.pack(side = 'top')
+    begin_button2 = ttk.Button(div_2_top_div_c3, text= 'Iniciar', command=lambda:(rand2(values_shared2_combobox),Test3(log_box3,MySQL_db,mongoDB_collection)))
+    begin_button2.pack(side = 'left')
 
     
     #label_2 = ttk.Label(level2L_1)
@@ -751,7 +759,7 @@ def GUI(MySQL_db,mongoDB_collection):
     
     ################## Frame 2 ##################
     
-    label_7 = ttk.Label(general_frame_2, text = 'log')
+    label_7 = ttk.Label(general_frame_2, text = '\nlog')
     label_7.pack(side = 'top')
     
     ################## Frame 3 ##################
