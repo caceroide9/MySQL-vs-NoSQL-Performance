@@ -40,24 +40,24 @@ def rand2(entry_box3):
     
 
 def Test3(log_box3,MySQL_db,mongoDB_collection,cnxn):
-    global RUNNING3
-    RUNNING3= True
+    global RUNNING
+    RUNNING= True
     log_box3.insert(tk.END, ' Iniciando...')
     t3= threading.Thread(name = 'ping', target = TESTT3, daemon=False, args=(log_box3,MySQL_db,mongoDB_collection,cnxn))
     t3.start()
 
 
 def Test1(logbox,MySQL_db,mongoDB_collection,cnxn):
-    global RUNNING1
-    RUNNING1= True
+    global RUNNING
+    RUNNING= True
     logbox.insert(tk.END, ' Iniciando...')
     t1= threading.Thread(name = 'ping', target = TESTT1, daemon=False, args=(logbox,MySQL_db,mongoDB_collection,cnxn))
     t1.start()
    
 
 def Test2(log_box2,MySQL_db,mongoDB_collection,cnxn):
-    global RUNNING2
-    RUNNING2= True
+    global RUNNING
+    RUNNING= True
     log_box2.insert(tk.END, ' Iniciando...')
     t2= threading.Thread(name = 'ping', target = TESTT2, daemon=False, args=(log_box2,MySQL_db,mongoDB_collection,cnxn))
     t2.start()
@@ -110,7 +110,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
     x1 = range(len(result))
     aux=start7/len(result)
     for n1 in x1:
-        if(not RUNNING3):
+        if(not RUNNING):
                 break
         a=n1
         b=aux
@@ -142,7 +142,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
         x2 = range(result.get("cont"))
         aux1=start4/result.get("cont")
         for n2 in x2:
-            if(not RUNNING3):
+            if(not RUNNING):
                 break
             a=n2
             b=aux1
@@ -172,7 +172,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
         x2 = range(resultW[0])
         aux1=start77/(resultW[0])
         for n2 in x2:
-            if(not RUNNING3):
+            if(not RUNNING):
                 break
             a=n2
             b=aux1
@@ -244,7 +244,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
     x1 = range(len(result))
     aux=star3/len(result)
     for n1 in x1:
-        if(not RUNNING2):
+        if(not RUNNING):
                 break
         a1=n1
         b1=aux
@@ -277,7 +277,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
         x = range(len(result))
         aux1=start4/len(result)
         for n in x:
-            if(not RUNNING2):
+            if(not RUNNING):
                 break
             a1=n
             #print(a)
@@ -309,7 +309,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
         x8 = range(len(resultx))
         aux8=start8/len(resultx)
         for n8 in x8:
-            if(not RUNNING2):
+            if(not RUNNING):
                 break
             a8=n8
             #print(a)
@@ -329,122 +329,36 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
                 time.sleep(scan_interval)
     
 def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn):
-    fieldnames1 = ['Iteracion', 'Hora']
-    fieldnames = ['Iteracion', 'Hora']
-    if not os.path.exists('Data/MySQLTest_1.csv'):
-    
-        with open('Data/MySQLTest_1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-            csv_writer.writeheader()
-    else:
-         with open('Data/MySQLTest_1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-            csv_writer.writeheader()
+    global start69
+    start69=0
+    resultM =list(mongoDB_collection.find().sort('Nombre', -1))
+    print(resultM)
+    start69=time.process_time() + start69
+    print(" MONGOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n")
 
-
-    if not os.path.exists('Data/MongoTest_1.csv'):
-    
-        with open('Data/MongoTest_1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writeheader()
-    else:
-        with open('Data/MongoTest_1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writeheader()
-
-    if not os.path.exists('Data/SQLServerTest_1.csv'):
-    
-        with open('Data/SQLServerTest_1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writeheader()
-    else:
-        with open('Data/SQLServerTest_1.csv', 'w+', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writeheader()
-
-    global start
-    log_box.insert(tk.END, ' TEST 1 MongoDB...')
-    start = 0
-    for num in range(random):
-        if(not RUNNING1):
-                break
-        result = list(mongoDB_collection.find({'id_pais': num}))
-        start = start+time.process_time()
-        a=int(num)
-        b= start
-        info1 = {
-                'Iteracion': a,
-                 'Hora' : b,
-            }
-        with open('Data/MongoTest_1.csv', 'a', newline = '') as csv_file:
-            
-            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writerow(info1)
-            log_box.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
-            log_box.see("end") 
-            cut_duration = 0
-            scan_interval = 1
-            time.sleep(scan_interval)
-     
-    global start1
-    log_box.insert(tk.END, ' \nTEST 1 MySQL...')
-    start1 = 0
+    global start70
+    start70=0
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
-        for num in range (random):    
-            if(not RUNNING1):
-                break 
-            cursor.execute(sql, (num,))
-            result = cursor.fetchall()
-            start1 = start1+time.process_time()
-            a=int(num)
-            b=start1
-            info = {
-                'Iteracion': a,
-                 'Hora' : b,
-            }
-            with open('Data/MySQLTest_1.csv', 'a', newline = '') as csv_file:
-                fieldnames = ['Iteracion', 'Hora']
-                csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-                csv_writer.writerow(info)
-                log_box.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
-                log_box.see("end") 
-                cut_duration = 0
-                scan_interval = 1
-                time.sleep(scan_interval)
-
-    global start6
-    start6= 0
-    log_box.insert(tk.END, ' \nTEST 1 SQL Server...')
+        sql = "SELECT Nombre FROM pais order by Nombre ASC"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print (result)
+        start70=time.process_time() + start70
+        print("MYSQLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n")
+    global start71
+    start71=0
     with cnxn.cursor() as cursor:
-        sqls = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= ?;"
-        for num in range (random):    
-            if(not RUNNING1):
-                break 
-            cursor.execute(sqls,(num,))
-            result = cursor.fetchall()
-            start6=start6 + time.process_time()
-            a2=int(num)
-            b2=start6
-            info3 = {
-                'Iteracion': a2,
-                 'Hora' : b2,
-            }
-            with open('Data/SQLServerTest_1.csv', 'a', newline = '') as csv_file:
-                fieldnames = ['Iteracion', 'Hora']
-                csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
-                csv_writer.writerow(info3)
-                log_box.insert(tk.END, f"\n\n Iteracion: {a2}, Hora: {b2}")
-                log_box.see("end") 
-                cut_duration = 0
-                scan_interval = 1
-                time.sleep(scan_interval)
+        sqls = "SELECT Nombre FROM pais order by Nombre ASC"
+        cursor.execute(sqls)
+        resultW = cursor.fetchall()
+        print (resultW)
+        start71=time.process_time() + start71
+        print("SQLSERVEEEEEEEEEEEEEEEEEEER\n")
+    
+    print(start69,start70,start71)
+    
+
+    
 
         
     
@@ -576,16 +490,16 @@ def SHOW_GRAPH3():
 
 
 def THREAD_STOP(log_box):
-    global RUNNING1
-    RUNNING1=False
+    global RUNNING
+    RUNNING=False
 
 def THREAD_STOP2(log_box2):
-    global RUNNING2
-    RUNNING2=False
+    global RUNNING
+    RUNNING=False
 
 def THREAD_STOP3(log_box3):
-    global RUNNING3
-    RUNNING3=False
+    global RUNNING
+    RUNNING=False
 
 def CHECK_RESOURCES(label):
     global RESOURCES
@@ -642,7 +556,7 @@ def EXIT_APP(root):
     root.destroy()
     
             
-def GUI(MySQL_db,mongoDB_collection,cnxn):
+def GUI2(MySQL_db,mongoDB_collection,cnxn):
     
     root = Tk()
     root.title("Connection monitor")

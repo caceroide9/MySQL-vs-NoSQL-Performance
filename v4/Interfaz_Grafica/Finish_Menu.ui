@@ -283,7 +283,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../Imagenes/history-solid.svg</normaloff>../../../Imagenes/history-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/history-solid.svg</normaloff>Imagenes_Interfaz/history-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -324,7 +324,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/chalkboard-teacher-solid.svg</normaloff>Imagenes_Interfaz/chalkboard-teacher-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -365,7 +365,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/seedling-solid.svg</normaloff>Imagenes_Interfaz/seedling-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -406,7 +406,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../Imagenes/database-solid.svg</normaloff>../../../Imagenes/database-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/database-solid.svg</normaloff>Imagenes_Interfaz/database-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -448,7 +448,7 @@ indexacion</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../Imagenes/hourglass-half-solid.svg</normaloff>../../../Imagenes/hourglass-half-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/hourglass-half-solid.svg</normaloff>Imagenes_Interfaz/hourglass-half-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -489,14 +489,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../Imagenes/hourglass-half-solid.svg</normaloff>../../../Imagenes/hourglass-half-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton69">
-       <property name="text">
-        <string>aux</string>
+         <normaloff>Imagenes_Interfaz/magnifying-glass-solid.svg</normaloff>Imagenes_Interfaz/magnifying-glass-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -537,21 +530,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="Pag_1">
-     <widget class="QLabel" name="label_69">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>230</y>
-        <width>176</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>cualquier cosa</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="QWidget" name="Pag_1"/>
     <widget class="QWidget" name="Pag_2"/>
     <widget class="QWidget" name="Pag_3"/>
     <widget class="QWidget" name="Pag_4"/>

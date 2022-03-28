@@ -92,12 +92,12 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
 
     if not os.path.exists('Data/SQLServerTest_3.csv'):
     
-        with open('Data/SQLServerTest3.csv', 'w+', newline = '') as csv_file:
+        with open('Data/SQLServerTest_3.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
     else:
-        with open('Data/SQLServerTest3.csv', 'w+', newline = '') as csv_file:
+        with open('Data/SQLServerTest_3.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
@@ -190,6 +190,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+    log_box3.insert(tk.END, '***\nTerminado Test3***')
         
 
 
@@ -305,6 +306,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
         sqls = "SELECT Nombre FROM pais WHERE Nombre=?;"
         cursor.execute(sqls, (topic_str,))
         resultx = cursor.fetchall()
+        print(len(resultx))
         start8=time.process_time() + start8
         x8 = range(len(resultx))
         aux8=start8/len(resultx)
@@ -312,7 +314,6 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
             if(not RUNNING2):
                 break
             a8=n8
-            #print(a)
             b8=aux8
             aux8=aux8+start8/len(resultx)
             infoz = {
@@ -321,12 +322,14 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
             with open('Data/SQLServerTest_2.csv', 'a', newline = '') as csv_file:
                 fieldnames1 = ['Iteracion', 'Hora']
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-                csv_writer.writerow(infoy)
+                csv_writer.writerow(infoz)
                 log_box2.insert(tk.END, f"\n\n Iteracion: {a8}, Hora: {b8}")
                 log_box2.see("end") 
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+
+    log_box2.insert(tk.END, '***\nTerminado Test2***')
     
 def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn):
     fieldnames1 = ['Iteracion', 'Hora']
@@ -445,6 +448,7 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+    log_box.insert(tk.END, '***\nTerminado TEST 1***')
 
         
     
@@ -523,53 +527,67 @@ def SHOW_GRAPH():
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
     plt.xlabel('Iteracion')
     plt.title('Busqueda por cantidad numerica de datos')
-    plt.show()
-
-    
+    #plt.show()
+    plt.savefig('Graphs/Test1.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL()
 
 def SHOW_GRAPH2():
 
     data = pd.read_csv('Data/MySQLTest_2.csv', index_col = None)
     dataq = pd.read_csv('Data/MongoTest_2.csv', index_col = None)
+    datay = pd.read_csv('Data/SQLServerTest_2.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
+    x1=dataq['Iteracion']
+    y2 = datay['Hora']
+    x2=datay['Iteracion']
+    numero_de_grupos = len(y)
+    indice_barras = np.arange(numero_de_grupos)
+    ancho_barras =0.25
     plt.figure(figsize = (20, 15))
-    plt.margins(0)
-    plt.plot(x, y,y1, linewidth = 0.5)
+    
+    plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
+    plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
+    plt.legend(loc='best')
 
-    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
-    x_ticks = 10.0
-    if len(x) < 30:x_ticks = 1.0
-
-    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
-    plt.xlabel('N° Iteracion')
+    ## Se colocan los indicadores en el eje x
+    plt.xticks(indice_barras + ancho_barras, x)
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
-    plt.title("Busqueda especifica respecto a su respuesta")
+    plt.xlabel('Iteracion')
+    plt.title('Busqueda por texto')
+    #plt.show()
     #plt.legend()
     plt.savefig('Graphs/Test2.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL2()
 
 def SHOW_GRAPH3():
-
     data = pd.read_csv('Data/MySQL_Test_3.csv', index_col = None)
     dataq = pd.read_csv('Data/Mongo_Test_3.csv', index_col = None)
+    datay = pd.read_csv('Data/SQLServerTest_3.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
+    x1=dataq['Iteracion']
+    y2 = datay['Hora']
+    x2=datay['Iteracion']
+    numero_de_grupos = len(y)
+    indice_barras = np.arange(numero_de_grupos)
+    ancho_barras =0.25
     plt.figure(figsize = (20, 15))
-    plt.margins(0)
-    plt.plot(x, y,y1, linewidth = 0.5)
+    
+    plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
+    plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
+    plt.legend(loc='best')
 
-    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
-    x_ticks = 10.0
-    if len(x) < 30:x_ticks = 1.0
-
-    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
-    plt.xlabel('N° Iteracion')
+    ## Se colocan los indicadores en el eje x
+    plt.xticks(indice_barras + ancho_barras, x)
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
-    plt.title("Busqueda parcial respecto a su respuesta")
+    plt.xlabel('Iteracion')
+    plt.title('Busqueda por texto contenido')
+    #plt.show()
     #plt.legend()
     plt.savefig('Graphs/Test3.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL3()
