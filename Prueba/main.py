@@ -329,6 +329,12 @@ class Screen6(QMainWindow):
                 self.pushButton_48.clicked.connect(self.Hasel)
                 self.pushButton_49.setCursor(Qt.PointingHandCursor) 
                 self.pushButton_49.clicked.connect(self.h2)
+                self.pushButton_50.setCursor(Qt.PointingHandCursor) 
+                self.pushButton_50.clicked.connect(self.Market)
+                self.pushButton_51.setCursor(Qt.PointingHandCursor) 
+                self.pushButton_51.clicked.connect(self.datastax)
+                self.pushButton_52.setCursor(Qt.PointingHandCursor) 
+                self.pushButton_52.clicked.connect(self.Realm)
      
 
 
@@ -903,6 +909,43 @@ class Screen6(QMainWindow):
                label= Label(root,image=image)
                label.place(x=0,y=0)
                root.title('Ficha H2')
+               root.geometry('1520x610')
+               root.resizable (0,0)
+               root.tk.call('wm', 'iconphoto', root, tk.PhotoImage(file='database-setting.png'))
+               root.mainloop()
+
+        def Market(self):
+               root= tk.Tk()
+               upload= Image.open("Interfaz_Grafica/Market.png")
+               image=ImageTk.PhotoImage(upload)
+               label= Label(root,image=image)
+               label.place(x=0,y=0)
+               root.title('Ficha Market')
+               root.geometry('1520x610')
+               root.resizable (0,0)
+               root.tk.call('wm', 'iconphoto', root, tk.PhotoImage(file='database-setting.png'))
+               root.mainloop()
+
+        def datastax(self):
+               root= tk.Tk()
+               upload= Image.open("Interfaz_Grafica/datastax.png")
+               image=ImageTk.PhotoImage(upload)
+               label= Label(root,image=image)
+               label.place(x=0,y=0)
+               root.title('Ficha datastax')
+               root.geometry('1520x610')
+               root.resizable (0,0)
+               root.tk.call('wm', 'iconphoto', root, tk.PhotoImage(file='database-setting.png'))
+               root.mainloop()
+
+
+        def Realm(self):
+               root= tk.Tk()
+               upload= Image.open("Interfaz_Grafica/Realm.png")
+               image=ImageTk.PhotoImage(upload)
+               label= Label(root,image=image)
+               label.place(x=0,y=0)
+               root.title('Ficha Realm')
                root.geometry('1520x610')
                root.resizable (0,0)
                root.tk.call('wm', 'iconphoto', root, tk.PhotoImage(file='database-setting.png'))
