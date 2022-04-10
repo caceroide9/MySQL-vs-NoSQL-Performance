@@ -322,7 +322,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/Imagenes/r6.png);</string>
+     <string notr="true">border-image: url(:/newPrefix/r7.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -1359,6 +1359,22 @@ font: 75 12pt&quot;Arial Narrow&quot;;
     <property name="geometry">
      <rect>
       <x>1130</x>
+      <y>730</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_68">
+    <property name="geometry">
+     <rect>
+      <x>1350</x>
       <y>730</y>
       <width>121</width>
       <height>51</height>
