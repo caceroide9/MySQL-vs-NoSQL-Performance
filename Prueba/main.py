@@ -43,6 +43,7 @@ from tkinter import scrolledtext
 import psutil
 #from win32api import GetSystemMetrics
 from PIL import ImageTk, Image
+import psycopg2
 
 
 class MainWindow(QMainWindow):
@@ -70,9 +71,10 @@ class MainWindow(QMainWindow):
                         
                 cnxn = pyodbc.connect(conn_str)
 
-
+                conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
                 random = []
-                pt.GUI(MySQL_db,mongoDB_collection,cnxn)
+                pt.GUI(MySQL_db,mongoDB_collection,cnxn,conn)
                 
 
         def llamartest2(self):
