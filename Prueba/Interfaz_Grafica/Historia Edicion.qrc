@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="Imagenes">
+    <file>parte2.png</file>
+    <file>parte1.png</file>
     <file>r6.png</file>
     <file>r4.png</file>
     <file>h.png</file>

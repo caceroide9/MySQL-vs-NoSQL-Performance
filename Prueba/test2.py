@@ -24,10 +24,10 @@ import psutil
 from PIL import ImageTk, Image
 
 
-
 def rand(entry_box):
     global random
-    random=int(entry_box.get())
+    random=entry_box.get()
+    print(random)
       
 
 def rand1(entry_box2):
@@ -39,30 +39,30 @@ def rand2(entry_box3):
     topic=entry_box3.get()
     
 
-def Test3(log_box3,MySQL_db,mongoDB_collection,cnxn):
-    global RUNNING
-    RUNNING= True
+def Test3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
+    global RUNNING3
+    RUNNING3= True
     log_box3.insert(tk.END, ' Iniciando...')
-    t3= threading.Thread(name = 'ping', target = TESTT3, daemon=False, args=(log_box3,MySQL_db,mongoDB_collection,cnxn))
+    t3= threading.Thread(name = 'ping', target = TESTT3, daemon=False, args=(log_box3,MySQL_db,mongoDB_collection,cnxn,conn))
     t3.start()
 
 
-def Test1(logbox,MySQL_db,mongoDB_collection,cnxn):
-    global RUNNING
-    RUNNING= True
+def Test1(logbox,MySQL_db,mongoDB_collection,cnxn,conn):
+    global RUNNING1
+    RUNNING1= True
     logbox.insert(tk.END, ' Iniciando...')
-    t1= threading.Thread(name = 'ping', target = TESTT1, daemon=False, args=(logbox,MySQL_db,mongoDB_collection,cnxn))
+    t1= threading.Thread(name = 'ping', target = TESTT1, daemon=False, args=(logbox,MySQL_db,mongoDB_collection,cnxn,conn))
     t1.start()
    
 
-def Test2(log_box2,MySQL_db,mongoDB_collection,cnxn):
-    global RUNNING
-    RUNNING= True
+def Test2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
+    global RUNNING2
+    RUNNING2= True
     log_box2.insert(tk.END, ' Iniciando...')
-    t2= threading.Thread(name = 'ping', target = TESTT2, daemon=False, args=(log_box2,MySQL_db,mongoDB_collection,cnxn))
+    t2= threading.Thread(name = 'ping', target = TESTT2, daemon=False, args=(log_box2,MySQL_db,mongoDB_collection,cnxn,conn))
     t2.start()
 
-def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
+def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
     fieldnames1 = ['Iteracion', 'Hora']
     fieldnames = ['Iteracion', 'Hora']
     if not os.path.exists('Data/MySQL_Test_3.csv'):
@@ -92,14 +92,27 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
 
     if not os.path.exists('Data/SQLServerTest_3.csv'):
     
-        with open('Data/SQLServerTest3.csv', 'w+', newline = '') as csv_file:
+        with open('Data/SQLServerTest_3.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
     else:
-        with open('Data/SQLServerTest3.csv', 'w+', newline = '') as csv_file:
+        with open('Data/SQLServerTest_3.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
+
+    if not os.path.exists('Data/Postgres_Test_3.csv'):
+    
+        with open('Data/Postgres_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/Postgres_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
             csv_writer.writeheader()
     
     global start7
@@ -110,7 +123,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
     x1 = range(len(result))
     aux=start7/len(result)
     for n1 in x1:
-        if(not RUNNING):
+        if(not RUNNING3):
                 break
         a=n1
         b=aux
@@ -142,7 +155,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
         x2 = range(result.get("cont"))
         aux1=start4/result.get("cont")
         for n2 in x2:
-            if(not RUNNING):
+            if(not RUNNING3):
                 break
             a=n2
             b=aux1
@@ -172,7 +185,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
         x2 = range(resultW[0])
         aux1=start77/(resultW[0])
         for n2 in x2:
-            if(not RUNNING):
+            if(not RUNNING3):
                 break
             a=n2
             b=aux1
@@ -190,12 +203,44 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+
+
+    global start99
+    log_box3.insert(tk.END, ' \nTEST 3 Postgres...')
+    start99 = time.process_time()
+    with conn.cursor() as cursor:
+        sql99 = 'select count(*) from public."Paises" where "Nombre" like  %s'
+        temp_topic = '%' + topic + '%'
+        cursor.execute(sql99, (temp_topic,))
+        resultZ = cursor.fetchone()
+        x99 = range(resultZ[0])
+        aux99=start99/(resultZ[0])
+        for n99 in x99:
+            if(not RUNNING3):
+                break
+            a99=n99
+            b99=aux99
+            aux99=aux99+start99/result.get("cont")
+            info99 = {
+            'Iteracion': a99,
+            'Hora' : b99,
+            }
+            with open('Data/Postgres_Test_3.csv', 'a', newline = '') as csv_file:
+                fieldnames2 = ['Iteracion', 'Hora']
+                csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
+                csv_writer.writerow(info99)
+                log_box3.insert(tk.END, f"\n\n Iteracion: {a99}, Hora: {b99}")
+                log_box3.see("end") 
+                cut_duration = 0
+                scan_interval = 1
+                time.sleep(scan_interval)
+    log_box3.insert(tk.END, '***\nTerminado Test3***')
         
 
 
 	
 		
-def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
+def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     fieldnames1 = ['Iteracion', 'Hora']
     fieldnames = ['Iteracion', 'Hora']
     if not os.path.exists('Data/MySQLTest_2.csv'):
@@ -235,6 +280,18 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
 
+    if not os.path.exists('Data/PostgresTest_2.csv'):
+    
+        with open('Data/PostgresTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/PostgresTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
     global start3
     start3 = 0
     log_box2.insert(tk.END, ' TEST 2 MongoDB...')
@@ -244,7 +301,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
     x1 = range(len(result))
     aux=star3/len(result)
     for n1 in x1:
-        if(not RUNNING):
+        if(not RUNNING2):
                 break
         a1=n1
         b1=aux
@@ -277,7 +334,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
         x = range(len(result))
         aux1=start4/len(result)
         for n in x:
-            if(not RUNNING):
+            if(not RUNNING2):
                 break
             a1=n
             #print(a)
@@ -305,14 +362,14 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
         sqls = "SELECT Nombre FROM pais WHERE Nombre=?;"
         cursor.execute(sqls, (topic_str,))
         resultx = cursor.fetchall()
+        print(len(resultx))
         start8=time.process_time() + start8
         x8 = range(len(resultx))
         aux8=start8/len(resultx)
         for n8 in x8:
-            if(not RUNNING):
+            if(not RUNNING2):
                 break
             a8=n8
-            #print(a)
             b8=aux8
             aux8=aux8+start8/len(resultx)
             infoz = {
@@ -321,14 +378,48 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn):
             with open('Data/SQLServerTest_2.csv', 'a', newline = '') as csv_file:
                 fieldnames1 = ['Iteracion', 'Hora']
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-                csv_writer.writerow(infoy)
+                csv_writer.writerow(infoz)
                 log_box2.insert(tk.END, f"\n\n Iteracion: {a8}, Hora: {b8}")
                 log_box2.see("end") 
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+
+
+    global start99
+    log_box2.insert(tk.END, ' \nTEST 2 Postgres...')
+    start99 = 0
+    aux99=0
+    with conn.cursor() as cursor:
+        sqls = 'select * from public."Paises" where "Nombre"=%s;'
+        cursor.execute(sqls, (topic_str,))
+        resultx = cursor.fetchall()
+        print(len(resultx))
+        start99=time.process_time() + start99
+        x99 = range(len(resultx))
+        aux8=start99/len(resultx)
+        for n99 in x99:
+            if(not RUNNING2):
+                break
+            a99=n99
+            b99=aux99
+            aux99=aux99+start99/len(resultx)
+            infob = {
+                'Iteracion': a99,
+                'Hora' : b99,}
+            with open('Data/PostgresTest_2.csv', 'a', newline = '') as csv_file:
+                fieldnames1 = ['Iteracion', 'Hora']
+                csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+                csv_writer.writerow(infob)
+                log_box2.insert(tk.END, f"\n\n Iteracion: {a99}, Hora: {b99}")
+                log_box2.see("end") 
+                cut_duration = 0
+                scan_interval = 1
+                time.sleep(scan_interval)
+
+    log_box2.insert(tk.END, '***\nTerminado Test2***')
     
-def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn):
+def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     global start69
     start69=0
     resultM =list(mongoDB_collection.find().sort('Nombre', -1))
@@ -339,26 +430,35 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn):
     global start70
     start70=0
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT Nombre FROM pais order by Nombre ASC"
+        sql = 'SELECT Nombre FROM pais order by Nombre asc'
         cursor.execute(sql)
         result = cursor.fetchall()
         print (result)
         start70=time.process_time() + start70
         print("MYSQLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n")
+
     global start71
     start71=0
     with cnxn.cursor() as cursor:
-        sqls = "SELECT Nombre FROM pais order by Nombre ASC"
+        sqls = "SELECT Nombre FROM pais order by Nombre asc;"
+        
         cursor.execute(sqls)
         resultW = cursor.fetchall()
         print (resultW)
         start71=time.process_time() + start71
         print("SQLSERVEEEEEEEEEEEEEEEEEEER\n")
     
-    print(start69,start70,start71)
+    global start81
+    start81=0
+    with conn.cursor() as cursor:
+        sql99 = 'SELECT "Nombre" FROM public."Paises"  ORDER BY "Nombre" asc'
+        cursor.execute(sql99)
+        resultW = cursor.fetchall()
+        print (resultW)
+        start81=time.process_time() + start81
+        print("Postgres\n")
     
-
-    
+    print(start69,start70,start71,start81)
 
         
     
@@ -416,12 +516,16 @@ def SHOW_GRAPH():
     data = pd.read_csv('Data/MySQLTest_1.csv', index_col = None)
     dataq = pd.read_csv('Data/MongoTest_1.csv', index_col = None)
     datay = pd.read_csv('Data/SQLServerTest_1.csv', index_col = None)
+    dataz = pd.read_csv('Data/PostgresTest_1.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
     x1=dataq['Iteracion']
     y2 = datay['Hora']
     x2=datay['Iteracion']
+    y3 = dataz['Hora']
+    x3=dataz['Iteracion']
+
     numero_de_grupos = len(y)
     indice_barras = np.arange(numero_de_grupos)
     ancho_barras =0.25
@@ -430,6 +534,7 @@ def SHOW_GRAPH():
     plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
     plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
     plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
+    plt.bar(indice_barras + ancho_barras + ancho_barras+ ancho_barras,y3, width=ancho_barras, label='PostgreSQL')
     plt.legend(loc='best')
 
     ## Se colocan los indicadores en el eje x
@@ -437,69 +542,92 @@ def SHOW_GRAPH():
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
     plt.xlabel('Iteracion')
     plt.title('Busqueda por cantidad numerica de datos')
-    plt.show()
-
-    
+    #plt.show()
+    plt.savefig('Graphs/Test1.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL()
 
 def SHOW_GRAPH2():
 
     data = pd.read_csv('Data/MySQLTest_2.csv', index_col = None)
     dataq = pd.read_csv('Data/MongoTest_2.csv', index_col = None)
+    datay = pd.read_csv('Data/SQLServerTest_2.csv', index_col = None)
+    dataz = pd.read_csv('Data/PostgresTest_2.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
+    x1=dataq['Iteracion']
+    y2 = datay['Hora']
+    x2=datay['Iteracion']
+    y3=dataz['Hora']
+    x3=dataz['Iteracion']
+    numero_de_grupos = len(y)
+    indice_barras = np.arange(numero_de_grupos)
+    ancho_barras =0.25
     plt.figure(figsize = (20, 15))
-    plt.margins(0)
-    plt.plot(x, y,y1, linewidth = 0.5)
+    
+    plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
+    plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
+    plt.bar(indice_barras + ancho_barras + ancho_barras + ancho_barras, y3, width=ancho_barras, label='Postgres SQL')
+    plt.legend(loc='best')
 
-    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
-    x_ticks = 10.0
-    if len(x) < 30:x_ticks = 1.0
-
-    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
-    plt.xlabel('N° Iteracion')
+    ## Se colocan los indicadores en el eje x
+    plt.xticks(indice_barras + ancho_barras, x)
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
-    plt.title("Busqueda especifica respecto a su respuesta")
+    plt.xlabel('Iteracion')
+    plt.title('Busqueda por texto')
+    #plt.show()
     #plt.legend()
     plt.savefig('Graphs/Test2.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL2()
 
 def SHOW_GRAPH3():
-
     data = pd.read_csv('Data/MySQL_Test_3.csv', index_col = None)
     dataq = pd.read_csv('Data/Mongo_Test_3.csv', index_col = None)
+    datay = pd.read_csv('Data/SQLServerTest_3.csv', index_col = None)
+    dataz = pd.read_csv('Data/Postgres_Test_3.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
+    x1=dataq['Iteracion']
+    y2 = datay['Hora']
+    x2=datay['Iteracion']
+    y3 = dataz['Hora']
+    x3=dataz['Iteracion']
+    
+    numero_de_grupos = len(y)
+    indice_barras = np.arange(numero_de_grupos)
+    ancho_barras =0.25
     plt.figure(figsize = (20, 15))
-    plt.margins(0)
-    plt.plot(x, y,y1, linewidth = 0.5)
+    
+    plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
+    plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
+    plt.bar(indice_barras + ancho_barras + ancho_barras + ancho_barras , y3, width=ancho_barras, label='Postgres SQL')
+    plt.legend(loc='best')
 
-    plt.yticks(np.arange(min(y) - 5, max(y) + 5, 5.0))
-    x_ticks = 10.0
-    if len(x) < 30:x_ticks = 1.0
-
-    plt.xticks(np.arange(0, max(x) + 1, x_ticks))
-    plt.xlabel('N° Iteracion')
+    ## Se colocan los indicadores en el eje x
+    plt.xticks(indice_barras + ancho_barras, x)
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
-    plt.title("Busqueda parcial respecto a su respuesta")
+    plt.xlabel('Iteracion')
+    plt.title('Busqueda por texto contenido')
+    #plt.show()
     #plt.legend()
     plt.savefig('Graphs/Test3.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL3()
 
 
 def THREAD_STOP(log_box):
-    global RUNNING
-    RUNNING=False
+    global RUNNING1
+    RUNNING1=False
 
 def THREAD_STOP2(log_box2):
-    global RUNNING
-    RUNNING=False
+    global RUNNING2
+    RUNNING2=False
 
 def THREAD_STOP3(log_box3):
-    global RUNNING
-    RUNNING=False
+    global RUNNING3
+    RUNNING3=False
 
 def CHECK_RESOURCES(label):
     global RESOURCES
@@ -556,7 +684,7 @@ def EXIT_APP(root):
     root.destroy()
     
             
-def GUI2(MySQL_db,mongoDB_collection,cnxn):
+def GUI2(MySQL_db,mongoDB_collection,cnxn,conn):
     
     root = Tk()
     root.title("Connection monitor")
@@ -687,7 +815,7 @@ def GUI2(MySQL_db,mongoDB_collection,cnxn):
     level2R_2.pack(side = 'top')'''
     
     ################## Frame 1 ##########################
-    value_list = ['5', '50', '500', '5000']
+    value_list = ['ASC','DESC']
     value_list2 = ['Chile', 'Argentina', 'Alemania']
     value_list3 = ['nia', 'tan', 'lia']
 
@@ -729,13 +857,13 @@ def GUI2(MySQL_db,mongoDB_collection,cnxn):
 
 
     
-    begin_button = ttk.Button(div_2_top_div_c1, text= 'Iniciar', command=lambda:(rand(values_shared_combobox),Test1(log_box,MySQL_db,mongoDB_collection,cnxn)))
+    begin_button = ttk.Button(div_2_top_div_c1, text= 'Iniciar', command=lambda:(rand(values_shared_combobox),Test1(log_box,MySQL_db,mongoDB_collection,cnxn,conn)))
     begin_button.pack(side = 'left')
 
-    begin_button1 = ttk.Button(div_2_top_div_c2, text= 'Iniciar', command=lambda:(rand1(values_shared1_combobox),Test2(log_box2,MySQL_db,mongoDB_collection,cnxn)))
+    begin_button1 = ttk.Button(div_2_top_div_c2, text= 'Iniciar', command=lambda:(rand1(values_shared1_combobox),Test2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn)))
     begin_button1.pack(side = 'left')
 
-    begin_button2 = ttk.Button(div_2_top_div_c3, text= 'Iniciar', command=lambda:(rand2(values_shared2_combobox),Test3(log_box3,MySQL_db,mongoDB_collection,cnxn)))
+    begin_button2 = ttk.Button(div_2_top_div_c3, text= 'Iniciar', command=lambda:(rand2(values_shared2_combobox),Test3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn)))
     begin_button2.pack(side = 'left')
 
     
@@ -854,4 +982,5 @@ if __name__ == '__main__':
 
 
     #monitor() 
+    
     
