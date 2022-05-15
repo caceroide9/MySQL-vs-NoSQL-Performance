@@ -118,7 +118,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
     global start7
     start7 = time.process_time()
     log_box3.insert(tk.END, ' TEST 3 MongoDB...')
-    result =list( mongoDB_collection.find({'Nombre': {'$regex': topic}}))
+    result =list( mongoDB_collection.find({'name': {'$regex': topic}}))
     
     x1 = range(len(result))
     aux=start7/len(result)
@@ -148,7 +148,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box3.insert(tk.END, ' \nTEST 3 MySQL...')
     start4 = time.process_time()
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT count(*) as cont FROM pais WHERE Nombre LIKE %s"
+        sql = "SELECT count(*) as cont FROM pokemones WHERE name LIKE %s"
         temp_topic = '%' + topic + '%'
         cursor.execute(sql, (temp_topic,))
         result = cursor.fetchone()
@@ -178,7 +178,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box3.insert(tk.END, ' \nTEST 3 SQL Server...')
     start77 = time.process_time()
     with cnxn.cursor() as cursor:
-        sqls="SELECT count(*) as cont FROM pais WHERE Nombre LIKE ?"
+        sqls="SELECT count(*) as cont FROM pokemon WHERE name LIKE ?"
         temp_topic = '%' + topic + '%'
         cursor.execute(sqls, (temp_topic,))
         resultW = cursor.fetchone()
@@ -209,7 +209,7 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box3.insert(tk.END, ' \nTEST 3 Postgres...')
     start99 = time.process_time()
     with conn.cursor() as cursor:
-        sql99 = 'select count(*) from public."Paises" where "Nombre" like  %s'
+        sql99 = 'select count(*) from public."pokemones" where "name" like  %s'
         temp_topic = '%' + topic + '%'
         cursor.execute(sql99, (temp_topic,))
         resultZ = cursor.fetchone()
@@ -295,7 +295,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     global start3
     start3 = 0
     log_box2.insert(tk.END, ' TEST 2 MongoDB...')
-    result=list(mongoDB_collection.find({'Nombre': topic_str}))
+    result=list(mongoDB_collection.find({'species': topic_str}))
     star3=time.process_time() + start3
     
     x1 = range(len(result))
@@ -327,7 +327,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     start4 = 0
     aux1=0
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT Nombre FROM pais WHERE Nombre=%s;"
+        sql = "SELECT * FROM pokemones WHERE species=%s;"
         cursor.execute(sql, (topic_str,))
         result = cursor.fetchall()
         start4=time.process_time() + start4
@@ -359,7 +359,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     start8 = 0
     aux8=0
     with cnxn.cursor() as cursor:
-        sqls = "SELECT Nombre FROM pais WHERE Nombre=?;"
+        sqls = "SELECT * FROM pokemon WHERE species=?;"
         cursor.execute(sqls, (topic_str,))
         resultx = cursor.fetchall()
         print(len(resultx))
@@ -391,10 +391,9 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     start99 = 0
     aux99=0
     with conn.cursor() as cursor:
-        sqls = 'select * from public."Paises" where "Nombre"=%s;'
+        sqls = 'select * from public."pokemones" where "species"=%s;'
         cursor.execute(sqls, (topic_str,))
         resultx = cursor.fetchall()
-        print(len(resultx))
         start99=time.process_time() + start99
         x99 = range(len(resultx))
         aux8=start99/len(resultx)
@@ -478,7 +477,7 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     for num in range(random):
         if(not RUNNING1):
                 break
-        result = list(mongoDB_collection.find({'id_pais': num}))
+        result = list(mongoDB_collection.find({'pk_number': num}))
         start = start+time.process_time()
         a=int(num)
         b= start
@@ -500,7 +499,7 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box.insert(tk.END, ' \nTEST 1 MySQL...')
     start1 = 0
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= %s;"
+        sql = "SELECT *  FROM pokemones WHERE pk_number= %s;"
         for num in range (random):    
             if(not RUNNING1):
                 break 
@@ -527,7 +526,7 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     start6= 0
     log_box.insert(tk.END, ' \nTEST 1 SQL Server...')
     with cnxn.cursor() as cursor:
-        sqls = "SELECT id_pais, Nombre  FROM pais WHERE id_pais= ?;"
+        sqls = "SELECT *  FROM pokemon WHERE pk_number= ?;"
         for num in range (random):    
             if(not RUNNING1):
                 break 
@@ -555,7 +554,7 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     start99= 0
     log_box.insert(tk.END, ' \nTEST 1 Postgres...')
     with conn.cursor() as cursor:
-        sql99 = 'SELECT * FROM public."Paises" WHERE id_pais= %s;'
+        sql99 = 'SELECT * FROM public."pokemones" WHERE pk_number= %s;'
         for num99 in range (random):    
             if(not RUNNING1):
                 break 
@@ -934,11 +933,14 @@ def GUI(MySQL_db,mongoDB_collection,cnxn,conn):
     level2R_2.pack(side = 'top')'''
     
     ################## Frame 1 ##########################
-    value_list = ['5', '50', '500', '5000']
-    value_list2 = ['Chile', 'Argentina', 'Alemania']
-    value_list3 = ['nia', 'tan', 'lia']
+    value_list = ['8', '80', '800']
+    value_list2 = ['Flame Pokemon', 'Seed Pokemon', 'Mouse Pokemon']
+    value_list3 = ['gon', 'ega', 'ias']
 
-    packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nSeleccione el N° de paises a buscar.', font=("Calibri"), justify = 'center')
+
+
+
+    packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nSeleccione el N° pokemones a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_2.pack(side = 'top')
 
     #duration_entrybox = ttk.Entry(column_1_div_1)
@@ -950,7 +952,7 @@ def GUI(MySQL_db,mongoDB_collection,cnxn,conn):
     values_shared_combobox['values'] = value_list
     values_shared_combobox.set(value_list[0])
 
-    packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nSeleccione el país a buscar.', font=("Calibri"), justify = 'center')
+    packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nSeleccione la especie de los pokemones.', font=("Calibri"), justify = 'center')
     packet_loss_label_22.pack(side = 'top')
 
     ##duration_entrybox1 = ttk.Entry(column_2_div_1)
