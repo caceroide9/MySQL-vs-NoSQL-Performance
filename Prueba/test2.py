@@ -420,47 +420,168 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box2.insert(tk.END, '***\nTerminado Test2***')
     
 def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
+    fieldnames1 = ['Iteracion', 'Hora']
+    fieldnames = ['Iteracion', 'Hora']
+    if not os.path.exists('Data/Parte2_MySQLTest_1.csv'):
+    
+        with open('Data/Parte2_MySQLTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/Parte2_MySQLTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+
+
+    if not os.path.exists('Data/Parte2_MongoTest_1.csv'):
+    
+        with open('Data/Parte2_MongoTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/Parte2_MongoTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
+    if not os.path.exists('Data/Parte2_SQLServerTest_1.csv'):
+    
+        with open('Data/Parte2_SQLServerTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/Parte2_SQLServerTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
+    
+    if not os.path.exists('Data/Parte2_PostgresTest_1.csv'):
+    
+        with open('Data/Parte2_PostgresTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/Parte2_PostgresTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+
+
     global start69
     start69=0
-    resultM =list(mongoDB_collection.find().sort('Nombre', -1))
-    print(resultM)
+    log_box.insert(tk.END, ' \nTEST 1 MongoDB...')
+    if(random=='ASC'):
+        list(mongoDB_collection.find().sort('title', -1))
+        
+    else:
+        list(mongoDB_collection.find().sort('title', 1))
     start69=time.process_time() + start69
-    print(" MONGOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n")
+    a=1
+    b= start69
+    info1 = {
+        'Iteracion': a,
+        'Hora' : b,
+        }
+    with open('Data/Parte2_MongoTest_1.csv', 'a', newline = '') as csv_file:
+        csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+        csv_writer.writerow(info1)
+        log_box.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
+        log_box.see("end") 
+        cut_duration = 0
+        scan_interval = 1
+        time.sleep(scan_interval)
+
 
     global start70
     start70=0
+    log_box.insert(tk.END, ' \nTEST 1 MySQL...')
     with MySQL_db.cursor() as cursor:
-        sql = 'SELECT Nombre FROM pais order by Nombre asc'
+        if(random=='ASC'):
+            sql = 'SELECT * FROM netflix order by title ASC'
+        else:
+            sql = 'SELECT * FROM netflix order by title DESC'
         cursor.execute(sql)
         result = cursor.fetchall()
-        print (result)
         start70=time.process_time() + start70
-        print("MYSQLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n")
+        a=1
+        b=start70
+        info = {
+            'Iteracion': a,
+            'Hora' : b,
+            }
+        with open('Data/Parte2_MySQLTest_1.csv', 'a', newline = '') as csv_file:
+            fieldnames = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writerow(info)
+            log_box.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
+            log_box.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
+        
 
     global start71
     start71=0
+    log_box.insert(tk.END, ' \nTEST 1 SQL Server...')
     with cnxn.cursor() as cursor:
-        sqls = "SELECT Nombre FROM pais order by Nombre asc;"
+        if(random=='ASC'):
+            sqls = "SELECT * FROM netflix order by title ASC;"
+        else:
+            sqls = "SELECT * FROM netflix order by title DESC;"
         
         cursor.execute(sqls)
         resultW = cursor.fetchall()
-        print (resultW)
         start71=time.process_time() + start71
-        print("SQLSERVEEEEEEEEEEEEEEEEEEER\n")
+        a2=1
+        b2=start71
+        info3 = {
+            'Iteracion': a2,
+            'Hora' : b2,
+            }
+        with open('Data/Parte2_SQLServerTest_1.csv', 'a', newline = '') as csv_file:
+            fieldnames = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writerow(info3)
+            log_box.insert(tk.END, f"\n\n Iteracion: {a2}, Hora: {b2}")
+            log_box.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
     
     global start81
     start81=0
+    log_box.insert(tk.END, ' \nTEST 1 Postgres...')
     with conn.cursor() as cursor:
-        sql99 = 'SELECT "Nombre" FROM public."Paises"  ORDER BY "Nombre" asc'
+        if(random=='ASC'):
+            sql99 = 'SELECT * FROM public."netflix"  ORDER BY "title" ASC'
+        else:
+            sql99 = 'SELECT * FROM public."netflix"  ORDER BY "title" DESC'
+
         cursor.execute(sql99)
         resultW = cursor.fetchall()
-        print (resultW)
         start81=time.process_time() + start81
-        print("Postgres\n")
-    
-    print(start69,start70,start71,start81)
+        a99=1
+        b99=start81
+        info99 = {
+            'Iteracion': a99,
+            'Hora' : b99,
+        }
+        with open('Data/Parte2_PostgresTest_1.csv', 'a', newline = '') as csv_file:
+            fieldnames = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writerow(info99)
+            log_box.insert(tk.END, f"\n\n Iteracion: {a99}, Hora: {b99}")
+            log_box.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
 
-        
     
     
     
@@ -513,10 +634,10 @@ class GRAPH_LABEL3():
 
 def SHOW_GRAPH():
 
-    data = pd.read_csv('Data/MySQLTest_1.csv', index_col = None)
-    dataq = pd.read_csv('Data/MongoTest_1.csv', index_col = None)
-    datay = pd.read_csv('Data/SQLServerTest_1.csv', index_col = None)
-    dataz = pd.read_csv('Data/PostgresTest_1.csv', index_col = None)
+    data = pd.read_csv('Data/Parte2_MySQLTest_1.csv', index_col = None)
+    dataq = pd.read_csv('Data/Parte2_MongoTest_1.csv', index_col = None)
+    datay = pd.read_csv('Data/Parte2_SQLServerTest_1.csv', index_col = None)
+    dataz = pd.read_csv('Data/Parte2_PostgresTest_1.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
@@ -541,9 +662,9 @@ def SHOW_GRAPH():
     plt.xticks(indice_barras + ancho_barras, x)
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
     plt.xlabel('Iteracion')
-    plt.title('Busqueda por cantidad numerica de datos')
+    plt.title('Ordenar peliculas de Netflix')
     #plt.show()
-    plt.savefig('Graphs/Test1.png', bbox_inches='tight', dpi = 300)
+    plt.savefig('Graphs/Parte2_Test1.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL()
 
 def SHOW_GRAPH2():
@@ -819,7 +940,7 @@ def GUI2(MySQL_db,mongoDB_collection,cnxn,conn):
     value_list2 = ['Chile', 'Argentina', 'Alemania']
     value_list3 = ['nia', 'tan', 'lia']
 
-    packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nSeleccione el N° de paises a buscar.', font=("Calibri"), justify = 'center')
+    packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nComo desea ordenar las peliculas de Netflix.', font=("Calibri"), justify = 'center')
     packet_loss_label_2.pack(side = 'top')
 
     #duration_entrybox = ttk.Entry(column_1_div_1)

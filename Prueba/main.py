@@ -45,9 +45,12 @@ import psutil
 from PIL import ImageTk, Image
 import psycopg2
 from PyQt5.QtWidgets import QPushButton
+from style import *
+from conexionDb import*
+from PyQt5.QtWidgets import QTableWidgetItem
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow):	
 
         def llamartest(self):
                 fieldnames = ['Iteracion','Hora']
@@ -90,7 +93,7 @@ class MainWindow(QMainWindow):
                 mongoDB_client = MongoClient()
                 mongoDB_client = MongoClient('localhost', 27017)
                 mongoDB_db = mongoDB_client["dbpaises"]
-                mongoDB_collection = mongoDB_db["pais"]
+                mongoDB_collection = mongoDB_db["netflix"]
                 
                 conn_str = (
                         r'DRIVER={SQL Server};'
@@ -969,10 +972,6 @@ class Screen2(QMainWindow):
         
 
         
-       
-
-               
-
 
 
 class Screen3(QMainWindow):
@@ -990,16 +989,143 @@ class Screen3(QMainWindow):
                 widget.setCurrentIndex(widget.currentIndex()+1)
 
 
+
+
+
 class Screen4(QMainWindow):
-        def __init__(self):
+       def m_productos(self):
+                       datos = self.datosTotal.buscar_productos()
+                       i = len(datos)
+                       self.tabla_productos.setRowCount(i)
+                       tablerow = 0
+                       for row in datos:
+                              self.tabla_productos.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
+                              self.tabla_productos.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
+                              self.tabla_productos.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
+                              self.tabla_productos.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
+                              self.tabla_productos.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+                              tablerow +=1
+
+       def insert_productos(self):
+              codigo = self.codigoA.text() 
+              nombre = self.nombreA.text()
+              modelo = self.modeloA.text()
+              precio = self.precioA.text()
+              cantidad = self.cantidadA.text()
+              self.datosTotal.inserta_producto(codigo, nombre, modelo, precio, cantidad)
+              self.codigoA.clear()
+              self.nombreA.clear()
+              self.modeloA.clear()
+              self.precioA.clear()
+              self.cantidadA.clear()
+
+       def modificar_productos(self):
+              id_producto = self.id_producto.text() 
+              id_producto = str("'" + id_producto + "'")
+              nombreXX = self.datosTotal.busca_producto(id_producto)
+
+              if nombreXX != None:
+                     self.id_buscar.setText("ACTUALIZAR")
+                     codigoM = self.codigo_actualizar.text() 
+                     nombreM = self.nombre_actualizar.text()
+                     modeloM = self.modelo_actualizar.text()
+                     precioM = self.precio_actualizar.text()
+                     cantidadM = self.cantidad_actualizar.text()
+
+                     act = self.datosTotal.actualiza_productos(codigoM,nombreM , modeloM, precioM, cantidadM)
+                     if act == 1:
+                            self.id_buscar.setText("ACTUALIZADO")				
+                            self.codigo_actualizar.clear()
+                            self.nombre_actualizar.clear()
+                            self.modelo_actualizar.clear()
+                            self.precio_actualizar.clear()
+                            self.cantidad_actualizar.clear()
+                            self.id_producto.clear()
+
+                     elif act == 0:
+                            self.id_buscar.setText("ERROR")
+                     else:
+                            self.id_buscar.setText("INCORRECTO")		
+                            
+
+       def buscar_producto(self):
+              nombre_producto = self.codigoB.text()
+              nombre_producto = str("'" + nombre_producto + "'")
+
+              datosB = self.datosTotal.busca_producto(nombre_producto)
+              i = len(datosB)
+
+              self.tabla_buscar.setRowCount(i)
+              tablerow = 0
+              for row in datosB:
+                     self.tabla_buscar.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
+                     self.tabla_buscar.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
+                     self.tabla_buscar.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
+                     self.tabla_buscar.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
+                     self.tabla_buscar.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+                     tablerow +=1
+
+       def eliminar_producto(self):
+              eliminar = self.codigo_borrar.text()
+              eliminar = str("'"+ eliminar + "'")
+              resp = (self.datosTotal.elimina_productos(eliminar))
+              datos = self.datosTotal.buscar_productos()
+              i = len(datos)
+              self.tabla_borrar.setRowCount(i)
+              tablerow = 0
+              for row in datos:
+                     self.tabla_borrar.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
+                     self.tabla_borrar.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
+                     self.tabla_borrar.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
+                     self.tabla_borrar.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
+                     self.tabla_borrar.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+                     tablerow +=1
+
+                     if resp == None:
+                            self.borrar_ok.setText("NO EXISTE")
+                     elif resp == 0:
+                            self.borrar_ok.setText("NO EXISTE")
+
+                     else:
+                            self.borrar_ok.setText("SE ELIMINO")	
+       
+       def __init__(self):
                 super(Screen4,self).__init__()
                 loadUi("Interfaz_Grafica/Diseno.ui",self)
                 self.pushButton_6.clicked.connect(self.gotoScreen1)
                 width = 1500  
                 height = 850
                 self.setFixedSize(width,height)
+                self.datosTotal = Registro_datos()
+                self.bt_refrescar.clicked.connect(self.m_productos)
+                self.bt_agregar.clicked.connect(self.insert_productos)
+                self.bt_buscar.clicked.connect(self.buscar_producto)
+                self.bt_borrar.clicked.connect(self.eliminar_producto)
+                self.bt_actualizar.clicked.connect(self.modificar_productos)
+                self.tabla_productos.setColumnWidth(0,98)
+                self.tabla_productos.setColumnWidth(1,100)
+                self.tabla_productos.setColumnWidth(2,98)
+                self.tabla_productos.setColumnWidth(3,98)
+                self.tabla_productos.setColumnWidth(4,98)
+
+                self.tabla_borrar.setColumnWidth(0,98)
+                self.tabla_borrar.setColumnWidth(1,100)
+                self.tabla_borrar.setColumnWidth(2,98)
+                self.tabla_borrar.setColumnWidth(3,98)
+                self.tabla_borrar.setColumnWidth(4,98)
+
+                self.tabla_buscar.setColumnWidth(0,98)
+                self.tabla_buscar.setColumnWidth(1,100)
+                self.tabla_buscar.setColumnWidth(2,98)
+                self.tabla_buscar.setColumnWidth(3,98)
+                self.tabla_buscar.setColumnWidth(4,98)
+
+                
+
+                
+                
         
-        def gotoScreen1(self):
+       def gotoScreen1(self):
                 mainwindow=MainWindow()
                 widget.addWidget(mainwindow)
                 widget.setCurrentIndex(widget.currentIndex()+1)
@@ -1976,6 +2102,10 @@ class Screen6(QMainWindow):
                root.resizable (0,0)
                root.tk.call('wm', 'iconphoto', root, tk.PhotoImage(file='database-setting.png'))
                root.mainloop()
+
+
+
+		
 
 app= QApplication(sys.argv)
 widget=QtWidgets.QStackedWidget()
