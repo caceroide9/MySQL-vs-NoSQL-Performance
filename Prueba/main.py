@@ -48,7 +48,10 @@ from PyQt5.QtWidgets import QPushButton
 from style import *
 from conexionDb import*
 from PyQt5.QtWidgets import QTableWidgetItem
-
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+import cv2
 
 class MainWindow(QMainWindow):	
 
@@ -112,7 +115,9 @@ class MainWindow(QMainWindow):
                 super(MainWindow,self).__init__()
                 loadUi("Interfaz_Grafica/Finish_Menu.ui",self)
                 width = 1500
-                height = 850  
+                height = 830  
+                self.setFixedWidth(width)
+                self.setFixedWidth(height)
                 self.setFixedSize(width,height)
                 self.label_2.setPixmap(QPixmap("Interfaz_Grafica/db.jpg")) 
                 self.pushButton_10.setCursor(Qt.PointingHandCursor)
@@ -693,8 +698,8 @@ class Screen2(QMainWindow):
                self.pushButton_6.clicked.connect(self.gotoScreen1)
                self.pushButton_7.clicked.connect(self.gotoScreen2)
                self.pushButton_8.clicked.connect(self.gotoScreen3)
-               width = 1500  
-               height = 850
+               width = 1500
+               height = 830 
                self.setFixedSize(width,height)
                self.label_2.setPixmap(QPixmap("Interfaz_Grafica/parte1.png"))
                self.pushButton_2.setEnabled(False)
@@ -979,8 +984,8 @@ class Screen3(QMainWindow):
                 super(Screen3,self).__init__()
                 loadUi("Interfaz_Grafica/Conceptos.ui",self)
                 self.pushButton_7.clicked.connect(self.gotoScreen1)
-                width = 1500  
-                height = 850
+                width = 1500
+                height = 830 
                 self.setFixedSize(width,height)
         
         def gotoScreen1(self):
@@ -1093,8 +1098,8 @@ class Screen4(QMainWindow):
                 super(Screen4,self).__init__()
                 loadUi("Interfaz_Grafica/Diseno.ui",self)
                 self.pushButton_6.clicked.connect(self.gotoScreen1)
-                width = 1500  
-                height = 850
+                width = 1500
+                height = 830 
                 self.setFixedSize(width,height)
                 self.datosTotal = Registro_datos()
                 self.bt_refrescar.clicked.connect(self.m_productos)
@@ -1131,6 +1136,7 @@ class Screen4(QMainWindow):
                 widget.setCurrentIndex(widget.currentIndex()+1)
 
 
+
 class Screen5(QMainWindow):
         def __init__(self):
                 super(Screen5,self).__init__()
@@ -1146,33 +1152,14 @@ class Screen5(QMainWindow):
                 widget.setCurrentIndex(widget.currentIndex()+1)
 
 
-class MyWindow:
-    def __init__(self, win):
-        self.lbl1=Label(win, text='First number')
-        self.lbl2=Label(win, text='Second number')
-        self.lbl3=Label(win, text='Result')
-        self.t1=Entry()
-        self.t2=Entry()
-        self.t3=Entry()
-        self.btn1 = Button(win, text='Add')
-        self.btn2=Button(win, text='Subtract')
-        self.lbl1.place(x=100, y=50)
-        self.t1.place(x=200, y=50)
-        self.lbl2.place(x=100, y=100)
-        self.t2.place(x=200, y=100)
-        self.b2=Button(win, text='Subtract')
-        self.b2.place(x=200, y=150)
-        self.lbl3.place(x=100, y=200)
-        self.t3.place(x=200, y=200)
-
 
 class Screen6(QMainWindow):
         def __init__(self):
                 super(Screen6,self).__init__()
                 loadUi("Interfaz_Grafica/h.ui",self)
                 self.pushButton_6.clicked.connect(self.gotoScreen1)
-                width = 1500  
-                height = 850
+                width = 1500
+                height = 830
                 self.setFixedSize(width,height)
                 self.label_2.setPixmap(QPixmap("Interfaz_Grafica/r7.png"))
                 self.pushButton_2.setCursor(Qt.PointingHandCursor) 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1505</width>
-    <height>652</height>
+    <height>868</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>761</width>
+      <width>1511</width>
       <height>40</height>
      </rect>
     </property>
@@ -91,111 +91,11 @@ border-radius:0px;
 }</string>
        </property>
        <property name="text">
-        <string>MENÚ</string>
+        <string>CRUD PRODUCTOS</string>
        </property>
        <property name="icon">
         <iconset>
          <normaloff>../../../Imagenes/bars-solid.svg</normaloff>../../../Imagenes/bars-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>523</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_minimizar">
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/window-minimize-solid.svg</normaloff>../../../Imagenes/window-minimize-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_restaurar">
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/window-restore-regular.svg</normaloff>../../../Imagenes/window-restore-regular.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_maximizar">
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/window-maximize-solid.svg</normaloff>../../../Imagenes/window-maximize-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_cerrar">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/times-circle-solid.svg</normaloff>../../../Imagenes/times-circle-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -207,7 +107,7 @@ background-color:#a8dadc;
       <x>0</x>
       <y>40</y>
       <width>200</width>
-      <height>481</height>
+      <height>801</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -279,7 +179,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
 </string>
        </property>
        <property name="text">
-        <string>Diseño</string>
+        <string>Volver</string>
        </property>
        <property name="icon">
         <iconset>
@@ -300,25 +200,15 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Mathias Cáceres B.</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QTabWidget" name="pantalla">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>811</width>
-      <height>400</height>
+      <x>200</x>
+      <y>40</y>
+      <width>1331</width>
+      <height>781</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -341,19 +231,19 @@ color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="bt_refrescar">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>312</y>
+        <x>270</x>
+        <y>470</y>
         <width>111</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(85, 0, 255);
+       <string notr="true">background-color: rgb(69, 123, 157);
 color: rgb(255, 255, 255);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>REFESCRAR</string>
+       <string>REFRESCAR</string>
       </property>
      </widget>
      <widget class="QTableWidget" name="tabla_productos">
@@ -361,8 +251,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
        <rect>
         <x>30</x>
         <y>60</y>
-        <width>511</width>
-        <height>281</height>
+        <width>631</width>
+        <height>381</height>
        </rect>
       </property>
       <property name="rowCount">
@@ -485,14 +375,14 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="bt_buscar">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>322</y>
+        <x>330</x>
+        <y>540</y>
         <width>101</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(85, 0, 255);
+       <string notr="true">background-color: rgb(69, 123, 157);
 color: rgb(255, 255, 255);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
@@ -503,10 +393,10 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="codigoB">
       <property name="geometry">
        <rect>
-        <x>72</x>
-        <y>51</y>
-        <width>101</width>
-        <height>20</height>
+        <x>380</x>
+        <y>40</y>
+        <width>141</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -516,10 +406,10 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>21</x>
-        <y>51</y>
-        <width>45</width>
-        <height>16</height>
+        <x>200</x>
+        <y>40</y>
+        <width>111</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -531,8 +421,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
        <rect>
         <x>30</x>
         <y>90</y>
-        <width>511</width>
-        <height>261</height>
+        <width>651</width>
+        <height>421</height>
        </rect>
       </property>
       <property name="rowCount">
@@ -655,14 +545,14 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="bt_agregar">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>260</y>
+        <x>400</x>
+        <y>490</y>
         <width>91</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(85, 0, 255);
+       <string notr="true">background-color: rgb(69, 123, 157);
 color: rgb(255, 255, 255);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
@@ -675,8 +565,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
        <rect>
         <x>170</x>
         <y>70</y>
-        <width>231</width>
-        <height>211</height>
+        <width>541</width>
+        <height>381</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -748,14 +638,14 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="bt_actualizar">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>280</y>
+        <x>380</x>
+        <y>520</y>
         <width>121</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(85, 0, 255);
+       <string notr="true">background-color: rgb(69, 123, 157);
 color: rgb(255, 255, 255);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
@@ -766,10 +656,10 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>80</y>
-        <width>251</width>
-        <height>221</height>
+        <x>140</x>
+        <y>160</y>
+        <width>601</width>
+        <height>321</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -836,8 +726,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="id_producto">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>120</y>
+        <x>350</x>
+        <y>60</y>
         <width>180</width>
         <height>20</height>
        </rect>
@@ -846,8 +736,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>80</y>
+        <x>140</x>
+        <y>50</y>
         <width>191</width>
         <height>39</height>
        </rect>
@@ -859,8 +749,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="id_buscar">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>150</y>
+        <x>590</x>
+        <y>60</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -880,8 +770,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="codigo_borrar">
       <property name="geometry">
        <rect>
-        <x>91</x>
-        <y>50</y>
+        <x>270</x>
+        <y>60</y>
         <width>101</width>
         <height>20</height>
        </rect>
@@ -893,8 +783,8 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>50</y>
+        <x>160</x>
+        <y>60</y>
         <width>45</width>
         <height>16</height>
        </rect>
@@ -906,14 +796,15 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="borrar_ok">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>50</y>
+        <x>440</x>
+        <y>60</y>
         <width>91</width>
         <height>23</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 0, 127);</string>
+       <string notr="true">background-color: rgb(69, 123, 157);
+color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>OK</string>
@@ -922,14 +813,14 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="bt_borrar">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>282</y>
+        <x>320</x>
+        <y>460</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(85, 0, 255);
+       <string notr="true">background-color: rgb(69, 123, 157);
 color: rgb(255, 255, 255);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
@@ -941,9 +832,9 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>80</y>
-        <width>511</width>
-        <height>231</height>
+        <y>110</y>
+        <width>701</width>
+        <height>341</height>
        </rect>
       </property>
       <property name="rowCount">
@@ -1071,7 +962,6 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

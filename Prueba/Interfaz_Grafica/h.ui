@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1502</width>
+    <width>1381</width>
     <height>836</height>
    </rect>
   </property>
@@ -91,111 +91,11 @@ border-radius:0px;
 }</string>
        </property>
        <property name="text">
-        <string>MENÚ</string>
+        <string>BASES DE DATOS</string>
        </property>
        <property name="icon">
         <iconset>
          <normaloff>../../../Imagenes/bars-solid.svg</normaloff>../../../Imagenes/bars-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>523</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_minimizar">
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/window-minimize-solid.svg</normaloff>../../../Imagenes/window-minimize-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_restaurar">
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/window-restore-regular.svg</normaloff>../../../Imagenes/window-restore-regular.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_maximizar">
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/window-maximize-solid.svg</normaloff>../../../Imagenes/window-maximize-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_cerrar">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButtom{
-border:0px;
-}
-QPushButton:hover{
-border:5px solid #a8dadc;
-background-color:#a8dadc;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/times-circle-solid.svg</normaloff>../../../Imagenes/times-circle-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -279,7 +179,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
 </string>
        </property>
        <property name="text">
-        <string>Bases de datos</string>
+        <string>Volver</string>
        </property>
        <property name="icon">
         <iconset>
@@ -299,16 +199,6 @@ font: 75 12pt&quot;Arial Narrow&quot;;
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Mathias Cáceres B.</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>
@@ -1387,18 +1277,26 @@ font: 75 12pt&quot;Arial Narrow&quot;;
      <string/>
     </property>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>789</y>
+      <width>1501</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(69, 123, 157);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1502</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
   <include location="Historia Edicion.qrc"/>

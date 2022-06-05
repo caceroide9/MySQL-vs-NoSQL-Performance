@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import matplotlib
+from requests import options
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -27,7 +28,7 @@ from PIL import ImageTk, Image
 def rand(entry_box):
     global random
     random=entry_box.get()
-    print(random)
+    
       
 
 def rand1(entry_box2):
@@ -148,9 +149,10 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box3.insert(tk.END, ' \nTEST 3 MySQL...')
     start4 = time.process_time()
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT count(*) as cont FROM pais WHERE Nombre LIKE %s"
-        temp_topic = '%' + topic + '%'
-        cursor.execute(sql, (temp_topic,))
+        sql = "INSERT INTO disney (show_id, type, title, director, cast, country, date_added, release_year, rating, duration, listed_in, description ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        val = [('d1','Movie','Duck the Halls: A Mickey Mouse Christmas Special','Alonso Ramirez Ramos- Dave Wasson','Chris Diamantopoulos- Tony Anselmo- Tress MacNeille- Bill Farmer- Russi Taylor- Corey Burton','NULL','November 26- 2021','2016','TV-G','23 min','Animation- Family','Join Mickey and the gang as they duck the halls!'),('d2','Movie','Ernest Saves Christmas','John Cherry','Jim Varney- Noelle Parker- Douglas Seale','NULL','November 26- 2021','1988','PG','91 min','Comedy','Santa Claus passes his magic bag to a new St. Nic.')
+]
+        cursor.executemany(sql,val)
         result = cursor.fetchone()
         x2 = range(result.get("cont"))
         aux1=start4/result.get("cont")
@@ -243,92 +245,95 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
 def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     fieldnames1 = ['Iteracion', 'Hora']
     fieldnames = ['Iteracion', 'Hora']
-    if not os.path.exists('Data/MySQLTest_2.csv'):
+    if not os.path.exists('Data/Parte2_MySQLTest_2.csv'):
     
-        with open('Data/MySQLTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_MySQLTest_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
             csv_writer.writeheader()
     else:
-         with open('Data/MySQLTest_2.csv', 'w+', newline = '') as csv_file:
+         with open('Data/Parte2_MySQLTest_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
             csv_writer.writeheader()
 
 
-    if not os.path.exists('Data/MongoTest_2.csv'):
+    if not os.path.exists('Data/Parte2_Mongo_Test_2.csv'):
     
-        with open('Data/MongoTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_Mongo_Test_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
     else:
-        with open('Data/MongoTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_Mongo_Test_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
     
-    if not os.path.exists('Data/SQLServerTest_2.csv'):
+    if not os.path.exists('Data/Parte2_SQLServerTest_2.csv'):
     
-        with open('Data/SQLServerTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_SQLServerTest_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
     else:
-        with open('Data/SQLServerTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_SQLServerTest_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
 
-    if not os.path.exists('Data/PostgresTest_2.csv'):
+    if not os.path.exists('Data/Parte2_PostgresTest_2.csv'):
     
-        with open('Data/PostgresTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_PostgresTest_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
     else:
-        with open('Data/PostgresTest_2.csv', 'w+', newline = '') as csv_file:
+        with open('Data/Parte2_PostgresTest_2.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
 
-    global start3
-    start3 = 0
+    global start7
+    start7 = time.process_time()
     log_box2.insert(tk.END, ' TEST 2 MongoDB...')
-    result=list(mongoDB_collection.find({'Nombre': topic_str}))
-    star3=time.process_time() + start3
+    
+    result =list( mongoDB_collection.find({'title': {'$regex': '^'+topic_str}}))
     
     x1 = range(len(result))
-    aux=star3/len(result)
+    aux=start7/len(result)
     for n1 in x1:
         if(not RUNNING2):
                 break
-        a1=n1
-        b1=aux
-        aux=aux+star3/len(result)
-        infox = {
-        'Iteracion': a1,
-        'Hora' : b1,
+        a=n1
+        b=aux
+        aux=aux+start7/len(result)
+        info1 = {
+        'Iteracion': a,
+        'Hora' : b,
         }
-        with open('Data/MongoTest_2.csv', 'a', newline = '') as csv_file:
+        with open('Data/Parte2_Mongo_Test_2.csv', 'a', newline = '') as csv_file:
             fieldnames1 = ['Iteracion', 'Hora']
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
-            csv_writer.writerow(infox)
-            log_box2.insert(tk.END, f"\n\n Iteracion: {a1}, Hora: {b1}")
+            csv_writer.writerow(info1)
+            log_box2.insert(tk.END, f"\n\n Iteracion: {a}, Hora: {b}")
             log_box2.see("end") 
             cut_duration = 0
             scan_interval = 1
             time.sleep(scan_interval)
 
     
+   
 
     global start4
     log_box2.insert(tk.END, ' \nTEST 2 MySQL...')
     start4 = 0
     aux1=0
+    prlx=topic_str[0]
+    mysql_sintax="^["+prlx+"]"
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT Nombre FROM pais WHERE Nombre=%s;"
-        cursor.execute(sql, (topic_str,))
+        sql = 'SELECT * FROM netflix WHERE title REGEXP %s'
+        cursor.execute(sql,(mysql_sintax,))
         result = cursor.fetchall()
         start4=time.process_time() + start4
         x = range(len(result))
@@ -344,7 +349,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
             infoy = {
                 'Iteracion': a1,
                 'Hora' : b1,}
-            with open('Data/MySQLTest_2.csv', 'a', newline = '') as csv_file:
+            with open('Data/Parte2_MySQLTest_2.csv', 'a', newline = '') as csv_file:
                 fieldnames1 = ['Iteracion', 'Hora']
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
                 csv_writer.writerow(infoy)
@@ -353,16 +358,19 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+    
+    
 
     global start8
     log_box2.insert(tk.END, ' \nTEST 2 SQL Server...')
     start8 = 0
     aux8=0
+    sqs_sin_pr=topic_str[0]
+    sqs_sintaxix="'["+sqs_sin_pr+"]%'"
     with cnxn.cursor() as cursor:
-        sqls = "SELECT Nombre FROM pais WHERE Nombre=?;"
-        cursor.execute(sqls, (topic_str,))
+        sqls = "SELECT * FROM netflix WHERE title LIKE"+sqs_sintaxix
+        cursor.execute(sqls,)
         resultx = cursor.fetchall()
-        print(len(resultx))
         start8=time.process_time() + start8
         x8 = range(len(resultx))
         aux8=start8/len(resultx)
@@ -375,7 +383,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
             infoz = {
                 'Iteracion': a8,
                 'Hora' : b8,}
-            with open('Data/SQLServerTest_2.csv', 'a', newline = '') as csv_file:
+            with open('Data/Parte2_SQLServerTest_2.csv', 'a', newline = '') as csv_file:
                 fieldnames1 = ['Iteracion', 'Hora']
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
                 csv_writer.writerow(infoz)
@@ -390,11 +398,13 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     log_box2.insert(tk.END, ' \nTEST 2 Postgres...')
     start99 = 0
     aux99=0
+    prlp=topic_str[0]
+
+    post_sintax='^['+prlp+']'
     with conn.cursor() as cursor:
-        sqls = 'select * from public."Paises" where "Nombre"=%s;'
-        cursor.execute(sqls, (topic_str,))
+        sqls = "SELECT * FROM public.netflix where title ~* %s;"
+        cursor.execute(sqls, (post_sintax,))
         resultx = cursor.fetchall()
-        print(len(resultx))
         start99=time.process_time() + start99
         x99 = range(len(resultx))
         aux8=start99/len(resultx)
@@ -407,7 +417,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
             infob = {
                 'Iteracion': a99,
                 'Hora' : b99,}
-            with open('Data/PostgresTest_2.csv', 'a', newline = '') as csv_file:
+            with open('Data/Parte2_PostgresTest_2.csv', 'a', newline = '') as csv_file:
                 fieldnames1 = ['Iteracion', 'Hora']
                 csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
                 csv_writer.writerow(infob)
@@ -418,7 +428,11 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
                 time.sleep(scan_interval)
 
     log_box2.insert(tk.END, '***\nTerminado Test2***')
-    
+
+
+
+
+
 def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     fieldnames1 = ['Iteracion', 'Hora']
     fieldnames = ['Iteracion', 'Hora']
@@ -604,7 +618,7 @@ def monitor(log_box):
 class GRAPH_LABEL():  
     def __init__(self):    
         self.frame = Toplevel()
-        self.icon = Image.open('Graphs/Test1.png')
+        self.icon = Image.open('Graphs/Parte2_Test1.png')
         self.icon = self.icon.resize((1920 - 50, 1080 - 100))
         self.img = ImageTk.PhotoImage(self.icon)
         self.graph_label = ttk.Label(self.frame, image = self.img)
@@ -614,7 +628,7 @@ class GRAPH_LABEL():
 class GRAPH_LABEL2():  
     def __init__(self):    
         self.frame = Toplevel()
-        self.icon = Image.open('Graphs/Test2.png')
+        self.icon = Image.open('Graphs/Parte2_Test2.png')
         self.icon = self.icon.resize((1920 - 50, 1080 - 100))
         self.img = ImageTk.PhotoImage(self.icon)
         self.graph_label = ttk.Label(self.frame, image = self.img)
@@ -624,7 +638,7 @@ class GRAPH_LABEL2():
 class GRAPH_LABEL3():  
     def __init__(self):    
         self.frame = Toplevel()
-        self.icon = Image.open('Graphs/Test3.png')
+        self.icon = Image.open('Graphs/Parte2_Test2.png')
         self.icon = self.icon.resize((1920 - 50, 1080 - 100))
         self.img = ImageTk.PhotoImage(self.icon)
         self.graph_label = ttk.Label(self.frame, image = self.img)
@@ -667,20 +681,21 @@ def SHOW_GRAPH():
     plt.savefig('Graphs/Parte2_Test1.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL()
 
-def SHOW_GRAPH2():
+def SHOW_GRAPH22():
 
-    data = pd.read_csv('Data/MySQLTest_2.csv', index_col = None)
-    dataq = pd.read_csv('Data/MongoTest_2.csv', index_col = None)
-    datay = pd.read_csv('Data/SQLServerTest_2.csv', index_col = None)
-    dataz = pd.read_csv('Data/PostgresTest_2.csv', index_col = None)
+    data = pd.read_csv('Data/Parte2_MySQLTest_2.csv', index_col = None)
+    dataq = pd.read_csv('Data/Parte2_MongoTest_2.csv', index_col = None)
+    datay = pd.read_csv('Data/Parte2_SQLServerTest_2.csv', index_col = None)
+    dataz = pd.read_csv('Data/Parte2_PostgresTest_2.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
     x1=dataq['Iteracion']
     y2 = datay['Hora']
     x2=datay['Iteracion']
-    y3=dataz['Hora']
+    y3 = dataz['Hora']
     x3=dataz['Iteracion']
+
     numero_de_grupos = len(y)
     indice_barras = np.arange(numero_de_grupos)
     ancho_barras =0.25
@@ -689,24 +704,23 @@ def SHOW_GRAPH2():
     plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
     plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
     plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
-    plt.bar(indice_barras + ancho_barras + ancho_barras + ancho_barras, y3, width=ancho_barras, label='Postgres SQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras+ ancho_barras,y3, width=ancho_barras, label='PostgreSQL')
     plt.legend(loc='best')
 
     ## Se colocan los indicadores en el eje x
     plt.xticks(indice_barras + ancho_barras, x)
     plt.ylabel('Tiempo Acumulado Transcurrido (s)')
     plt.xlabel('Iteracion')
-    plt.title('Busqueda por texto')
+    plt.title('Ordenar peliculas de Netflix')
     #plt.show()
-    #plt.legend()
-    plt.savefig('Graphs/Test2.png', bbox_inches='tight', dpi = 300)
+    plt.savefig('Graphs/Parte2_Test2.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL2()
 
 def SHOW_GRAPH3():
-    data = pd.read_csv('Data/MySQL_Test_3.csv', index_col = None)
-    dataq = pd.read_csv('Data/Mongo_Test_3.csv', index_col = None)
-    datay = pd.read_csv('Data/SQLServerTest_3.csv', index_col = None)
-    dataz = pd.read_csv('Data/Postgres_Test_3.csv', index_col = None)
+    data = pd.read_csv('Data/Parte2_MySQLTest_2.csv', index_col = None)
+    dataq = pd.read_csv('Data/Parte2_Mongo_Test_2.csv', index_col = None)
+    datay = pd.read_csv('Data/Parte2_SQLServerTest_2.csv', index_col = None)
+    dataz = pd.read_csv('Data/Parte2_PostgresTest_2.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
@@ -734,7 +748,7 @@ def SHOW_GRAPH3():
     plt.title('Busqueda por texto contenido')
     #plt.show()
     #plt.legend()
-    plt.savefig('Graphs/Test3.png', bbox_inches='tight', dpi = 300)
+    plt.savefig('Graphs/Parte2_Test2.png', bbox_inches='tight', dpi = 300)
     GRAPH_LABEL3()
 
 
@@ -937,7 +951,7 @@ def GUI2(MySQL_db,mongoDB_collection,cnxn,conn):
     
     ################## Frame 1 ##########################
     value_list = ['ASC','DESC']
-    value_list2 = ['Chile', 'Argentina', 'Alemania']
+    value_list2 = ['X', 'J', 'Q']
     value_list3 = ['nia', 'tan', 'lia']
 
     packet_loss_label_2 = ttk.Label(column_1_div_1, text = '\nComo desea ordenar las peliculas de Netflix.', font=("Calibri"), justify = 'center')
@@ -952,7 +966,7 @@ def GUI2(MySQL_db,mongoDB_collection,cnxn,conn):
     values_shared_combobox['values'] = value_list
     values_shared_combobox.set(value_list[0])
 
-    packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nSeleccione el país a buscar.', font=("Calibri"), justify = 'center')
+    packet_loss_label_22 = ttk.Label(column_2_div_1,text = '\nSeleccione letra de peliculas a buscar.', font=("Calibri"), justify = 'center')
     packet_loss_label_22.pack(side = 'top')
 
     ##duration_entrybox1 = ttk.Entry(column_2_div_1)
@@ -1018,7 +1032,7 @@ def GUI2(MySQL_db,mongoDB_collection,cnxn,conn):
     label_4 = ttk.Label(div_2_bottom_c1)
     label_4.pack(side = 'left')
 
-    graph_button1 = ttk.Button(div_2_bottom_c2, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH2())
+    graph_button1 = ttk.Button(div_2_bottom_c2, text= 'Mostrar Grafico', command=lambda:SHOW_GRAPH3())
     graph_button1.pack(side = 'left')
     
     label_44 = ttk.Label(div_2_bottom_c2)
@@ -1104,4 +1118,7 @@ if __name__ == '__main__':
 
     #monitor() 
     
-    
+
+
+
+
