@@ -97,6 +97,11 @@ class MainWindow(QMainWindow):
                 mongoDB_client = MongoClient('localhost', 27017)
                 mongoDB_db = mongoDB_client["dbpaises"]
                 mongoDB_collection = mongoDB_db["netflix"]
+
+                mongoDB_client_2 = MongoClient()
+                mongoDB_client_2 = MongoClient('localhost', 27017)
+                mongoDB_db_2 = mongoDB_client["dbpaises"]
+                mongoDB_collection_2 = mongoDB_db["disney"]
                 
                 conn_str = (
                         r'DRIVER={SQL Server};'
@@ -109,7 +114,7 @@ class MainWindow(QMainWindow):
                 conn = psycopg2.connect(dbname="Paises", user="postgres",
                             password="LS9lm10N11", host="localhost", port="5432")
                 random = []
-                pt2.GUI2(MySQL_db,mongoDB_collection,cnxn,conn) 
+                pt2.GUI2(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2) 
 
         def __init__(self):
                 super(MainWindow,self).__init__()
