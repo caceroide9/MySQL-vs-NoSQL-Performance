@@ -84,11 +84,7 @@ font:87 12pt&quot;Arial Black&quot;;
 border-radius:0px;
 }
 
-QPushButton:hover{
-background-color: #a8dadc;
-font:87 12pt&quot;Arial Back&quot;;
-border-radius:0px;
-}</string>
+</string>
        </property>
        <property name="text">
         <string>BASES DE DATOS</string>

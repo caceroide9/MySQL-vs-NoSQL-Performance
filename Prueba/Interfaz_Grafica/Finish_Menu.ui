@@ -84,11 +84,7 @@ font:87 12pt&quot;Arial Black&quot;;
 border-radius:0px;
 }
 
-QPushButton:hover{
-background-color: #a8dadc;
-font:87 12pt&quot;Arial Back&quot;;
-border-radius:0px;
-}</string>
+</string>
        </property>
        <property name="text">
         <string>MENÚ</string>
@@ -302,7 +298,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
 </string>
        </property>
        <property name="text">
-        <string>Diseño</string>
+        <string>CRUD</string>
        </property>
        <property name="icon">
         <iconset>
@@ -384,8 +380,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
 </string>
        </property>
        <property name="text">
-        <string>Rendimiento 
-indexacion</string>
+        <string>Pokemon Test</string>
        </property>
        <property name="icon">
         <iconset>
@@ -426,11 +421,41 @@ font: 75 12pt&quot;Arial Narrow&quot;;
 </string>
        </property>
        <property name="text">
-        <string>Rendimiento</string>
+        <string>Netflix Test</string>
        </property>
        <property name="icon">
         <iconset>
          <normaloff>Imagenes_Interfaz/magnifying-glass-solid.svg</normaloff>Imagenes_Interfaz/magnifying-glass-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_30">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}</string>
+       </property>
+       <property name="text">
+        <string>Chile Test</string>
        </property>
       </widget>
      </item>

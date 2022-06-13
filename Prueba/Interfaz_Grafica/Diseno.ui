@@ -84,11 +84,7 @@ font:87 12pt&quot;Arial Black&quot;;
 border-radius:0px;
 }
 
-QPushButton:hover{
-background-color: #a8dadc;
-font:87 12pt&quot;Arial Back&quot;;
-border-radius:0px;
-}</string>
+</string>
        </property>
        <property name="text">
         <string>CRUD PRODUCTOS</string>
@@ -208,7 +204,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
       <x>200</x>
       <y>40</y>
       <width>1331</width>
-      <height>781</height>
+      <height>801</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -951,16 +947,6 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      </widget>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1505</width>
-     <height>26</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources/>

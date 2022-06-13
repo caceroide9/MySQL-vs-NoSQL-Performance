@@ -11,6 +11,7 @@ import sys
 import pandas as pd
 import test as pt
 import test2 as pt2
+import test3 as pt3
 from pymongo import MongoClient
 from MySQLdb import *
 import pyodbc
@@ -114,7 +115,44 @@ class MainWindow(QMainWindow):
                 conn = psycopg2.connect(dbname="Paises", user="postgres",
                             password="LS9lm10N11", host="localhost", port="5432")
                 random = []
-                pt2.GUI2(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2) 
+                pt2.GUI2(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2)
+
+        def llamartest3(self):
+                fieldnames = ['Iteracion','Hora']
+                fieldnames1 = ['Iteracion','Hora']
+                fieldnames2 = ['Iteracion','Hora']
+                DB_IP = 'localhost'
+                DB_ID = "root"
+                DB_PW = "LS9lm10N11"
+                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+
+                mongoDB_client = MongoClient()
+                mongoDB_client = MongoClient('localhost', 27017)
+                mongoDB_db = mongoDB_client["dbpaises"]
+                mongoDB_collection = mongoDB_db["comuna"]
+
+                mongoDB_client_2 = MongoClient()
+                mongoDB_client_2 = MongoClient('localhost', 27017)
+                mongoDB_db_2 = mongoDB_client["dbpaises"]
+                mongoDB_collection_2 = mongoDB_db["provincias"]
+
+                mongoDB_client_3 = MongoClient()
+                mongoDB_client_3 = MongoClient('localhost', 27017)
+                mongoDB_db_3 = mongoDB_client["dbpaises"]
+                mongoDB_collection_3 = mongoDB_db["region"]
+                
+                conn_str = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+                cnxn = pyodbc.connect(conn_str)
+                
+                conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+                random = []
+                pt3.GUI3(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2,mongoDB_collection_3) 
 
         def __init__(self):
                 super(MainWindow,self).__init__()
@@ -139,6 +177,9 @@ class MainWindow(QMainWindow):
                 self.pushButton_8.clicked.connect(self.gotoScreen5)
                 self.pushButton_12.setCursor(Qt.PointingHandCursor)
                 self.pushButton_12.clicked.connect(self.gotoScreen6)
+                self.pushButton_30.setCursor(Qt.PointingHandCursor)
+                self.pushButton_30.clicked.connect(self.llamartest3)
+
 
         def gotoScreen2(self):
                 screen2=Screen2()
@@ -1424,7 +1465,7 @@ class Screen3(QMainWindow):
         
         def concepts_sqlll(self):
                root=Tk()
-               image = Image.open('Interfaz_Grafica/ts.png')
+               image = Image.open('Interfaz_Grafica/SQLLLa.png')
                image = image.resize((450, 750), Image.ANTIALIAS)
                my_img = ImageTk.PhotoImage(image)
                my_lbl = Label(image = my_img)
@@ -1459,7 +1500,7 @@ class Screen3(QMainWindow):
 
         def concepts_BUP(self):
                root=Tk()
-               image = Image.open('Interfaz_Grafica/ts.png')
+               image = Image.open('Interfaz_Grafica/BCK.png')
                image = image.resize((450, 750), Image.ANTIALIAS)
                my_img = ImageTk.PhotoImage(image)
                my_lbl = Label(image = my_img)
@@ -1643,7 +1684,7 @@ class Screen3(QMainWindow):
                 self.pushButton_31.clicked.connect(self.concepts_BDDAnali)
                 self.pushButton_32.clicked.connect(self.concepts_BddTrans)
                 self.pushButton_30.clicked.connect(self.concepts_HasHH)
-                self.pushButton_30.clicked.connect(self.concepts_AtribuTO)
+                self.pushButton_29.clicked.connect(self.concepts_AtribuTO)
                 self.pushButton_28.clicked.connect(self.concepts_MaRedu)
                 self.pushButton_27.clicked.connect(self.concepts_DocumnTS)
                 self.pushButton_25.clicked.connect(self.concepts_disenIO)
@@ -1806,7 +1847,7 @@ class Screen5(QMainWindow):
                 loadUi("Interfaz_Grafica/Database.ui",self)
                 self.pushButton_8.clicked.connect(self.gotoScreen1)
                 width = 1500  
-                height = 850
+                height = 830
                 self.setFixedSize(width,height)
         
         def gotoScreen1(self):
