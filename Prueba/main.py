@@ -1843,17 +1843,186 @@ class Screen4(QMainWindow):
 
 class Screen5(QMainWindow):
         def __init__(self):
-                super(Screen5,self).__init__()
-                loadUi("Interfaz_Grafica/Database.ui",self)
-                self.pushButton_8.clicked.connect(self.gotoScreen1)
-                width = 1500  
-                height = 830
-                self.setFixedSize(width,height)
+              super(Screen5,self).__init__()
+              loadUi("Interfaz_Grafica/talbex.ui",self)
+              self.pushButton_6.clicked.connect(self.gotoScreen1)
+              self.pushButton_8.clicked.connect(self.gotoScreen2)
+              self.pushButton_9.clicked.connect(self.gotoScreen3)
+              self.pushButton_7.clicked.connect(self.gotoScreen4)
+              self.Pajs.setVisible(True)
+              self.Pajs_2.setVisible(True)
+              self.Pajs_3.setVisible(True)
+              self.Pajs_4.setVisible(True)
+              self.Pajs.setColumnWidth(0, 50)
+              self.Pajs.setColumnWidth(1, 110)
+              self.Pajs.setColumnWidth(2, 50)
+              self.Pajs.setColumnWidth(3, 110)
+              self.Pajs.setColumnWidth(4, 110)
+              self.Pajs.setColumnWidth(5, 50)
+              self.Pajs.setColumnWidth(6, 110)
+              self.Pajs.setColumnWidth(7, 110)
+              self.Pajs.setColumnWidth(8, 50)
+              self.Pajs.setColumnWidth(9, 50)
+              self.Pajs.setColumnWidth(10, 50)
+              self.Pajs.setColumnWidth(11, 110)
+              self.Pajs.setColumnWidth(12, 110)
+              self.Pajs.setColumnWidth(13, 110)
+              self.label.setPixmap(QPixmap("Interfaz_Grafica/wp2468077.jpg"))
+              self.loaddata()
+              self.loaddataSQLS()
+              self.loaddataPost()
+              self.loadMong()
+
+        def loadMong(self):
+              mongoDB_client = MongoClient()
+              mongoDB_client = MongoClient('localhost', 27017)
+              mongoDB_db = mongoDB_client["dbpaises"]
+              mongoDB_collection = mongoDB_db["pokemon"]
+              result=(mongoDB_collection.find())
+              tablerow=0
+              self.Pajs_4.setRowCount(898)
+              for row in result:
+                     self.Pajs_4.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row['type_number'])))
+                     self.Pajs_4.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row['name'])))
+                     self.Pajs_4.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row['generation'])))
+                     self.Pajs_4.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row['status'])))
+                     self.Pajs_4.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row['species'])))
+                     self.Pajs_4.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row['type_number'])))
+                     self.Pajs_4.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row['type_1'])))
+                     self.Pajs_4.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row['type_2'])))
+                     self.Pajs_4.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row['height_m'])))
+                     self.Pajs_4.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row['weight_kg'])))
+                     self.Pajs_4.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row['abilities_number'])))
+                     self.Pajs_4.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row['ability_1'])))
+                     self.Pajs_4.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row['ability_2'])))
+                     self.Pajs_4.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row['ability_hidden'])))
+                     tablerow+=1
+       
+              
+              
+
+
+        def loaddataPost(self):
+              conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+              cur = conn.cursor()
+              sqlstr = 'SELECT * FROM pokemones'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Pajs_3.setRowCount(898)
+              for row in registro:
+                     self.Pajs_3.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Pajs_3.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Pajs_3.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     self.Pajs_3.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                     self.Pajs_3.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                     self.Pajs_3.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                     self.Pajs_3.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
+                     self.Pajs_3.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
+                     self.Pajs_3.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
+                     self.Pajs_3.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
+                     self.Pajs_3.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
+                     self.Pajs_3.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
+                     self.Pajs_3.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row[12])))
+                     self.Pajs_3.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row[13])))
+                     tablerow+=1
+              
+
+
+        def loaddata(self):
+              DB_IP = 'localhost'
+              DB_ID = "root"
+              DB_PW = "LS9lm10N11"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              cur = MySQL_db.cursor()
+              sqlstr = 'SELECT * FROM pokemones'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Pajs.setRowCount(898)
+              for row in registro:
+                     self.Pajs.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row["pk_number"])))
+                     self.Pajs.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row["name"])))
+                     self.Pajs.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row["generation"])))
+                     self.Pajs.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row["status"])))
+                     self.Pajs.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row["species"])))
+                     self.Pajs.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row["number_type"])))
+                     self.Pajs.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row["type_1"])))
+                     self.Pajs.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row["type_2"])))
+                     self.Pajs.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row["height"])))
+                     self.Pajs.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row["weight"])))
+                     self.Pajs.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row["n_abilities"])))
+                     self.Pajs.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row["abilities_1"])))
+                     self.Pajs.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row["abilities_2"])))
+                     self.Pajs.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row["abilities_hidden"])))
+                     tablerow+=1
+        
+        def loaddataSQLS(self):
+              conn_strR = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+              cnxn = pyodbc.connect(conn_strR) 
+              cur = cnxn.cursor()
+              sqlstr = 'SELECT * FROM pokemon'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Pajs_2.setRowCount(898)
+              for row in registro:
+                     self.Pajs_2.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Pajs_2.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Pajs_2.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     self.Pajs_2.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                     self.Pajs_2.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                     self.Pajs_2.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                     self.Pajs_2.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
+                     self.Pajs_2.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
+                     self.Pajs_2.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
+                     self.Pajs_2.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
+                     self.Pajs_2.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
+                     self.Pajs_2.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
+                     self.Pajs_2.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row[12])))
+                     self.Pajs_2.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row[13])))
+                     tablerow+=1     
+              
         
         def gotoScreen1(self):
                 mainwindow=MainWindow()
                 widget.addWidget(mainwindow)
                 widget.setCurrentIndex(widget.currentIndex()+1)
+
+        def gotoScreen2(self):
+              self.label.setPixmap(QPixmap("Interfaz_Grafica/movie.jpg"))
+              self.Pajs.setVisible(False)
+              self.Pajs_2.setVisible(False)
+              self.Pajs_3.setVisible(False)
+              self.Pajs_4.setVisible(False)
+
+        def gotoScreen3(self):
+              self.label.setPixmap(QPixmap("Interfaz_Grafica/Mapa-Ubicación-Chile.jpg"))
+              self.Pajs.setVisible(False)
+              self.Pajs_2.setVisible(False)
+              self.Pajs_3.setVisible(False)
+              self.Pajs_4.setVisible(False)
+        
+        def gotoScreen4(self):
+              self.label.setPixmap(QPixmap("Interfaz_Grafica/wp2468077.jpg"))
+              self.Pajs.setVisible(True)
+              self.Pajs_2.setVisible(True)
+              self.Pajs_3.setVisible(True)
+              self.Pajs_4.setVisible(True)
+
+                
+
+        
+
+
+       
+       
 
 
 

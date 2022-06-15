@@ -13,6 +13,10 @@
     <file>Historia Edicion.qrc</file>
   </qresource>
   <qresource prefix="newPrefix">
+    <file>wp2468077.jpg</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+  <qresource prefix="newPrefix">
     <file>concepts_images.png</file>
   </qresource>
   <qresource prefix="newPrefix">

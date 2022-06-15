@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1495</width>
+    <height>836</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btn_menu">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1509</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#457b9d;
+font:87 12pt&quot;Arial Black&quot;;
+border-radius:0px;
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>DATABASES</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../../Imagenes/bars-solid.svg</normaloff>../../../Imagenes/bars-solid.svg</iconset>
+    </property>
+   </widget>
+   <widget class="QFrame" name="Frame_Inferior_Izq">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>200</width>
+      <height>801</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>200</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#a8dadc;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Volver</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Pokemon DB</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_8">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Netfflix - Disney DB</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_9">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Chile Db</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>194</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="Pajs">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>90</y>
+      <width>381</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>pk_number</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>generation</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>status</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>species</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>number_type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>height</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>weight</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>n_abilities</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_hidden</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Pajs_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>440</y>
+      <width>381</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>pk_number</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>generation</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>status</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>species</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>number_type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>height</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>weight</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>n_abilities</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_hidden</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Pajs_3">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>90</y>
+      <width>381</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 0);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>pk_number</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>generation</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>status</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>species</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>number_type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>height</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>weight</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>n_abilities</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_hidden</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Pajs_4">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>440</y>
+      <width>381</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>pk_number</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>generation</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>status</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>species</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>number_type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>height</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>weight</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>n_abilities</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>abilities_hidden</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>30</y>
+      <width>1291</width>
+      <height>801</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/newPrefix/wp2468077.jpg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>btn_menu</zorder>
+   <zorder>Frame_Inferior_Izq</zorder>
+   <zorder>Pajs</zorder>
+   <zorder>Pajs_2</zorder>
+   <zorder>Pajs_3</zorder>
+   <zorder>Pajs_4</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Historia Edicion.qrc"/>
+ </resources>
+ <connections/>
+</ui>
