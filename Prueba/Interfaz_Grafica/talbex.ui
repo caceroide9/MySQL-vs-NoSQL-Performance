@@ -630,6 +630,916 @@ font: 75 12pt&quot;Arial Narrow&quot;;
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QTableWidget" name="NetMy">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>40</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>cast</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>release_year</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Net_My2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>440</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>cast</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>release_year</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>listed_in</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Net_My3">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>40</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 0);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>n_cast</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>release_year</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>listed_in</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Net_My4">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>440</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>New Column</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>New Column</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="DisnetMy_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>220</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>cast</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>release_year</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Disnet_My2_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>630</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>cast</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>release_year</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>listed_in</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Disnet_My3_2">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>220</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 0);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>n_cast</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>release_year</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>listed_in</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Disnet_My4_2">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>630</y>
+      <width>371</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>show_id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>type</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>director</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>country</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>date_added</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>New Column</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>rating</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>New Column</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>duration</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>description</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Region_MS">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>50</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Provincia_MS">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>50</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>idRegion</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Comuna_MS">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>240</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>idProvincia</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Region_SQLS">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>450</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Provincia_SQLS">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>450</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>idRegion</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Comuna_SQLS">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>650</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>idProvincia</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Region_Post">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>50</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 0);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Provincia_Post">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>50</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 0);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Comuna_Post">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>230</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 170, 0);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Region_Mongo">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>450</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Provincia_Mongo">
+    <property name="geometry">
+     <rect>
+      <x>1190</x>
+      <y>450</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="Comuna_Mongo">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>640</y>
+      <width>221</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 127);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>id</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ISO_3166_2_CL</string>
+     </property>
+    </column>
+   </widget>
    <zorder>label</zorder>
    <zorder>btn_menu</zorder>
    <zorder>Frame_Inferior_Izq</zorder>
@@ -637,6 +1547,26 @@ font: 75 12pt&quot;Arial Narrow&quot;;
    <zorder>Pajs_2</zorder>
    <zorder>Pajs_3</zorder>
    <zorder>Pajs_4</zorder>
+   <zorder>NetMy</zorder>
+   <zorder>Net_My2</zorder>
+   <zorder>Net_My3</zorder>
+   <zorder>Net_My4</zorder>
+   <zorder>DisnetMy_2</zorder>
+   <zorder>Disnet_My2_2</zorder>
+   <zorder>Disnet_My3_2</zorder>
+   <zorder>Disnet_My4_2</zorder>
+   <zorder>Region_MS</zorder>
+   <zorder>Provincia_MS</zorder>
+   <zorder>Comuna_MS</zorder>
+   <zorder>Region_SQLS</zorder>
+   <zorder>Provincia_SQLS</zorder>
+   <zorder>Comuna_SQLS</zorder>
+   <zorder>Region_Post</zorder>
+   <zorder>Provincia_Post</zorder>
+   <zorder>Comuna_Post</zorder>
+   <zorder>Region_Mongo</zorder>
+   <zorder>Provincia_Mongo</zorder>
+   <zorder>Comuna_Mongo</zorder>
   </widget>
  </widget>
  <resources>

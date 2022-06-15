@@ -1853,6 +1853,24 @@ class Screen5(QMainWindow):
               self.Pajs_2.setVisible(True)
               self.Pajs_3.setVisible(True)
               self.Pajs_4.setVisible(True)
+              self.Pajs_4.setVisible(True)
+              self.NetMy.setVisible(False)
+              self.Net_My2.setVisible(False)
+              self.Net_My3.setVisible(False)
+              self.Net_My4.setVisible(False)
+              self.DisnetMy_2.setVisible(False)
+              self.Disnet_My2_2.setVisible(False)
+              self.Disnet_My3_2.setVisible(False)
+              self.Disnet_My4_2.setVisible(False)
+              self.Region_MS.setVisible(False)
+              self.Provincia_MS.setVisible(False)
+              self.Comuna_MS.setVisible(False)
+              self.Comuna_SQLS.setVisible(False)
+              self.Provincia_SQLS.setVisible(False)
+              self.Region_SQLS.setVisible(False)
+              self.Region_Post.setVisible(False)
+              self.Comuna_Post.setVisible(False)
+              self.Provincia_Post.setVisible(False)
               self.Pajs.setColumnWidth(0, 50)
               self.Pajs.setColumnWidth(1, 110)
               self.Pajs.setColumnWidth(2, 50)
@@ -1900,6 +1918,47 @@ class Screen5(QMainWindow):
        
               
               
+        def loadMongNet(self):
+              mongoDB_client = MongoClient()
+              mongoDB_client = MongoClient('localhost', 27017)
+              mongoDB_db = mongoDB_client["dbpaises"]
+              mongoDB_collection = mongoDB_db["netflix"]
+              result=(mongoDB_collection.find())
+              tablerow=0
+              self.Net_My4.setRowCount(898)
+              for row in result:
+                     self.Net_My4.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row['show_id'])))
+                     self.Net_My4.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row['type'])))
+                     self.Net_My4.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row['title'])))
+                     
+                     
+                     
+                     self.Net_My4.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row['release_year'])))
+                    
+                     self.Net_My4.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row['listed_in'])))
+                     self.Net_My4.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row['description'])))
+                     tablerow+=1
+        
+        def loadMongDisney(self):
+              mongoDB_client = MongoClient()
+              mongoDB_client = MongoClient('localhost', 27017)
+              mongoDB_db = mongoDB_client["dbpaises"]
+              mongoDB_collection = mongoDB_db["disney"]
+              result=(mongoDB_collection.find())
+              tablerow=0
+              self.Disnet_My4_2.setRowCount(898)
+              for row in result:
+                     self.Disnet_My4_2.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row['show_id'])))
+                     self.Disnet_My4_2.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row['type'])))
+                     self.Disnet_My4_2.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row['title'])))
+                     
+                     
+                     
+                     self.Disnet_My4_2.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row['release_year'])))
+                    
+                     self.Disnet_My4_2.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row['listed_in'])))
+                     self.Disnet_My4_2.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row['description'])))
+                     tablerow+=1
 
 
         def loaddataPost(self):
@@ -1927,8 +1986,99 @@ class Screen5(QMainWindow):
                      self.Pajs_3.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row[12])))
                      self.Pajs_3.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row[13])))
                      tablerow+=1
-              
+        
+        def RegionPost(self):
+              conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+              cur = conn.cursor()
+              sqlstr = 'SELECT * FROM tbl_region'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Region_Post.setRowCount(898)
+              for row in registro:
+                     self.Region_Post.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Region_Post.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Region_Post.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     tablerow+=1
+        
+        def ProvinciaPost(self):
+              conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+              cur = conn.cursor()
+              sqlstr = 'SELECT * FROM tbl_provincia'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Provincia_Post.setRowCount(898)
+              for row in registro:
+                     self.Provincia_Post.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Provincia_Post.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Provincia_Post.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     tablerow+=1
 
+        def ComunaPost(self):
+              conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+              cur = conn.cursor()
+              sqlstr = 'SELECT * FROM tbl_comuna'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Comuna_Post.setRowCount(898)
+              for row in registro:
+                     self.Comuna_Post.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Comuna_Post.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Comuna_Post.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     tablerow+=1
+              
+        def loaddataPostNet(self):
+              conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+              cur = conn.cursor()
+              sqlstr = 'SELECT * FROM netflix'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Net_My3.setRowCount(898)
+              for row in registro:
+                     self.Net_My3.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Net_My3.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Net_My3.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     self.Net_My3.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                     self.Net_My3.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                     self.Net_My3.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                     self.Net_My3.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
+                     self.Net_My3.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
+                     self.Net_My3.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
+                     self.Net_My3.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
+                     self.Net_My3.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
+                     self.Net_My3.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
+                     tablerow+=1
+       
+        def loaddataPostDisen(self):
+              conn = psycopg2.connect(dbname="Paises", user="postgres",
+                            password="LS9lm10N11", host="localhost", port="5432")
+              cur = conn.cursor()
+              sqlstr = 'SELECT * FROM disney'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Disnet_My3_2.setRowCount(898)
+              for row in registro:
+                     self.Disnet_My3_2.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Disnet_My3_2.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Disnet_My3_2.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     self.Disnet_My3_2.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                     self.Disnet_My3_2.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                     self.Disnet_My3_2.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                     self.Disnet_My3_2.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
+                     self.Disnet_My3_2.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
+                     self.Disnet_My3_2.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
+                     self.Disnet_My3_2.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
+                     self.Disnet_My3_2.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
+                     self.Disnet_My3_2.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
+                     tablerow+=1
 
         def loaddata(self):
               DB_IP = 'localhost'
@@ -1957,7 +2107,230 @@ class Screen5(QMainWindow):
                      self.Pajs.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row["abilities_2"])))
                      self.Pajs.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row["abilities_hidden"])))
                      tablerow+=1
+
+        def ComunaMY(self):
+              DB_IP = 'localhost'
+              DB_ID = "root"
+              DB_PW = "LS9lm10N11"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              cur = MySQL_db.cursor()
+              sqlstr = 'SELECT * FROM tbl_comuna'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Comuna_MS.setRowCount(898)
+              for row in registro:
+                     self.Comuna_MS.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row["id"])))
+                     self.Comuna_MS.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row["nombre"])))
+                     self.Comuna_MS.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row["idProvincia"])))
+                     tablerow+=1
         
+        def ProvinciaMY(self):
+              DB_IP = 'localhost'
+              DB_ID = "root"
+              DB_PW = "LS9lm10N11"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              cur = MySQL_db.cursor()
+              sqlstr = 'SELECT * FROM tbl_provincia'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Provincia_MS.setRowCount(898)
+              for row in registro:
+                     self.Provincia_MS.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row["id"])))
+                     self.Provincia_MS.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row["nombre"])))
+                     self.Provincia_MS.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row["idRegion"])))
+                     tablerow+=1
+
+        def RegionMY(self):
+              DB_IP = 'localhost'
+              DB_ID = "root"
+              DB_PW = "LS9lm10N11"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              cur = MySQL_db.cursor()
+              sqlstr = 'SELECT * FROM tbl_region'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Region_MS.setRowCount(898)
+              for row in registro:
+                     self.Region_MS.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row["id"])))
+                     self.Region_MS.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row["nombre"])))
+                     self.Region_MS.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row["ISO_3166_2_CL"])))
+                     tablerow+=1
+       
+        
+        
+        def loaddataMy(self):
+              DB_IP = 'localhost'
+              DB_ID = "root"
+              DB_PW = "LS9lm10N11"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              cur = MySQL_db.cursor()
+              sqlstr = 'SELECT * FROM netflix'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.NetMy.setRowCount(898)
+              for row in registro:
+                     self.NetMy.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row["show_id"])))
+                     self.NetMy.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row["type"])))
+                     self.NetMy.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row["title"])))
+                     self.NetMy.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row["director"])))
+                     self.NetMy.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row["cast"])))
+                     self.NetMy.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row["country"])))
+                     self.NetMy.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row["date_added"])))
+                     self.NetMy.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row["release_year"])))
+                     self.NetMy.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row["rating"])))
+                     self.NetMy.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row["duration"])))
+                     self.NetMy.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row["listed_in"])))
+                     self.NetMy.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row["description"])))
+                     tablerow+=1
+        
+        def loaddataMyDis(self):
+              DB_IP = 'localhost'
+              DB_ID = "root"
+              DB_PW = "LS9lm10N11"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              cur = MySQL_db.cursor()
+              sqlstr = 'SELECT * FROM disney'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.DisnetMy_2.setRowCount(898)
+              for row in registro:
+                     self.DisnetMy_2.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row["show_id"])))
+                     self.DisnetMy_2.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row["type"])))
+                     self.DisnetMy_2.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row["title"])))
+                     self.DisnetMy_2.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row["director"])))
+                     self.DisnetMy_2.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row["cast"])))
+                     self.DisnetMy_2.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row["country"])))
+                     self.DisnetMy_2.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row["date_added"])))
+                     self.DisnetMy_2.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row["release_year"])))
+                     self.DisnetMy_2.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row["rating"])))
+                     self.DisnetMy_2.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row["duration"])))
+                     self.DisnetMy_2.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row["listed_in"])))
+                     self.DisnetMy_2.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row["description"])))
+                     tablerow+=1
+
+        def loaddataSQLSNet(self):
+              conn_strR = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+              cnxn = pyodbc.connect(conn_strR) 
+              cur = cnxn.cursor()
+              sqlstr = 'SELECT * FROM netflix'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Net_My2.setRowCount(898)
+              for row in registro:
+                     self.Net_My2.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Net_My2.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Net_My2.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     self.Net_My2.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                     self.Net_My2.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                     self.Net_My2.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                     self.Net_My2.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
+                     self.Net_My2.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
+                     self.Net_My2.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
+                     self.Net_My2.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
+                     self.Net_My2.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
+                     self.Net_My2.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
+                     tablerow+=1
+
+        def ComunaSQLS(self):
+              conn_strR = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+              cnxn = pyodbc.connect(conn_strR) 
+              cur = cnxn.cursor()
+              sqlstr = 'SELECT * FROM tbl_comuna'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Comuna_SQLS.setRowCount(898)
+              for row in registro:
+                     self.Comuna_SQLS.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Comuna_SQLS.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Comuna_SQLS.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     tablerow+=1
+       
+        def ProvinciaSQLS(self):
+              conn_strR = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+              cnxn = pyodbc.connect(conn_strR) 
+              cur = cnxn.cursor()
+              sqlstr = 'SELECT * FROM tbl_provincia'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Provincia_SQLS.setRowCount(898)
+              for row in registro:
+                     self.Provincia_SQLS.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Provincia_SQLS.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Provincia_SQLS.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     tablerow+=1
+       
+        def RegionSQLS(self):
+              conn_strR = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+              cnxn = pyodbc.connect(conn_strR) 
+              cur = cnxn.cursor()
+              sqlstr = 'SELECT * FROM tbl_region'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Region_SQLS.setRowCount(898)
+              for row in registro:
+                     self.Region_SQLS.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Region_SQLS.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Region_SQLS.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     tablerow+=1
+
+        def loaddataSQLSDisney(self):
+              conn_strR = (
+                        r'DRIVER={SQL Server};'
+                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'DATABASE=paises;'
+                        r'Trusted_Connection=yes;')
+                        
+              cnxn = pyodbc.connect(conn_strR) 
+              cur = cnxn.cursor()
+              sqlstr = 'SELECT * FROM disney'
+              tablerow=0
+              cur.execute(sqlstr,)
+              registro = cur.fetchall()
+              self.Disnet_My2_2.setRowCount(898)
+              for row in registro:
+                     self.Disnet_My2_2.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                     self.Disnet_My2_2.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                     self.Disnet_My2_2.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                     self.Disnet_My2_2.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                     self.Disnet_My2_2.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                     self.Disnet_My2_2.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                     self.Disnet_My2_2.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
+                     self.Disnet_My2_2.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
+                     self.Disnet_My2_2.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
+                     self.Disnet_My2_2.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
+                     self.Disnet_My2_2.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
+                     self.Disnet_My2_2.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
+                     tablerow+=1
+
         def loaddataSQLS(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
@@ -2001,6 +2374,32 @@ class Screen5(QMainWindow):
               self.Pajs_2.setVisible(False)
               self.Pajs_3.setVisible(False)
               self.Pajs_4.setVisible(False)
+              self.NetMy.setVisible(True)
+              self.Net_My2.setVisible(True)
+              self.Net_My3.setVisible(True)
+              self.Net_My4.setVisible(True)
+              self.DisnetMy_2.setVisible(True)
+              self.Disnet_My2_2.setVisible(True)
+              self.Disnet_My3_2.setVisible(True)
+              self.Disnet_My4_2.setVisible(True)
+              self.Region_MS.setVisible(False)
+              self.Provincia_MS.setVisible(False)
+              self.Comuna_MS.setVisible(False)
+              self.Comuna_SQLS.setVisible(False)
+              self.Provincia_SQLS.setVisible(False)
+              self.Region_SQLS.setVisible(False)
+              self.Region_Post.setVisible(False)
+              self.Comuna_Post.setVisible(False)
+              self.Provincia_Post.setVisible(False)
+              self.loaddataMy()
+              self.loaddataSQLSNet()
+              self.loaddataPostNet()
+              self.loadMongNet()
+              self.loaddataMyDis()
+              self.loaddataSQLSDisney()
+              self.loaddataPostDisen()
+              self.loadMongDisney()
+              
 
         def gotoScreen3(self):
               self.label.setPixmap(QPixmap("Interfaz_Grafica/Mapa-Ubicación-Chile.jpg"))
@@ -2008,6 +2407,33 @@ class Screen5(QMainWindow):
               self.Pajs_2.setVisible(False)
               self.Pajs_3.setVisible(False)
               self.Pajs_4.setVisible(False)
+              self.NetMy.setVisible(False)
+              self.Net_My2.setVisible(False)
+              self.Net_My3.setVisible(False)
+              self.Net_My4.setVisible(False)
+              self.DisnetMy_2.setVisible(False)
+              self.Disnet_My2_2.setVisible(False)
+              self.Disnet_My3_2.setVisible(False)
+              self.Disnet_My4_2.setVisible(False)
+              self.Region_MS.setVisible(True)
+              self.Provincia_MS.setVisible(True)
+              self.Comuna_MS.setVisible(True)
+              self.Region_SQLS.setVisible(True)
+              self.Comuna_SQLS.setVisible(True)
+              self.Provincia_SQLS.setVisible(True)
+              self.Region_Post.setVisible(True)
+              self.Comuna_Post.setVisible(True)
+              self.Provincia_Post.setVisible(True)
+              self.RegionSQLS()
+              self.ProvinciaSQLS()
+              self.ComunaSQLS()
+              self.ComunaMY()
+              self.ProvinciaMY()
+              self.RegionMY()
+              self.ComunaPost()
+              self.ProvinciaPost()
+              self.RegionPost()
+             
         
         def gotoScreen4(self):
               self.label.setPixmap(QPixmap("Interfaz_Grafica/wp2468077.jpg"))
@@ -2015,6 +2441,27 @@ class Screen5(QMainWindow):
               self.Pajs_2.setVisible(True)
               self.Pajs_3.setVisible(True)
               self.Pajs_4.setVisible(True)
+              self.NetMy.setVisible(False)
+              self.Net_My2.setVisible(False)
+              self.Net_My3.setVisible(False)
+              self.Net_My4.setVisible(False)
+              self.DisnetMy_2.setVisible(False)
+              self.Disnet_My2_2.setVisible(False)
+              self.Disnet_My3_2.setVisible(False)
+              self.Disnet_My4_2.setVisible(False)
+              self.Region_MS.setVisible(False)
+              self.Provincia_MS.setVisible(False)
+              self.Comuna_MS.setVisible(False)
+              self.Comuna_SQLS.setVisible(False)
+              self.Provincia_SQLS.setVisible(False)
+              self.Region_SQLS.setVisible(False)
+              self.Region_Post.setVisible(False)
+              self.Comuna_Post.setVisible(False)
+              self.Provincia_Post.setVisible(False)
+              self.loaddata()
+              self.loaddataSQLS()
+              self.loaddataPost()
+              self.loadMong()
 
                 
 
