@@ -1,46 +1,49 @@
 import mysql.connector
 
-class Registro_datos():
+class Registro_datos_Pok():
     def __init__(self):
         self.conexion = mysql.connector.connect( host='localhost',
                                             database ='paises', 
                                             user = 'root',
                                             password ='LS9lm10N11')
-    def inserta_producto(self,codigo, nombre, modelo, precio, cantidad):
+    
+    def inserta_productoPO(self,pk_id, artist, song, duration_ms, explicit, year, popularity, danceability, energy, key, mode, acousticness, instrumentalness, liveness, valence, tempo, genre):
         cur = self.conexion.cursor()
-        sql='''INSERT INTO productos (CODIGO, NOMBRE, MODELO, PRECIO, CANTIDAD) 
-        VALUES('{}', '{}','{}', '{}','{}')'''.format(codigo, nombre, modelo, precio, cantidad)
+        sql='''INSERT INTO `Spotify` (`pk_id`, `artist`, `song`, `duration_ms`, `explicit`, `year`, `popularity`, `danceability`, `energy`, `key`, `mode`, `acousticness`, `instrumentalness`, `liveness`, `valence`, `tempo`, `genre`) 
+        VALUES('{}', '{}','{}', '{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')'''.format(pk_id, artist, song, duration_ms, explicit, year, popularity, danceability, energy, key, mode, acousticness, instrumentalness, liveness, valence, tempo, genre)
         cur.execute(sql)
         self.conexion.commit()    
         cur.close()
-    def buscar_productos(self):
+
+
+    def buscar_productosPO(self):
         cursor = self.conexion.cursor()
-        sql = "SELECT * FROM productos " 
+        sql = "SELECT * FROM Spotify " 
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
-    def busca_producto(self, nombre_producto):
+    def busca_productoPO(self, pk_id):
         cur = self.conexion.cursor()
-        sql = "SELECT * FROM productos WHERE NOMBRE = {}".format(nombre_producto)
+        sql = "SELECT * FROM Spotify WHERE pk_id = {}".format(pk_id)
         cur.execute(sql)
         nombreX = cur.fetchall()
         cur.close()     
         return nombreX 
 
-    def elimina_productos(self,nombre):
+    def elimina_productosPO(self,pk_id):
         cur = self.conexion.cursor()
-        sql='''DELETE FROM productos WHERE NOMBRE = {}'''.format(nombre)
+        sql='''DELETE FROM Spotify WHERE pk_id = {}'''.format(pk_id)
         cur.execute(sql)
         a = cur.rowcount
         self.conexion.commit()    
         cur.close()
         return a   
 
-    def actualiza_productos(self, codigo, nombre, modelo, precio, cantidad):
+    def actualiza_productosPo(self, pk_id, artist, song, duration_ms, explicit, year, popularity, danceability, energy, key, mode, acousticness, instrumentalness, liveness, valence, tempo, genre):
         cur = self.conexion.cursor()
-        sql ='''UPDATE productos SET  CODIGO =' {}' , MODELO = '{}', PRECIO = '{}', CANTIDAD = '{}'
-        WHERE NOMBRE = '{}' '''.format(codigo,  modelo, precio, cantidad, nombre)
+        sql ='''UPDATE Spotify SET  pk_id =' {}' , artist = '{}', song = '{}', duration_ms = '{}', explicit = '{}', year = '{}', popularity = '{}', danceability = '{}', energy = '{}', key = '{}', mode = '{}', acousticness = '{}', instrumentalness = '{}', liveness = '{}', valence = '{}', tempo = '{}', genre = '{}'
+        WHERE pk_number = '{}' '''.format(pk_id, artist, song, duration_ms, explicit, year, popularity, danceability, energy, key, mode, acousticness, instrumentalness, liveness, valence, tempo, genre)
         cur.execute(sql)
         a = cur.rowcount
         self.conexion.commit()    
