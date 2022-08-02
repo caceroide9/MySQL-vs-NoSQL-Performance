@@ -3,9 +3,9 @@ import mysql.connector
 class Registro_datos_Pok():
     def __init__(self):
         self.conexion = mysql.connector.connect( host='localhost',
-                                            database ='paises', 
-                                            user = 'root',
-                                            password ='LS9lm10N11')
+                                            database ='DBNAME', 
+                                            user = 'USER',
+                                            password ='PASSWORD')
     
     def inserta_productoPO(self,pk_id, artist, song, duration_ms, explicit, year, popularity, danceability, energy, key, mode, acousticness, instrumentalness, liveness, valence, tempo, genre):
         cur = self.conexion.cursor()

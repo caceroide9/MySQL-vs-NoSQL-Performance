@@ -281,26 +281,26 @@ class MainWindow(QMainWindow):
                 fieldnames1 = ['Iteracion','Hora']
                 fieldnames2 = ['Iteracion','Hora']
                 DB_IP = 'localhost'
-                DB_ID = "root"
-                DB_PW = "LS9lm10N11"
+                DB_ID = "USER"
+                DB_PW = "PASSWORD"
                 
-                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
                 
                 mongoDB_client = MongoClient()
                 mongoDB_client = MongoClient('localhost', 27017)
-                mongoDB_db = mongoDB_client["dbpaises"]
-                mongoDB_collection = mongoDB_db["pokemon"]
+                mongoDB_db = mongoDB_client["DATABASENAME"]
+                mongoDB_collection = mongoDB_db["COLLECTION"]
 
                 conn_str = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
                 cnxn = pyodbc.connect(conn_str)
 
-                conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+                conn = psycopg2.connect(dbname="DBNAME", user="USER",
+                            password="PASSWORD", host="localhost", port="5432")
                 random = []
                 pt.GUI(MySQL_db,mongoDB_collection,cnxn,conn)
                 
@@ -310,26 +310,26 @@ class MainWindow(QMainWindow):
                 fieldnames1 = ['Iteracion','Hora']
                 fieldnames2 = ['Iteracion','Hora']
                 DB_IP = 'localhost'
-                DB_ID = "root"
-                DB_PW = "LS9lm10N11"
-                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+                DB_ID = "USER"
+                DB_PW = "PASSWORD"
+                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
 
                 mongoDB_client = MongoClient()
                 mongoDB_client = MongoClient('localhost', 27017)
-                mongoDB_db = mongoDB_client["dbpaises"]
-                mongoDB_collection = mongoDB_db["netflix"]
-                mongoDB_collection_2 = mongoDB_db["disney"]
+                mongoDB_db = mongoDB_client["DBNAME"]
+                mongoDB_collection = mongoDB_db["COLLECTION"]
+                mongoDB_collection_2 = mongoDB_db["COLLECTION"]
                 
                 conn_str = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBANME;'
                         r'Trusted_Connection=yes;')
                         
                 cnxn = pyodbc.connect(conn_str)
                 
-                conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+                conn = psycopg2.connect(dbname="DBNAME", user="USER",
+                            password="PASSWORD", host="localhost", port="5432")
                 random = []
                 pt2.GUI2(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2)
 
@@ -338,27 +338,27 @@ class MainWindow(QMainWindow):
                 fieldnames1 = ['Iteracion','Hora']
                 fieldnames2 = ['Iteracion','Hora']
                 DB_IP = 'localhost'
-                DB_ID = "root"
-                DB_PW = "LS9lm10N11"
-                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+                DB_ID = "USER"
+                DB_PW = "PASSWORD"
+                MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
 
                 mongoDB_client = MongoClient()
                 mongoDB_client = MongoClient('localhost', 27017)
-                mongoDB_db = mongoDB_client["dbpaises"]
-                mongoDB_collection = mongoDB_db["comuna"]
-                mongoDB_collection_2 = mongoDB_db["provincias"]
-                mongoDB_collection_3 = mongoDB_db["region"]
+                mongoDB_db = mongoDB_client["DBANME"]
+                mongoDB_collection = mongoDB_db["COLLECTION"]
+                mongoDB_collection_2 = mongoDB_db["COLLECTION"]
+                mongoDB_collection_3 = mongoDB_db["COLLECTION"]
                 
                 conn_str = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
                 cnxn = pyodbc.connect(conn_str)
                 
-                conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+                conn = psycopg2.connect(dbname="DBNAME", user="USER",
+                            password="PASSWORD", host="localhost", port="5432")
                 random = []
                 pt3.GUI3(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2,mongoDB_collection_3)
        
@@ -2777,8 +2777,8 @@ class Screen5(QMainWindow):
         def loadMong(self):
               mongoDB_client = MongoClient()
               mongoDB_client = MongoClient('localhost', 27017)
-              mongoDB_db = mongoDB_client["dbpaises"]
-              mongoDB_collection = mongoDB_db["pokemon"]
+              mongoDB_db = mongoDB_client["DBANME"]
+              mongoDB_collection = mongoDB_db["COLLECTION"]
               result=(mongoDB_collection.find())
               tablerow=0
               self.Pajs_4.setRowCount(898)
@@ -2804,8 +2804,8 @@ class Screen5(QMainWindow):
         def loadMongNet(self):
               mongoDB_client = MongoClient()
               mongoDB_client = MongoClient('localhost', 27017)
-              mongoDB_db = mongoDB_client["dbpaises"]
-              mongoDB_collection = mongoDB_db["netflix"]
+              mongoDB_db = mongoDB_client["DBNAME"]
+              mongoDB_collection = mongoDB_db["COLLECTION"]
               result=(mongoDB_collection.find())
               tablerow=0
               self.Net_My4.setRowCount(898)
@@ -2825,8 +2825,8 @@ class Screen5(QMainWindow):
         def loadMongDisney(self):
               mongoDB_client = MongoClient()
               mongoDB_client = MongoClient('localhost', 27017)
-              mongoDB_db = mongoDB_client["dbpaises"]
-              mongoDB_collection = mongoDB_db["disney"]
+              mongoDB_db = mongoDB_client["DBNAME"]
+              mongoDB_collection = mongoDB_db["COLLECTION"]
               result=(mongoDB_collection.find())
               tablerow=0
               self.Disnet_My4_2.setRowCount(898)
@@ -2846,8 +2846,8 @@ class Screen5(QMainWindow):
         def MongoRegion(self):
               mongoDB_client = MongoClient()
               mongoDB_client = MongoClient('localhost', 27017)
-              mongoDB_db = mongoDB_client["dbpaises"]
-              mongoDB_collection = mongoDB_db["region"]
+              mongoDB_db = mongoDB_client["DBNAME"]
+              mongoDB_collection = mongoDB_db["COLLECTION"]
               result=(mongoDB_collection.find())
               tablerow=0
               self.Region_Mongo.setRowCount(898)
@@ -2860,8 +2860,8 @@ class Screen5(QMainWindow):
         def MongoProvincia(self):
               mongoDB_client = MongoClient()
               mongoDB_client = MongoClient('localhost', 27017)
-              mongoDB_db = mongoDB_client["dbpaises"]
-              mongoDB_collection = mongoDB_db["provincias"]
+              mongoDB_db = mongoDB_client["DBNAME"]
+              mongoDB_collection = mongoDB_db["COLLECTION"]
               result=(mongoDB_collection.find())
               tablerow=0
               self.Provincia_Mongo.setRowCount(898)
@@ -2874,8 +2874,8 @@ class Screen5(QMainWindow):
         def MongoComuna(self):
               mongoDB_client = MongoClient()
               mongoDB_client = MongoClient('localhost', 27017)
-              mongoDB_db = mongoDB_client["dbpaises"]
-              mongoDB_collection = mongoDB_db["comuna"]
+              mongoDB_db = mongoDB_client["DBNAME"]
+              mongoDB_collection = mongoDB_db["COLLECTION"]
               result=(mongoDB_collection.find())
               tablerow=0
               self.Comuna_Mongo.setRowCount(898)
@@ -2887,8 +2887,8 @@ class Screen5(QMainWindow):
 
 
         def loaddataPost(self):
-              conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+              conn = psycopg2.connect(dbname="DBNAME", user="USER",
+                            password="PASSWORD", host="localhost", port="5432")
               cur = conn.cursor()
               sqlstr = 'SELECT * FROM pokemones'
               tablerow=0
@@ -2913,8 +2913,8 @@ class Screen5(QMainWindow):
                      tablerow+=1
         
         def RegionPost(self):
-              conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+              conn = psycopg2.connect(dbname="DBNAME", user="USER",
+                            password="PASSWORD", host="localhost", port="5432")
               cur = conn.cursor()
               sqlstr = 'SELECT * FROM tbl_region'
               tablerow=0
@@ -2928,8 +2928,8 @@ class Screen5(QMainWindow):
                      tablerow+=1
         
         def ProvinciaPost(self):
-              conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+              conn = psycopg2.connect(dbname="DBNAME", user="postgres",
+                            password="PASSWORD", host="localhost", port="5432")
               cur = conn.cursor()
               sqlstr = 'SELECT * FROM tbl_provincia'
               tablerow=0
@@ -2943,8 +2943,8 @@ class Screen5(QMainWindow):
                      tablerow+=1
 
         def ComunaPost(self):
-              conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+              conn = psycopg2.connect(dbname="DBNAME", user="postgres",
+                            password="PASSWORD", host="localhost", port="5432")
               cur = conn.cursor()
               sqlstr = 'SELECT * FROM tbl_comuna'
               tablerow=0
@@ -2958,8 +2958,8 @@ class Screen5(QMainWindow):
                      tablerow+=1
               
         def loaddataPostNet(self):
-              conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+              conn = psycopg2.connect(dbname="DBNAME", user="postgres",
+                            password="PASSWORD", host="localhost", port="5432")
               cur = conn.cursor()
               sqlstr = 'SELECT * FROM netflix'
               tablerow=0
@@ -2982,8 +2982,8 @@ class Screen5(QMainWindow):
                      tablerow+=1
        
         def loaddataPostDisen(self):
-              conn = psycopg2.connect(dbname="Paises", user="postgres",
-                            password="LS9lm10N11", host="localhost", port="5432")
+              conn = psycopg2.connect(dbname="DBNAME", user="postgres",
+                            password="PASSWORD", host="localhost", port="5432")
               cur = conn.cursor()
               sqlstr = 'SELECT * FROM disney'
               tablerow=0
@@ -3007,9 +3007,9 @@ class Screen5(QMainWindow):
 
         def loaddata(self):
               DB_IP = 'localhost'
-              DB_ID = "root"
-              DB_PW = "LS9lm10N11"
-              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              DB_ID = "USER"
+              DB_PW = "PASSWORD"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
               cur = MySQL_db.cursor()
               sqlstr = 'SELECT * FROM pokemones'
               tablerow=0
@@ -3035,9 +3035,9 @@ class Screen5(QMainWindow):
 
         def ComunaMY(self):
               DB_IP = 'localhost'
-              DB_ID = "root"
-              DB_PW = "LS9lm10N11"
-              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              DB_ID = "USER"
+              DB_PW = "PASSWORD"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
               cur = MySQL_db.cursor()
               sqlstr = 'SELECT * FROM tbl_comuna'
               tablerow=0
@@ -3052,9 +3052,9 @@ class Screen5(QMainWindow):
         
         def ProvinciaMY(self):
               DB_IP = 'localhost'
-              DB_ID = "root"
-              DB_PW = "LS9lm10N11"
-              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              DB_ID = "USER"
+              DB_PW = "PASSWORD"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
               cur = MySQL_db.cursor()
               sqlstr = 'SELECT * FROM tbl_provincia'
               tablerow=0
@@ -3069,9 +3069,9 @@ class Screen5(QMainWindow):
 
         def RegionMY(self):
               DB_IP = 'localhost'
-              DB_ID = "root"
-              DB_PW = "LS9lm10N11"
-              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              DB_ID = "USER"
+              DB_PW = "PASSWORD"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
               cur = MySQL_db.cursor()
               sqlstr = 'SELECT * FROM tbl_region'
               tablerow=0
@@ -3088,9 +3088,9 @@ class Screen5(QMainWindow):
         
         def loaddataMy(self):
               DB_IP = 'localhost'
-              DB_ID = "root"
-              DB_PW = "LS9lm10N11"
-              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              DB_ID = "USER"
+              DB_PW = "PASSWORD"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBANME', charset='utf8mb4', cursorclass=cursors.DictCursor)
               cur = MySQL_db.cursor()
               sqlstr = 'SELECT * FROM netflix'
               tablerow=0
@@ -3114,9 +3114,9 @@ class Screen5(QMainWindow):
         
         def loaddataMyDis(self):
               DB_IP = 'localhost'
-              DB_ID = "root"
-              DB_PW = "LS9lm10N11"
-              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='paises', charset='utf8mb4', cursorclass=cursors.DictCursor)
+              DB_ID = "USER"
+              DB_PW = "PASSWORD"
+              MySQL_db = connect(host=DB_IP, user=DB_ID, password=DB_PW, db='DBNAME', charset='utf8mb4', cursorclass=cursors.DictCursor)
               cur = MySQL_db.cursor()
               sqlstr = 'SELECT * FROM disney'
               tablerow=0
@@ -3142,7 +3142,7 @@ class Screen5(QMainWindow):
               conn_strR = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
               cnxn = pyodbc.connect(conn_strR) 
@@ -3171,7 +3171,7 @@ class Screen5(QMainWindow):
               conn_strR = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
               cnxn = pyodbc.connect(conn_strR) 
@@ -3191,7 +3191,7 @@ class Screen5(QMainWindow):
               conn_strR = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
               cnxn = pyodbc.connect(conn_strR) 
@@ -3211,7 +3211,7 @@ class Screen5(QMainWindow):
               conn_strR = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
               cnxn = pyodbc.connect(conn_strR) 
@@ -3231,7 +3231,7 @@ class Screen5(QMainWindow):
               conn_strR = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBNAME;'
                         r'Trusted_Connection=yes;')
                         
               cnxn = pyodbc.connect(conn_strR) 
@@ -3260,7 +3260,7 @@ class Screen5(QMainWindow):
               conn_strR = (
                         r'DRIVER={SQL Server};'
                         r'SERVER=localhost\SQLEXPRESS;'
-                        r'DATABASE=paises;'
+                        r'DATABASE=DBANME;'
                         r'Trusted_Connection=yes;')
                         
               cnxn = pyodbc.connect(conn_strR) 

@@ -3,9 +3,9 @@ import mysql.connector
 class Registro_datos():
     def __init__(self):
         self.conexion = mysql.connector.connect( host='localhost',
-                                            database ='paises', 
-                                            user = 'root',
-                                            password ='LS9lm10N11')
+                                            database ='DBNAME', 
+                                            user = 'USER',
+                                            password ='PASSWORD')
     def inserta_producto(self,codigo, nombre, modelo, precio, cantidad):
         cur = self.conexion.cursor()
         sql='''INSERT INTO productos (CODIGO, NOMBRE, MODELO, PRECIO, CANTIDAD) 

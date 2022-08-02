@@ -33,9 +33,9 @@ from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
                                QueryOptions)
 
 # Update this to your cluster
-username = "mcaceres"
-password = "LS9lm10N11"
-bucket_name = "pokemon"
+username = "USER"
+password = "PASSWORD"
+bucket_name = "DBNAME"
 cert_path = "path/to/certificate"
 # User Input ends here.
 
