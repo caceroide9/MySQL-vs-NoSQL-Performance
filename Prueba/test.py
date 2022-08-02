@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import matplotlib
-matplotlib.use("TkAgg")
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.animation import FuncAnimation
@@ -22,6 +22,41 @@ from tkinter import scrolledtext
 import psutil
 #from win32api import GetSystemMetrics
 from PIL import ImageTk, Image
+from datetime import timedelta
+from re import A
+
+# needed for any cluster connection
+from couchbase.auth import PasswordAuthenticator
+from couchbase.cluster import Cluster
+# needed for options -- cluster, timeout, SQL++ (N1QL) query, etc.
+from couchbase.options import (ClusterOptions, ClusterTimeoutOptions,
+                               QueryOptions)
+
+# Update this to your cluster
+username = "mcaceres"
+password = "LS9lm10N11"
+bucket_name = "pokemon"
+cert_path = "path/to/certificate"
+# User Input ends here.
+
+# Connect options - authentication
+auth = PasswordAuthenticator(
+    username,
+    password,
+    # NOTE: If using SSL/TLS, add the certificate path.
+    # We strongly reccomend this for production use.
+    # cert_path=cert_path
+)
+
+# Get a reference to our cluster
+# NOTE: For TLS/SSL connection use 'couchbases://<your-ip-address>' instead
+cluster = Cluster('couchbase://localhost', ClusterOptions(auth))
+
+# Wait until the cluster is ready for use.
+cluster.wait_until_ready(timedelta(seconds=5))
+
+# get a reference to our bucket
+cb = cluster.bucket(bucket_name)
 
 
 
@@ -111,6 +146,18 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
             csv_writer.writeheader()
     else:
          with open('Data/Postgres_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    
+    if not os.path.exists('Data/Cou_Test_3.csv'):
+    
+        with open('Data/Cou_Test_3.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/Cou_Test_3.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
             csv_writer.writeheader()
@@ -234,6 +281,34 @@ def TESTT3(log_box3,MySQL_db,mongoDB_collection,cnxn,conn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+
+    
+    global start99yyy
+    log_box3.insert(tk.END, ' \nTEST 3 Couchbase...')
+    start99yyy = time.process_time()
+    sql_query = 'select * from `pokemon`.`_default`.`_default` data use index(`#primary`) WHERE name like $1'
+    row_iter = cluster.query(sql_query,QueryOptions(positional_parameters=[temp_topic]))
+    x99 = range(resultZ[0])
+    aux9936=start99yyy/(resultZ[0])
+    for n9912 in x99:
+        if(not RUNNING3):
+            break
+        a99=n9912
+        b99=aux9936
+        aux9936=aux9936+start99yyy/result.get("cont")
+        info99 = {
+            'Iteracion': a99,
+        'Hora' : b99,
+            }
+        with open('Data/Cou_Test_3.csv', 'a', newline = '') as csv_file:
+            fieldnames2 = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames2)
+            csv_writer.writerow(info99)
+            log_box3.insert(tk.END, f"\n\n Iteracion: {a99}, Hora: {b99}")
+            log_box3.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
     log_box3.insert(tk.END, '***\nTerminado Test3***')
         
 
@@ -292,10 +367,22 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
             csv_writer.writeheader()
 
+    if not os.path.exists('Data/CouTest_2.csv'):
+    
+        with open('Data/CouTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+    else:
+        with open('Data/CouTest_2.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writeheader()
+
     global start3
     start3 = 0
     log_box2.insert(tk.END, ' TEST 2 MongoDB...')
-    result=list(mongoDB_collection.find({'species': topic_str}))
+    result=list(mongoDB_collection.find({'type_1': topic_str}))
     star3=time.process_time() + start3
     
     x1 = range(len(result))
@@ -327,7 +414,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     start4 = 0
     aux1=0
     with MySQL_db.cursor() as cursor:
-        sql = "SELECT * FROM pokemones WHERE species=%s;"
+        sql = "SELECT * FROM pokemones WHERE type_1=%s;"
         cursor.execute(sql, (topic_str,))
         result = cursor.fetchall()
         start4=time.process_time() + start4
@@ -359,10 +446,9 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     start8 = 0
     aux8=0
     with cnxn.cursor() as cursor:
-        sqls = "SELECT * FROM pokemon WHERE species=?;"
+        sqls = "SELECT * FROM pokemon WHERE type_1=?;"
         cursor.execute(sqls, (topic_str,))
         resultx = cursor.fetchall()
-        print(len(resultx))
         start8=time.process_time() + start8
         x8 = range(len(resultx))
         aux8=start8/len(resultx)
@@ -391,7 +477,7 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
     start99 = 0
     aux99=0
     with conn.cursor() as cursor:
-        sqls = 'select * from public."pokemones" where "species"=%s;'
+        sqls = 'select * from public."pokemones" where "type_1"=%s;'
         cursor.execute(sqls, (topic_str,))
         resultx = cursor.fetchall()
         start99=time.process_time() + start99
@@ -415,8 +501,37 @@ def TESTT2(log_box2,MySQL_db,mongoDB_collection,cnxn,conn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+    
+    global start99xxx
+    log_box2.insert(tk.END, ' \nTEST 2 CouchBase...')
+    start99xxx = 0
+    aux99xx=0
+    sql_query = 'select * from `pokemon`.`_default`.`_default` data use index(`#primary`) where type_1=$1'
+    row_iter = cluster.query(sql_query,QueryOptions(positional_parameters=[topic_str]))
+    start99xxx=time.process_time() + start99xxx
+    x99 = range(len(resultx))
+    aux8=start99xxx/((len(resultx)))
+    for n9977 in x99:
+        if(not RUNNING2):
+            break
+        a99=n9977
+        b99=aux99xx
+        aux99xx=aux99xx+start99xxx/((len(resultx)))
+        infob = {
+                'Iteracion': a99,
+                'Hora' : b99,}
+        with open('Data/CouTest_2.csv', 'a', newline = '') as csv_file:
+            fieldnames1 = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames1)
+            csv_writer.writerow(infob)
+            log_box2.insert(tk.END, f"\n\n Iteracion: {a99}, Hora: {b99}")
+            log_box2.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)    
 
-    log_box2.insert(tk.END, '***\nTerminado Test2***')
+
+    log_box2.insert(tk.END, '***\nTerminado Test2***')    
     
 def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
     fieldnames1 = ['Iteracion', 'Hora']
@@ -467,6 +582,18 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
             csv_writer.writeheader()
     else:
          with open('Data/PostgresTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    
+    if not os.path.exists('Data/CouTest_1.csv'):
+    
+        with open('Data/CouTest_1.csv', 'w+', newline = '') as csv_file:
+            
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writeheader()
+    else:
+         with open('Data/CouTest_1.csv', 'w+', newline = '') as csv_file:
             
             csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
             csv_writer.writeheader()
@@ -576,6 +703,33 @@ def TESTT1(log_box,MySQL_db,mongoDB_collection,cnxn,conn):
                 cut_duration = 0
                 scan_interval = 1
                 time.sleep(scan_interval)
+
+    
+    global star888888
+    star888888= 0
+    log_box.insert(tk.END, ' \nTEST 1 CouchBase...')
+    sql_query = 'select * from `pokemon`.`_default`.`_default` data use index(`#primary`) where pokedex_number=$1'
+    for num99xx in range (random):
+        if(not RUNNING1):
+            break 
+        row_iter = cluster.query(sql_query,QueryOptions(positional_parameters=[num99xx]))
+        star888888=star888888 + time.process_time()
+        a99xx=int(num99xx)
+        b99xx=star888888
+        info99xx = {
+                'Iteracion': a99xx,
+                 'Hora' : b99xx,
+            }
+        with open('Data/CouTest_1.csv', 'a', newline = '') as csv_file:
+            fieldnames = ['Iteracion', 'Hora']
+            csv_writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
+            csv_writer.writerow(info99xx)
+            log_box.insert(tk.END, f"\n\n Iteracion: {a99xx}, Hora: {b99xx}")
+            log_box.see("end") 
+            cut_duration = 0
+            scan_interval = 1
+            time.sleep(scan_interval)
+
     log_box.insert(tk.END, '***\nTerminado TEST 1***')
 
         
@@ -635,6 +789,7 @@ def SHOW_GRAPH():
     dataq = pd.read_csv('Data/MongoTest_1.csv', index_col = None)
     datay = pd.read_csv('Data/SQLServerTest_1.csv', index_col = None)
     dataz = pd.read_csv('Data/PostgresTest_1.csv', index_col = None)
+    datar = pd.read_csv('Data/CouTest_1.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
@@ -643,16 +798,19 @@ def SHOW_GRAPH():
     x2=datay['Iteracion']
     y3 = dataz['Hora']
     x3=dataz['Iteracion']
+    r=datar['Iteracion']
+    r1 = datar['Hora']
 
     numero_de_grupos = len(y)
     indice_barras = np.arange(numero_de_grupos)
-    ancho_barras =0.25
+    ancho_barras =0.10
     plt.figure(figsize = (20, 15))
     
     plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
     plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
     plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
     plt.bar(indice_barras + ancho_barras + ancho_barras+ ancho_barras,y3, width=ancho_barras, label='PostgreSQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras+ ancho_barras+ancho_barras,r1, width=ancho_barras, label='CouchBase')
     plt.legend(loc='best')
 
     ## Se colocan los indicadores en el eje x
@@ -670,6 +828,7 @@ def SHOW_GRAPH2():
     dataq = pd.read_csv('Data/MongoTest_2.csv', index_col = None)
     datay = pd.read_csv('Data/SQLServerTest_2.csv', index_col = None)
     dataz = pd.read_csv('Data/PostgresTest_2.csv', index_col = None)
+    datar = pd.read_csv('Data/CouTest_2.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
@@ -678,15 +837,18 @@ def SHOW_GRAPH2():
     x2=datay['Iteracion']
     y3=dataz['Hora']
     x3=dataz['Iteracion']
+    r=datar['Iteracion']
+    r1 = datar['Hora']
     numero_de_grupos = len(y)
     indice_barras = np.arange(numero_de_grupos)
-    ancho_barras =0.25
+    ancho_barras =0.10
     plt.figure(figsize = (20, 15))
     
     plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
     plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
     plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
     plt.bar(indice_barras + ancho_barras + ancho_barras + ancho_barras, y3, width=ancho_barras, label='Postgres SQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras+ ancho_barras+ancho_barras,r1, width=ancho_barras, label='CouchBase')
     plt.legend(loc='best')
 
     ## Se colocan los indicadores en el eje x
@@ -704,6 +866,7 @@ def SHOW_GRAPH3():
     dataq = pd.read_csv('Data/Mongo_Test_3.csv', index_col = None)
     datay = pd.read_csv('Data/SQLServerTest_3.csv', index_col = None)
     dataz = pd.read_csv('Data/Postgres_Test_3.csv', index_col = None)
+    datar = pd.read_csv('Data/Cou_Test_3.csv', index_col = None)
     x = data['Iteracion']
     y = data['Hora']
     y1 = dataq['Hora']
@@ -712,16 +875,19 @@ def SHOW_GRAPH3():
     x2=datay['Iteracion']
     y3 = dataz['Hora']
     x3=dataz['Iteracion']
+    r=datar['Iteracion']
+    r1 = datar['Hora']
     
     numero_de_grupos = len(y)
     indice_barras = np.arange(numero_de_grupos)
-    ancho_barras =0.25
+    ancho_barras =0.1
     plt.figure(figsize = (20, 15))
     
     plt.bar(indice_barras, y, width=ancho_barras, label='Mongo DB')
     plt.bar(indice_barras + ancho_barras, y1, width=ancho_barras, label='MySQL')
     plt.bar(indice_barras + ancho_barras + ancho_barras, y2, width=ancho_barras, label='SQL Server')
     plt.bar(indice_barras + ancho_barras + ancho_barras + ancho_barras , y3, width=ancho_barras, label='Postgres SQL')
+    plt.bar(indice_barras + ancho_barras + ancho_barras+ ancho_barras+ancho_barras,r1, width=ancho_barras, label='CouchBase')
     plt.legend(loc='best')
 
     ## Se colocan los indicadores en el eje x
@@ -934,7 +1100,7 @@ def GUI(MySQL_db,mongoDB_collection,cnxn,conn):
     
     ################## Frame 1 ##########################
     value_list = ['8', '80', '800']
-    value_list2 = ['Flame Pokemon', 'Seed Pokemon', 'Mouse Pokemon']
+    value_list2 = ['Flying', 'Steel', 'Dragon']
     value_list3 = ['gon', 'ega', 'ias']
 
 

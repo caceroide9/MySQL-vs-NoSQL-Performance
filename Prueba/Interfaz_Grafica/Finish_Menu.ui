@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1597</width>
+    <width>1705</width>
     <height>1065</height>
    </rect>
   </property>
@@ -14,96 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="Frame_Superior">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1501</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(69, 123, 157);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <property name="spacing">
-      <number>2</number>
-     </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="btn_menu">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-background-color:#457b9d;
-font:87 12pt&quot;Arial Black&quot;;
-border-radius:0px;
-}
-
-</string>
-       </property>
-       <property name="text">
-        <string>MENÚ</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../Imagenes/bars-solid.svg</normaloff>../../../Imagenes/bars-solid.svg</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QFrame" name="Frame_Inferior_Izq">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>40</y>
+      <y>50</y>
       <width>200</width>
-      <height>791</height>
+      <height>811</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -119,21 +36,18 @@ border-radius:0px;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">QFrame{
-background-color:#a8dadc;}
-
-QPushButton{
-background-color:#a8dadc;
-border-top-left-radius: 20px;
-border-bottom-left-radius: 20px;
-font: 75 12pt &quot;Arial Narrow&quot;;
+     <string notr="true">QFrame{background-color:#a8dadc;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:0px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
 }
-QPushButton:hover{
-background-color:#a8dadc;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
-}</string>
+
+
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -168,11 +82,14 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
-}
-</string>
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
        </property>
        <property name="text">
         <string>Historia</string>
@@ -209,9 +126,13 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
 }
 </string>
        </property>
@@ -250,11 +171,14 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
-}
-</string>
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
        </property>
        <property name="text">
         <string>Conceptos</string>
@@ -291,9 +215,13 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
 }
 </string>
        </property>
@@ -302,7 +230,7 @@ font: 75 12pt&quot;Arial Narrow&quot;;
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>Imagenes_Interfaz/seedling-solid.svg</normaloff>Imagenes_Interfaz/seedling-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/database-solid.svg</normaloff>Imagenes_Interfaz/database-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -332,18 +260,21 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
-}
-</string>
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
        </property>
        <property name="text">
-        <string>Databases</string>
+        <string>Datasets</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>Imagenes_Interfaz/database-solid.svg</normaloff>Imagenes_Interfaz/database-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/table-solid.svg</normaloff>Imagenes_Interfaz/table-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -373,18 +304,21 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
-}
-</string>
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
        </property>
        <property name="text">
         <string>Pokemon Test</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>Imagenes_Interfaz/hourglass-half-solid.svg</normaloff>Imagenes_Interfaz/hourglass-half-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/Poké_Ball_icon.svg</normaloff>Imagenes_Interfaz/Poké_Ball_icon.svg</iconset>
        </property>
       </widget>
      </item>
@@ -414,18 +348,21 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
-}
-</string>
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
        </property>
        <property name="text">
         <string>Netflix Test</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>Imagenes_Interfaz/magnifying-glass-solid.svg</normaloff>Imagenes_Interfaz/magnifying-glass-solid.svg</iconset>
+         <normaloff>Imagenes_Interfaz/netflix-seeklogo.com.svg</normaloff>Imagenes_Interfaz/netflix-seeklogo.com.svg</iconset>
        </property>
       </widget>
      </item>
@@ -449,13 +386,97 @@ font: 75 12pt &quot;Arial Narrow&quot;;
 }
 QPushButton:hover{
 background-color:#f1faee;
-border-top-left-radius:20px;
-border-bottom-left-radius:20px;
-font: 75 12pt&quot;Arial Narrow&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
 }</string>
        </property>
        <property name="text">
         <string>Chile Test</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>Imagenes_Interfaz/Flag_of_Chile.svg</normaloff>Imagenes_Interfaz/Flag_of_Chile.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Calculadora T(n)</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>Imagenes_Interfaz/calculator-solid.svg</normaloff>Imagenes_Interfaz/calculator-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:10px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Conclusiones</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>Imagenes_Interfaz/bullseye-solid.svg</normaloff>Imagenes_Interfaz/bullseye-solid.svg</iconset>
        </property>
       </widget>
      </item>
@@ -474,6 +495,9 @@ font: 75 12pt&quot;Arial Narrow&quot;;
      </item>
      <item>
       <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">border-color: #a8dadc;</string>
+       </property>
        <property name="text">
         <string>Mathias Cáceres B.</string>
        </property>
@@ -488,13 +512,26 @@ font: 75 12pt&quot;Arial Narrow&quot;;
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>40</y>
+      <y>60</y>
       <width>1251</width>
       <height>791</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/Imagenes/db.jpg);</string>
+     <string notr="true">border-image: url(:/Imagenes/db.jpg);
+QFrame{
+background-color:#457b9d;
+font:87 12pt&quot;Arial Black&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:0px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}
+
+</string>
     </property>
     <property name="text">
      <string/>
@@ -504,13 +541,23 @@ font: 75 12pt&quot;Arial Narrow&quot;;
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>830</y>
+      <y>850</y>
       <width>1611</width>
-      <height>251</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(69, 123, 157);</string>
+     <string notr="true">QFrame{background-color:rgb(69, 123, 157);
+font:87 12pt&quot;Arial Black&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:0px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -524,12 +571,22 @@ font: 75 12pt&quot;Arial Narrow&quot;;
      <rect>
       <x>1410</x>
       <y>0</y>
-      <width>191</width>
-      <height>841</height>
+      <width>251</width>
+      <height>881</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(69, 123, 157);</string>
+     <string notr="true">QFrame{background-color:rgb(69, 123, 157);
+font:87 12pt&quot;Arial Black&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:0px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -538,6 +595,112 @@ font: 75 12pt&quot;Arial Narrow&quot;;
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="QFrame" name="Frame_Superior">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1511</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{background-color:rgb(69, 123, 157);
+font:87 12pt&quot;Arial Black&quot;;
+color:black;
+border-style:outset;
+border-width:2px;
+border-radius:0px;
+border-color:f1faee;
+font:bold 14 px;
+padding:10px;
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>2</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="btn_menu">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color:#457b9d;
+font:87 12pt&quot;Arial Black&quot;;
+border-radius:2px;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>MENÚ</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/bars-solid.svg</normaloff>../../../Imagenes/bars-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>Frame_Inferior_Izq</zorder>
+   <zorder>label_2</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>frame</zorder>
+   <zorder>Frame_Superior</zorder>
   </widget>
  </widget>
  <resources>

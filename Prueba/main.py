@@ -28,7 +28,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import matplotlib
-matplotlib.use("TkAgg")
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.animation import FuncAnimation
@@ -53,7 +53,226 @@ from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import cv2
+
+import csv
+import os
+import tkinter as tk
+from tkinter import ttk
+from tkinter import scrolledtext
+from pandas import read_csv
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+class FxFinder():
+
+    def __init__(self):
+
+        self.root = tk.Tk()
+    
+        self.root.title("Calculadora T(n)")
+        
+        self.root.config(bg = 'white')
+        
+        self.index = 0
+        self.aux_array = []
+        
+        self.x = []
+        self.y = []
+        self.y_log = []
+        
+        self.array = os.listdir("Data/")
+        
+        self.Bar_1 = tk.Frame(self.root, bg = 'white')       # Frame de botones superiores
+        self.Bar_1.pack(side = 'top', fill = 'x')
+        
+        self.Bar_2 = tk.Frame(self.root, bg = 'white')       # Frame de botones izquierda
+        self.Bar_2.pack(side = 'top')
+        
+        self.Bar_3 = tk.Frame(self.root, bg = 'white')       # Frame para botones inferiores
+        self.Bar_3.pack(side = 'top', fill = 'x')
+        
+        self.categories = ['Pokemon', 'Netflix', 'Chile']
+        self.sub_categories = [['Test_1', 'Test_2', 'Test_3'], 
+                               ['Test_1', 'Test_2','Test_3'], 
+                               ['Test_1', 'Test_2', 'Test_3']]
+        self.data_bases = ['MongoDB', 'MySQL', 'SQLServer', 'PostgreSQL','CouchBase']
+        
+        #######################################################################################################
+        
+        self.Lbl_1 = ttk.Label(self.Bar_1, text = 'Categoria: ', background = 'white')
+        self.Lbl_1.pack(side = 'left')
+        
+        #######################################################################################################
+        
+        self.Cb_1 = ttk.Combobox(self.Bar_1, state = 'readonly', values = self.categories)
+        self.Cb_1.bind('<<ComboboxSelected>>', lambda event: self.Change_Sub_Category(self.Cb_1.get()))
+        self.Cb_1.pack(side = 'left', padx = 10, pady = 10)
+        
+        self.Cb_1.set(self.categories[0])
+        
+        #######################################################################################################
+        
+        self.Lbl_2 = ttk.Label(self.Bar_1, text = 'Sub Categoria: ', background = 'white')
+        self.Lbl_2.pack(side = 'left')
+        
+        #######################################################################################################
+        
+        self.Cb_2 = ttk.Combobox(self.Bar_1, state = 'readonly', values = self.sub_categories[0])
+        self.Cb_2.pack(side = 'left', padx = 10, pady = 10)
+        
+        self.Cb_2.set(self.sub_categories[0][0])
+        
+        #######################################################################################################
+        
+        self.Lbl_2 = ttk.Label(self.Bar_1, text = 'Gestor a seleccionar: ', background = 'white')
+        self.Lbl_2.pack(side = 'left')
+        
+        #######################################################################################################
+        
+        self.Cb_3 = ttk.Combobox(self.Bar_1, state = 'readonly', values = self.data_bases)
+        self.Cb_3.pack(side = 'left', padx = 10, pady = 10)
+        self.Cb_3.set(self.data_bases[0])
+        
+        #######################################################################################################
+        
+        self.Execute_button = ttk.Button(self.Bar_2, text = 'Ejecutar', command=lambda:self.Load_Data())
+        self.Execute_button.pack(side = 'top', pady = 20)
+        
+        #######################################################################################################
+        
+        self.Log_box = scrolledtext.ScrolledText(self.Bar_3, wrap = "word", height = 30, width = 80, bd=5)
+        self.Log_box.pack(side = 'top')
+        
+        #print(self.array)
+
+        self.root.mainloop()
+        
+        # Cou
+        # Mongo
+        # MySQL
+        # Postgre
+        # SQLServer
+        
+    def Change_Sub_Category(self, opt):
+        
+        self.index = self.categories.index(self.Cb_1.get())
+        
+        self.Cb_2['values'] = self.sub_categories[self.index]
+        self.Cb_2.set(self.sub_categories[self.index][0])
+        
+        #print(opt)
+        
+        
+        
+    def Load_Data(self):
+       
+       
+       self.fields = []
+       self.fields.append(self.Cb_1.get())
+       self.fields.append(self.Cb_2.get())
+       
+       if self.Cb_3.get() == 'MongoDB':
+              
+              self.fields.append('Mongo')
+              
+       elif self.Cb_3.get() == 'CouchBase':
+              
+              self.fields.append('Cou')
+              
+       elif self.Cb_3.get() == 'PostgreSQL':
+              
+              self.fields.append('Postgres')
+              
+       else:
+       
+              self.fields.append(self.Cb_3.get())
+       
+       
+       #self.data_bases = ['CouchBase', 'MongoDB', 'MySQL', 'SQLServer', 'PostgreSQL']
+       
+       if self.fields[0] == 'Pokemon':
+              for name in self.array:
+                     if not 'Parte' in name and self.fields[1] in name and self.fields[2] in name:
+                            self.df = read_csv('Data/' + name, delimiter = ',')
+                            self.data = self.df.values
+                            break
+              
+       elif self.fields[0] == 'Netflix':
+              for name in self.array:
+                     if 'Parte_2' in name and self.fields[1] in name and self.fields[2] in name:
+                            self.df = read_csv('Data/' + name, delimiter = ',')
+                            self.data = self.df.values
+                            break
+       
+       elif self.fields[0] == 'Chile':
+              for name in self.array:
+                     if 'Parte_3' in name and self.fields[1] in name and self.fields[2] in name:
+                            self.df = read_csv('Data/' + name, delimiter = ',')
+                            self.data = self.df.values
+                            break
+              
+       else:
+              self.Log_box.insert(tk.END, ' Archivo no Encontrado...\n')
+              return
+       
+       #print(self.data[0][0])
+       
+       self.aux = []
+       self.Log_box.delete('1.0', tk.END)
+       self.Log_box.update_idletasks()
+       for i in range(len(self.data)):
+              
+              self.aux.append('.....')
+              self.aux.append(int(self.data[i][0]))
+              self.x.append(int(self.data[i][0]))
+              self.aux.append('.......')
+              self.aux.append(self.data[i][1])
+              self.y.append(self.data[i][1])
+              self.aux.append('........')
+              
+              #self.aux.append(int(self.data[i][0]))
+              self.aux.append(np.log(self.data[i][1]))
+              self.y_log.append(np.log(self.data[i][1]))
+              
+              self.aux_array.append(self.aux)
+              
+              self.aux = []
+              
+       #print(self.aux_array)
+              
+       #for i in range(len(self.aux_array)):
+              
+              #print(self.aux_array[i][2], self.aux_array[i][3])
+              
+       self.Log_box.insert(tk.END, ' Iteracion   |   Tiempo   |          Ln(Tiempo)  \n')
+       
+              
+       for i in self.aux_array:
+              
+              self.Log_box.insert(tk.END, i)
+              self.Log_box.insert(tk.END, '\n')
+       self.aux_array = []
+              
+       ################## AJUSTE DEL MODELO ################
+       
+       self.fit = np.polyfit(self.y_log, self.x, 1)
+       self.Log_box.insert(tk.END, self.fit)
+       #print(self.fit)
+       
+       ##########################################################
+              
+       #plt.scatter(self.y_log, self.x)
+       #plt.show()
+              
+              
+       self.x = []
+       self.y = []
+       self.y_log = []
+        
+
+
+
 
 class MainWindow(QMainWindow):	
 
@@ -74,7 +293,7 @@ class MainWindow(QMainWindow):
 
                 conn_str = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -99,15 +318,11 @@ class MainWindow(QMainWindow):
                 mongoDB_client = MongoClient('localhost', 27017)
                 mongoDB_db = mongoDB_client["dbpaises"]
                 mongoDB_collection = mongoDB_db["netflix"]
-
-                mongoDB_client_2 = MongoClient()
-                mongoDB_client_2 = MongoClient('localhost', 27017)
-                mongoDB_db_2 = mongoDB_client["dbpaises"]
                 mongoDB_collection_2 = mongoDB_db["disney"]
                 
                 conn_str = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -131,20 +346,12 @@ class MainWindow(QMainWindow):
                 mongoDB_client = MongoClient('localhost', 27017)
                 mongoDB_db = mongoDB_client["dbpaises"]
                 mongoDB_collection = mongoDB_db["comuna"]
-
-                mongoDB_client_2 = MongoClient()
-                mongoDB_client_2 = MongoClient('localhost', 27017)
-                mongoDB_db_2 = mongoDB_client["dbpaises"]
                 mongoDB_collection_2 = mongoDB_db["provincias"]
-
-                mongoDB_client_3 = MongoClient()
-                mongoDB_client_3 = MongoClient('localhost', 27017)
-                mongoDB_db_3 = mongoDB_client["dbpaises"]
                 mongoDB_collection_3 = mongoDB_db["region"]
                 
                 conn_str = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -153,7 +360,12 @@ class MainWindow(QMainWindow):
                 conn = psycopg2.connect(dbname="Paises", user="postgres",
                             password="LS9lm10N11", host="localhost", port="5432")
                 random = []
-                pt3.GUI3(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2,mongoDB_collection_3) 
+                pt3.GUI3(MySQL_db,mongoDB_collection,cnxn,conn,mongoDB_collection_2,mongoDB_collection_3)
+       
+        def llamartest4(self):
+              A = FxFinder()
+              
+
 
         def __init__(self):
                 super(MainWindow,self).__init__()
@@ -180,6 +392,11 @@ class MainWindow(QMainWindow):
                 self.pushButton_12.clicked.connect(self.gotoScreen6)
                 self.pushButton_30.setCursor(Qt.PointingHandCursor)
                 self.pushButton_30.clicked.connect(self.llamartest3)
+                self.pushButton.setCursor(Qt.PointingHandCursor)
+                self.pushButton.clicked.connect(self.gotoScreen7)
+                self.pushButton_2.setCursor(Qt.PointingHandCursor)
+                self.pushButton_2.clicked.connect(self.llamartest4)
+
 
 
         def gotoScreen2(self):
@@ -205,6 +422,11 @@ class MainWindow(QMainWindow):
         def gotoScreen6(self):
                 screen6=Screen6()
                 widget.addWidget(screen6)
+                widget.setCurrentIndex(widget.currentIndex()+1)
+       
+        def gotoScreen7(self):
+                screen7=Screen7()
+                widget.addWidget(screen7)
                 widget.setCurrentIndex(widget.currentIndex()+1)
 
 
@@ -1588,6 +1810,12 @@ class Screen3(QMainWindow):
                 self.pushButton_7.clicked.connect(self.gotoScreen1)
                 self.pushButton_52.clicked.connect(self.gotoCasos)
                 self.pushButton_51.clicked.connect(self.gotoConce)
+                self.pushButton_53.clicked.connect(self.gotoVDRela)
+                self.pushButton_54.clicked.connect(self.gotoVDNoRela)
+                self.pushButton_55.clicked.connect(self.gotoNoSQLSheet1)
+                self.pushButton_56.clicked.connect(self.gotoNoSQLSheet2)
+                self.pushButton_57.clicked.connect(self.gotoSQLSheet)
+
                 self.label_2.setPixmap(QPixmap("Interfaz_Grafica/concepts_images.png")) 
                 width = 1500
                 height = 830 
@@ -1694,7 +1922,120 @@ class Screen3(QMainWindow):
                 self.pushButton_26.clicked.connect(self.concepts_BDDRelac)
                 self.pushButton_23.clicked.connect(self.concepts_DataCENT)
                 self.pushButton_24.clicked.connect(self.concepts_NormaLIzacion)
+
+        def gotoNoSQLSheet1(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/sqlsheetmongo1.png"))
+
+        def gotoNoSQLSheet2(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/sqlsheetmongo2.png"))
+
+        def gotoSQLSheet(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/sqlsheet.png"))
        
+        def gotoVDRela(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/Rel.png"))
+              self.pushButton.setEnabled(False)
+              self.pushButton_2.setEnabled(False)
+              self.pushButton_49.setEnabled(False)
+              self.pushButton_22.setEnabled(False)
+              self.pushButton_3.setEnabled(False)
+              self.pushButton_21.setEnabled(False)
+              self.pushButton_4.setEnabled(False)
+              self.pushButton_5.setEnabled(False)
+              self.pushButton_6.setEnabled(False)
+              self.pushButton_9.setEnabled(False)
+              self.pushButton_8.setEnabled(False)
+              self.pushButton_10.setEnabled(False)
+              self.pushButton_11.setEnabled(False)
+              self.pushButton_13.setEnabled(False)
+              self.pushButton_12.setEnabled(False)
+              self.pushButton_15.setEnabled(False)
+              self.pushButton_14.setEnabled(False)
+              self.pushButton_17.setEnabled(False)
+              self.pushButton_16.setEnabled(False)
+              self.pushButton_18.setEnabled(False)
+              self.pushButton_20.setEnabled(False)
+              self.pushButton_19.setEnabled(False)
+              self.pushButton_50.setEnabled(False)
+              self.pushButton_48.setEnabled(False)
+              self.pushButton_47.setEnabled(False)
+              self.pushButton_44.setEnabled(False)
+              self.pushButton_46.setEnabled(False)
+              self.pushButton_45.setEnabled(False)
+              self.pushButton_38.setEnabled(False)
+              self.pushButton_43.setEnabled(False)
+              self.pushButton_42.setEnabled(False)
+              self.pushButton_39.setEnabled(False)
+              self.pushButton_37.setEnabled(False)
+              self.pushButton_36.setEnabled(False)
+              self.pushButton_41.setEnabled(False)
+              self.pushButton_40.setEnabled(False)
+              self.pushButton_34.setEnabled(False)
+              self.pushButton_35.setEnabled(False)
+              self.pushButton_33.setEnabled(False)
+              self.pushButton_31.setEnabled(False)
+              self.pushButton_32.setEnabled(False)
+              self.pushButton_30.setEnabled(False)
+              self.pushButton_29.setEnabled(False)
+              self.pushButton_28.setEnabled(False)
+              self.pushButton_27.setEnabled(False)
+              self.pushButton_26.setEnabled(False)
+              self.pushButton_25.setEnabled(False)
+              self.pushButton_23.setEnabled(False)
+              self.pushButton_24.setEnabled(False)
+        
+        def gotoVDNoRela(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/NoRe.png"))
+              self.pushButton.setEnabled(False)
+              self.pushButton_2.setEnabled(False)
+              self.pushButton_49.setEnabled(False)
+              self.pushButton_22.setEnabled(False)
+              self.pushButton_3.setEnabled(False)
+              self.pushButton_21.setEnabled(False)
+              self.pushButton_4.setEnabled(False)
+              self.pushButton_5.setEnabled(False)
+              self.pushButton_6.setEnabled(False)
+              self.pushButton_9.setEnabled(False)
+              self.pushButton_8.setEnabled(False)
+              self.pushButton_10.setEnabled(False)
+              self.pushButton_11.setEnabled(False)
+              self.pushButton_13.setEnabled(False)
+              self.pushButton_12.setEnabled(False)
+              self.pushButton_15.setEnabled(False)
+              self.pushButton_14.setEnabled(False)
+              self.pushButton_17.setEnabled(False)
+              self.pushButton_16.setEnabled(False)
+              self.pushButton_18.setEnabled(False)
+              self.pushButton_20.setEnabled(False)
+              self.pushButton_19.setEnabled(False)
+              self.pushButton_50.setEnabled(False)
+              self.pushButton_48.setEnabled(False)
+              self.pushButton_47.setEnabled(False)
+              self.pushButton_44.setEnabled(False)
+              self.pushButton_46.setEnabled(False)
+              self.pushButton_45.setEnabled(False)
+              self.pushButton_38.setEnabled(False)
+              self.pushButton_43.setEnabled(False)
+              self.pushButton_42.setEnabled(False)
+              self.pushButton_39.setEnabled(False)
+              self.pushButton_37.setEnabled(False)
+              self.pushButton_36.setEnabled(False)
+              self.pushButton_41.setEnabled(False)
+              self.pushButton_40.setEnabled(False)
+              self.pushButton_34.setEnabled(False)
+              self.pushButton_35.setEnabled(False)
+              self.pushButton_33.setEnabled(False)
+              self.pushButton_31.setEnabled(False)
+              self.pushButton_32.setEnabled(False)
+              self.pushButton_30.setEnabled(False)
+              self.pushButton_29.setEnabled(False)
+              self.pushButton_28.setEnabled(False)
+              self.pushButton_27.setEnabled(False)
+              self.pushButton_26.setEnabled(False)
+              self.pushButton_25.setEnabled(False)
+              self.pushButton_23.setEnabled(False)
+              self.pushButton_24.setEnabled(False)
+
         def gotoCasos(self):
               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/CaUs.png"))
               self.pushButton.setEnabled(False)
@@ -2077,6 +2418,8 @@ class Screen4(QMainWindow):
                 self.tabla_buscar.setColumnWidth(2,98)
                 self.tabla_buscar.setColumnWidth(3,98)
                 self.tabla_buscar.setColumnWidth(4,98)
+                self.tabla_productos.move(300, 100)
+                self.bt_refrescar.move(575, 600)
                 self.tabla_productosPo.setVisible(False)
                 self.bt_refrescarPo.setVisible(False)
                 self.codigoB_2.setVisible(False)
@@ -2124,6 +2467,20 @@ class Screen4(QMainWindow):
                 self.pushButton_6.clicked.connect(self.gotoScreen1)
                 self.pushButton_7.clicked.connect(self.gotoCRUD_Prcts)
                 self.pushButton_8.clicked.connect(self.gotoCRUD_POK)
+                self.codigoB.move(600, 50)
+                self.label_2.move(450, 50)
+                self.tabla_buscar.move(300, 100)
+                self.bt_buscar.move(575, 600)
+                self.label_3.move(250,50)
+                self.label_4.move(250,150)
+                self.label_5.move(250,250)
+                self.label_6.move(250,350)
+                self.label_7.move(250,450)
+                self.codigoA.move(400,70)
+                self.nombreA.move(400,170)
+                self.modeloA.move(400,270)
+                self.precioA.move(400,370)
+                self.cantidadA.move(400,470)
                 
        def gotoCRUD_POK(self):
               self.label.setPixmap(QPixmap("Interfaz_Grafica/pokAS.png"))
@@ -2131,6 +2488,16 @@ class Screen4(QMainWindow):
               self.label_16.setPixmap(QPixmap("Interfaz_Grafica/pokAS.png"))
               self.label_17.setPixmap(QPixmap("Interfaz_Grafica/pokAS.png"))
               self.label_18.setPixmap(QPixmap("Interfaz_Grafica/pokAS.png"))
+              self.tabla_productosPo.move(300, 100)
+              self.bt_refrescarPo.move(575, 600)
+              
+              self.codigoB_2.move(600, 50)
+              self.label_2.move(450, 50)
+
+              self.codigoB_2.setVisible(True)
+              self.label_2.setVisible(True)
+              self.tabla_buscarPo.move(300, 100)
+              self.bt_buscarPo.move(575, 600)
               self.bt_refrescar.setVisible(False)
               self.bt_agregar.setVisible(False)
               self.bt_buscar.setVisible(False)
@@ -2201,6 +2568,40 @@ class Screen4(QMainWindow):
               self.bt_buscarPo.clicked.connect(self.buscar_productoPO)
               self.bt_borrarPO.clicked.connect(self.eliminar_productoPo)
               self.bt_agregarPO.clicked.connect(self.insert_productosPo)
+              self.label_21.move(250,35)
+              self.label_20.move(250,70)
+              self.label_22.move(250,105)
+              self.label_23.move(250,140)
+              self.label_25.move(250,175)
+              self.label_26.move(250,210)
+              self.label_27.move(250,245)
+              self.label_28.move(250,280)
+              self.label_29.move(250,315)
+              self.label_30.move(250,350)
+              self.label_31.move(250,385)
+              self.label_32.move(250,420)
+              self.label_24.move(250,455)
+              self.label_33.move(250,490)
+              self.label_34.move(250,525)
+              self.label_35.move(250,560)
+              self.label_36.move(250,595)
+              self.a1.move(400,35)
+              self.a2.move(400,70)
+              self.a3.move(400,105)
+              self.a4.move(400,140)
+              self.a5.move(400,175)
+              self.a6.move(400,210)
+              self.a7.move(400,245)
+              self.a8.move(400,280)
+              self.a9.move(400,315)
+              self.a10.move(400,350)
+              self.a11.move(400,385)
+              self.a12.move(400,420)
+              self.a13.move(400,455)
+              self.a14.move(400,490)
+              self.a15.move(400,525)
+              self.a16.move(400,560)
+              self.a17.move(400,595)
               
 
                 
@@ -2297,6 +2698,22 @@ class Screen4(QMainWindow):
               self.precioA.setVisible(True)
               self.cantidadA.setVisible(True)
               self.bt_agregarPO.setVisible(False)
+              self.tabla_productos.move(300, 100)
+              self.bt_refrescar.move(575, 600)
+              self.codigoB.move(600, 50)
+              self.label_2.move(450, 50)
+              self.tabla_buscar.move(300, 100)
+              self.bt_buscar.move(575, 600)
+              self.label_3.move(250,50)
+              self.label_4.move(250,150)
+              self.label_5.move(250,250)
+              self.label_6.move(250,350)
+              self.label_7.move(250,450)
+              self.codigoA.move(400,70)
+              self.nombreA.move(400,170)
+              self.modeloA.move(400,270)
+              self.precioA.move(400,370)
+              self.cantidadA.move(400,470)
         
        def gotoScreen1(self):
                 mainwindow=MainWindow()
@@ -2724,7 +3141,7 @@ class Screen5(QMainWindow):
         def loaddataSQLSNet(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -2753,7 +3170,7 @@ class Screen5(QMainWindow):
         def ComunaSQLS(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -2773,7 +3190,7 @@ class Screen5(QMainWindow):
         def ProvinciaSQLS(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -2793,7 +3210,7 @@ class Screen5(QMainWindow):
         def RegionSQLS(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -2813,7 +3230,7 @@ class Screen5(QMainWindow):
         def loaddataSQLSDisney(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -2842,7 +3259,7 @@ class Screen5(QMainWindow):
         def loaddataSQLS(self):
               conn_strR = (
                         r'DRIVER={SQL Server};'
-                        r'SERVER=LAPTOP-RO4OO5FH\SQLEXPRESS01;'
+                        r'SERVER=localhost\SQLEXPRESS;'
                         r'DATABASE=paises;'
                         r'Trusted_Connection=yes;')
                         
@@ -4403,7 +4820,65 @@ class Screen6(QMainWindow):
                root.tk.call('wm', 'iconphoto', root, tk.PhotoImage(file='database-setting.png'))
                root.mainloop()
 
+class Screen7(QMainWindow):
+        def __init__(self):
+                super(Screen7,self).__init__()
+                loadUi("Interfaz_Grafica/h7.ui",self)
+                self.pushButton_6.clicked.connect(self.gotoScreen1)
+                self.pushButton_69.clicked.connect(self.gotoT1M1)
+                self.pushButton_70.clicked.connect(self.gotoT2M1)
+                self.pushButton_71.clicked.connect(self.gotoT3M1)
+                self.pushButton_72.clicked.connect(self.gotoT1M2)
+                self.pushButton_73.clicked.connect(self.gotoT2M2)
+                self.pushButton_74.clicked.connect(self.gotoT3M2)
+                self.pushButton_75.clicked.connect(self.gotoT1M3)
+                self.pushButton_76.clicked.connect(self.gotoT2M3)
+                self.pushButton_77.clicked.connect(self.gotoT3M3)
+                
 
+                width = 1500
+                height = 830
+                self.setFixedSize(width,height)
+                self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T1M1VIEW.png"))
+       
+        def gotoScreen1(self):
+                mainwindow=MainWindow()
+                widget.addWidget(mainwindow)
+                widget.setCurrentIndex(widget.currentIndex()+1)
+        
+        def gotoT1M1(self):
+               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T1M1VIEW.png"))
+        
+        def gotoT2M1(self):
+               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T2M1VIEW.png"))
+       
+        def gotoT3M1(self):
+               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T3M1VIEW.png"))
+  
+        def gotoT1M2(self):
+               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T1M2VIEW.png"))
+         
+        def gotoT2M2(self):
+               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T2M2VIEW.png"))
+         
+        def gotoT3M2(self):
+               self.label_2.setPixmap(QPixmap("Interfaz_Grafica/T3M2VIEW.png"))
+
+        def gotoT3M3(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/M3T3_FI.png"))
+       
+        def gotoT1M3(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/M3T3_FI.png"))
+
+        def gotoT2M3(self):
+              self.label_2.setPixmap(QPixmap("Interfaz_Grafica/M3T3_FI.png"))
+
+
+
+
+               
+                
+                
 
 		
 

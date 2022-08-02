@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1381</width>
+    <height>836</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="Frame_Superior">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1501</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(69, 123, 157);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="btn_menu">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color:#457b9d;
+font:87 12pt&quot;Arial Black&quot;;
+border-radius:0px;
+}
+
+</string>
+       </property>
+       <property name="text">
+        <string>CONCLUSIONES PERFORMANCE</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/bars-solid.svg</normaloff>../../../Imagenes/bars-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="Frame_Inferior_Izq">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>40</y>
+      <width>200</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>200</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#a8dadc;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Volver</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_69">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 1 Prueba 1</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_70">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 1 Prueba 2</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_71">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 1 Prueba 3</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_72">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 2 Prueba 1</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_73">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 2 Prueba 2</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_74">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 2 Prueba 3</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_75">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 3 Prueba 1</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_76">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 3 Prueba 2</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_77">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Modulo 3 Prueba 3</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/pencil-ruler-solid.svg</normaloff>../../../Imagenes/pencil-ruler-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>194</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>40</y>
+      <width>1311</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/newPrefix/r7.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>789</y>
+      <width>1501</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(69, 123, 157);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Historia Edicion.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -266,6 +266,211 @@ font: 75 12pt&quot;Arial Narrow&quot;;
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton_53">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Relacionales V-D</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_54">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>No Relacionales V-D</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_55">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Hoja Trampa NoSQL 1</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_56">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Hoja Trampa NoSQL 2</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_57">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+background-color:#a8dadc;}
+
+QPushButton{
+background-color:#a8dadc;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+font: 75 12pt &quot;Arial Narrow&quot;;
+}
+QPushButton:hover{
+background-color:#f1faee;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+font: 75 12pt&quot;Arial Narrow&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Hoja Trampa SQL</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</normaloff>../../../Imagenes/chalkboard-teacher-solid.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
