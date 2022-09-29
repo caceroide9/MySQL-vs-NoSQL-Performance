@@ -21,7 +21,7 @@ Programa realizado en Python en conjunto de Tkinter y QtDesigner
 ![image](https://user-images.githubusercontent.com/63252693/193130758-75b022e0-940d-410e-9647-2f76e84aa064.png)
 
 # CRUD
-![image](https://user-images.githubusercontent.com/63252693/193130923-ea60fbdb-3342-44b6-8ad7-db80ff2b00f2.png)
+![image](https://user-images.githubusercontent.com/63252693/193131564-939bb2fe-9d16-4211-a088-0ea256c0fe1a.png)
 
 # Dataset
 ![image](https://user-images.githubusercontent.com/63252693/193130991-d1c0445f-336f-484d-8e1b-a9899dc8b0cc.png)
