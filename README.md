@@ -44,6 +44,10 @@ Programa realizado en Python en conjunto de Tkinter y QtDesigner
 
 
 # Algunas particularidades
+![Particularidades3](https://user-images.githubusercontent.com/63252693/193143798-83278bec-05c0-4573-9b58-05bd40119d4d.gif)
+
+![ParticularidadesConcurrencia](https://user-images.githubusercontent.com/63252693/193143808-39750246-e732-4dca-a62e-bf00fa25381a.gif)
+
 
 
 
