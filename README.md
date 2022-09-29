@@ -1,31 +1,68 @@
 # Performance-SQL-NoSQL-
 
-![image](https://user-images.githubusercontent.com/63252693/193128795-9760a9f9-1386-4772-8743-6ee1893575f9.png)
+Programa realizado en Python en conjunto de Tkinter y QtDesigner
 
-![image](https://user-images.githubusercontent.com/63252693/193128830-56dec317-0f5c-4560-9f79-31ca6052c0d2.png)
+# Menú del programa
+![image](https://user-images.githubusercontent.com/63252693/193129878-6ce20393-a0e6-4629-ab63-5230a48a47d6.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193128864-1c212e5f-2bb7-429b-b7be-14c21fbb154f.png)
+# Historia
+![image](https://user-images.githubusercontent.com/63252693/193130223-e47e35c9-0103-4c5c-825a-e52f7017af94.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193128917-0cc0c925-d5aa-4224-9ae5-117bd3917e06.png)
+# Catalogo de Bases de Datos parte 1
+![image](https://user-images.githubusercontent.com/63252693/193130840-338cf678-a1db-4906-8edb-e6768fada9e7.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193128988-af9254dc-c189-464d-a376-d0969bd309cb.png)
+# Catalogo de Bases de Datos parte 2
+![image](https://user-images.githubusercontent.com/63252693/193130806-83ee3871-26be-4173-bf39-cc8df1453fe9.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129039-7979a70a-e113-43f9-bdf2-e3f6f5c08f11.png)
+# Conceptos parte 1
+![image](https://user-images.githubusercontent.com/63252693/193130711-2b82dfd9-13d3-4bda-8899-b406b71aeeb2.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129067-f7ae98e8-cfe3-4504-a656-6bfdb00cf9a2.png)
+# Conceptos parte 2
+![image](https://user-images.githubusercontent.com/63252693/193130758-75b022e0-940d-410e-9647-2f76e84aa064.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129106-c97794bf-c956-4daa-af55-f43643e3fc49.png)
+# CRUD
+![image](https://user-images.githubusercontent.com/63252693/193130923-ea60fbdb-3342-44b6-8ad7-db80ff2b00f2.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129210-634db912-85fe-4684-9431-a18b94b39135.png)
+# Dataset
+![image](https://user-images.githubusercontent.com/63252693/193130991-d1c0445f-336f-484d-8e1b-a9899dc8b0cc.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129248-63433feb-739f-46e9-a51e-af25753f28d1.png)
+# Test
+![image](https://user-images.githubusercontent.com/63252693/193131071-5f3d8383-cc90-431e-86b9-a1a012893f04.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129334-f2ba22cf-59af-4552-961b-7e5cc12ab388.png)
+# Calculadora
+![image](https://user-images.githubusercontent.com/63252693/193131122-a952d4e3-4f1c-427c-8c93-ef90d40c6c22.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129380-bfe5ea0c-6357-43ba-903a-1e98be159c60.png)
+# Conclusiones
+![image](https://user-images.githubusercontent.com/63252693/193131173-e35420bc-8624-40ae-8db6-6505a047e64d.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129408-e4ffb135-2fd0-4abc-8a03-2d8fbf0420da.png)
+# Particularidades 1
+![image](https://user-images.githubusercontent.com/63252693/193131222-9c592a58-86c4-4434-82d6-a564cacb5bd7.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129457-4d05b0e7-98d7-4433-ada3-3b1ddacd43b6.png)
+# Particularidades 2
+![image](https://user-images.githubusercontent.com/63252693/193131326-120dbf09-51b1-4cda-a01d-035e8563a046.png)
 
-![image](https://user-images.githubusercontent.com/63252693/193129496-23757566-892a-44c4-8882-129af916318b.png)
+# Particularidades 3
+![image](https://user-images.githubusercontent.com/63252693/193131369-0d5b1eca-56dd-4f03-a5f8-ede090d5999d.png)
+
+# Particularidades 4
+![image](https://user-images.githubusercontent.com/63252693/193131426-c465757f-71c6-44f5-a33a-5c86a5989def.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
