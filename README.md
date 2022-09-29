@@ -22,3 +22,6 @@ Programa realizado en Python en conjunto de Tkinter y QtDesigner
 
 
 
+
+
+
