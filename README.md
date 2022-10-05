@@ -1,6 +1,15 @@
 # Performance-SQL-NoSQL-
 
-Programa realizado en Python en conjunto de Tkinter y QtDesigner
+Programa realizado en Python en conjunto de Tkinter y QtDesigner. La aplicación de escritorio tiene como objetivo principal enseñar sobre las distintas bases de datos y comparar distintos gestores de bases de datos tipos SQL y NoSQL( MySQL, SQL Server, Mongo DB, Postgre SQL, CouchBase).
+
+Dicha aplicación cuenta con distintos niveles de abstracción e interacción con las bases de datos. En primer lugar, los menus dedicados como los son: Historia, Catalogo y Conceptos no tienen interacción hacia la base de datos. Mas bien, es un marco teorico. En el caso de CRUD y Dataset, la interacción hacia las bases de datos aumenta permitiendo realizar operaciones previamente hechas. Finalmente, en los apartados de TEST la comparación que se busca realizar es mediante analisis empirico para "comparar y caracterizar".
+
+El apoyo de la opción Calculadora, toma los resultados obtenidos de realizar los TEST y así generar una función T(n) para predecir el comportamiento.
+
+A modo de resumen de los resultados obtenidos de esta contribución, se encuentra Conclusiones donde se ilustra principalmente los resultados obtenidos entre tiempo de respuesta y cantidad de datos en prueba como: SELECT, UPDATE, DROP, INSERT, ORDER, REGEX, entre otros.
+
+Cabe destacar, que la aplicación permite la concurrencia y de procesos. Ademas, de crear graficos en vivo despues de cada TEST.
+
 
 # Menú del programa
 
