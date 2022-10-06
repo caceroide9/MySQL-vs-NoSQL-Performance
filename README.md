@@ -8,7 +8,7 @@ El apoyo de la opción Calculadora, toma los resultados obtenidos de realizar lo
 
 A modo de resumen de los resultados obtenidos de esta contribución, se encuentra Conclusiones donde se ilustra principalmente los resultados obtenidos entre tiempo de respuesta y cantidad de datos en prueba como: SELECT, UPDATE, DROP, INSERT, ORDER, REGEX, entre otros.
 
-Cabe destacar, que la aplicación permite la concurrencia y de procesos. Ademas, de crear graficos en vivo despues de cada TEST.
+Cabe destacar, que la aplicación permite la concurrencia de procesos. Ademas, de crear graficos en vivo despues de cada TEST.
 
 
 # Menú del programa
